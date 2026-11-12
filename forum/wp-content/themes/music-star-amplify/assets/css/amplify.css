@@ -1,0 +1,327 @@
+/*
+ * Music Star Amplify - child theme styles.
+ *
+ * Custom properties set from the Customizer: --msa-c1, --msa-c2, --msa-spot-size.
+ *
+ * TABLE OF CONTENTS
+ * 1. Release Countdown
+ * 2. Live Visualizer
+ * 3. News Ticker
+ * 4. Stage Lights: spotlight
+ * 5. Reduced motion
+ */
+
+:root {
+	--msa-c1: #c36dff;
+	--msa-c2: #ff4f8b;
+	--msa-bar-bg: #0b0b12;
+	--msa-gradient: linear-gradient(90deg, var(--msa-c1), var(--msa-c2));
+}
+
+/* 1. Release Countdown
+--------------------------------------------- */
+.msa-countdown {
+	position: relative;
+	background: var(--msa-bar-bg);
+	color: #eee;
+	text-align: center;
+}
+
+.msa-countdown::after {
+	content: "";
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 2px;
+	background: var(--msa-gradient);
+}
+
+.msa-cd-inner {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 10px 22px;
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 10px 16px;
+}
+
+.msa-countdown--under .msa-cd-inner {
+	padding: 26px 16px;
+}
+
+.msa-cd-title {
+	font-size: 0.85em;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--msa-c1);
+}
+
+.msa-cd-clock {
+	display: inline-flex;
+	gap: 10px;
+}
+
+.msa-cd-unit {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	min-width: 52px;
+	padding: 4px 9px;
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	border-radius: 8px;
+	background: rgba(255, 255, 255, 0.04);
+	line-height: 1.1;
+}
+
+.msa-countdown--under .msa-cd-unit {
+	min-width: 72px;
+	padding: 10px 12px;
+}
+
+.msa-cd-unit b {
+	font-size: 1.35em;
+	font-variant-numeric: tabular-nums;
+	background: var(--msa-gradient);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+.msa-countdown--under .msa-cd-unit b {
+	font-size: 2.1em;
+}
+
+.msa-cd-unit small {
+	font-size: 0.68em;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: #aaa;
+}
+
+.msa-cd-done {
+	display: none;
+	font-size: 1.3em;
+	font-weight: 800;
+	background: var(--msa-gradient);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+.msa-countdown.is-done .msa-cd-clock {
+	display: none;
+}
+
+.msa-countdown.is-done .msa-cd-done {
+	display: inline;
+}
+
+a.msa-cd-button {
+	display: inline-block;
+	padding: 8px 20px;
+	border-radius: 999px;
+	background: var(--msa-gradient);
+	color: #fff;
+	font-weight: 700;
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	font-size: 0.85em;
+}
+
+a.msa-cd-button:hover,
+a.msa-cd-button:focus {
+	color: #fff;
+	filter: brightness(1.12);
+}
+
+/* 2. Live Visualizer
+--------------------------------------------- */
+.msa-viz {
+	position: relative;
+	height: var(--msa-viz-height, 90px);
+	padding: 0 12px;
+	pointer-events: none;
+}
+
+.msa-viz-canvas {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.msa-viz--bottom {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 9980;
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent);
+	opacity: 0;
+	transform: translateY(100%);
+	transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Buttons stay above the bars of the bottom visualizer. */
+.msa-viz-at-bottom .cd-top {
+	z-index: 9990;
+}
+
+.msa-viz--bottom.is-playing {
+	opacity: 0.9;
+	transform: none;
+}
+
+/* 3. News Ticker
+--------------------------------------------- */
+.msa-ticker {
+	display: flex;
+	align-items: stretch;
+	overflow: hidden;
+	background: var(--msa-bar-bg);
+	color: #ddd;
+	font-size: 0.92em;
+}
+
+.msa-ticker--under {
+	border-top: 1px solid rgba(255, 255, 255, 0.08);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.msa-ticker-label {
+	position: relative;
+	z-index: 2;
+	display: flex;
+	flex: 0 0 auto;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 16px;
+	background: var(--msa-gradient);
+	color: #fff;
+	font-weight: 800;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.msa-ticker-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: #fff;
+	animation: msa-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes msa-pulse {
+	0%, 100% { opacity: 1; transform: scale(1); }
+	50% { opacity: 0.35; transform: scale(0.7); }
+}
+
+.msa-ticker-viewport {
+	flex: 1;
+	min-width: 0;
+	overflow: hidden;
+	-webkit-mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent);
+	mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent);
+}
+
+.msa-ticker-track {
+	display: flex;
+	width: max-content;
+}
+
+.msa-ticker.is-ready .msa-ticker-track {
+	animation: msa-ticker var(--msa-ticker-duration, 40s) linear infinite;
+}
+
+.msa-ticker:hover .msa-ticker-track,
+.msa-ticker:focus-within .msa-ticker-track {
+	animation-play-state: paused;
+}
+
+@keyframes msa-ticker {
+	from { transform: translateX(0); }
+	to { transform: translateX(-50%); }
+}
+
+.msa-ticker-list {
+	display: flex;
+	flex: 0 0 auto;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.msa-ticker-list li {
+	display: flex;
+	align-items: center;
+	padding: 10px 0;
+	white-space: nowrap;
+}
+
+.msa-ticker-list li::after {
+	content: "";
+	width: 6px;
+	height: 6px;
+	margin: 0 22px;
+	border-radius: 50%;
+	background: var(--msa-c2);
+}
+
+.msa-ticker-list a {
+	color: #eee;
+	text-decoration: none;
+}
+
+.msa-ticker-list a:hover,
+.msa-ticker-list a:focus {
+	color: var(--msa-c1);
+}
+
+/* 4. Stage Lights: spotlight
+--------------------------------------------- */
+.msa-spotlight-on .all-header {
+	position: relative;
+}
+
+.msa-spot {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 50;
+	background: radial-gradient(circle var(--msa-spot-size, 260px) at var(--msa-x, 50%) var(--msa-y, 50%), rgba(255, 255, 255, 0.12) 0%, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0.62) 100%);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.5s ease;
+	mix-blend-mode: normal;
+}
+
+.msa-spot.is-active {
+	opacity: 1;
+}
+
+/* 5. Reduced motion
+--------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+	.msa-ticker.is-ready .msa-ticker-track,
+	.msa-ticker-dot {
+		animation: none;
+	}
+
+	.msa-ticker-viewport {
+		overflow-x: auto;
+	}
+
+	.msa-ticker-list[aria-hidden="true"] {
+		display: none;
+	}
+
+	.msa-viz--bottom {
+		transition: none;
+	}
+}

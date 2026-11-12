@@ -1,0 +1,123 @@
+body, .main-navigation ul ul {
+	background: #000;
+}
+
+.news-cate .dashicons, .news-cate a {
+	color: #eee;
+}
+
+.container-sticky .sca-sticky {
+	background: #101010 !important;
+}
+
+button, input, optgroup, select, textarea,
+article p, p, .main-navigation ul li a,
+input[type="text"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="number"]:focus, input[type="tel"]:focus, input[type="range"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="week"]:focus, input[type="time"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="color"]:focus, textarea:focus,
+input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], input[type="number"], input[type="tel"], input[type="range"], input[type="date"], input[type="month"], input[type="week"], input[type="time"], input[type="datetime"], input[type="datetime-local"], input[type="color"], textarea,
+article header .entry-title a,
+.site-branding .site-title a, .site-title,
+.site-description,
+a, #commentform textarea,
+.cont-recent-post,
+#secondary section,
+#secondary ul li a,
+body,h2 a,h1, h2, h3, h4, h5, h6,
+.container-sticky .sca-sticky,
+.sca-slider-title, 
+.sca-sticky-title, 
+body #about-testimonials-seos h3,
+.about-section p {
+   color: #C0C0C0;
+}
+
+th, .single th, .wp-block-calendar table th,td,
+.single table .mg-content th, .single th td, .single td,
+body #cat-home-act .cont-cat,
+.woocommerce ul.products li.product, .woocommerce-page ul.products li.product,
+.woocommerce ul.products li.product .button,
+input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], input[type="number"], input[type="tel"], input[type="range"], input[type="date"], input[type="month"], input[type="week"], input[type="time"], input[type="datetime"], input[type="datetime-local"], input[type="color"], textarea,
+.cont-recent-post,fieldset,
+#secondary section,
+.container-sticky .sca-sticky {
+	border: 1px solid #222 !important;
+}
+button, input, optgroup, select, textarea,
+.woocommerce ul.products li.product .button,
+#commentform textarea,
+.cont-recent-post,
+#secondary section,
+body #primary main article {
+	background: #101010;
+}
+
+body .lt-body{
+	background: #222;	 
+}
+
+body .lt-container::after {
+	background-color: #444;
+}
+ 
+body .lt-content {
+	background: #444;
+}
+body .lt-left::before {
+    border: medium solid #444;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent #444 ;	
+}
+
+body .lt-right::before{
+    border: medium solid #444;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent #444 transparent transparent;
+}
+
+body .lt-content h2, body .lt-content p {
+	color: #eee;
+}
+body .lt-content a {
+	color: #999;
+}
+body .lt-content a:hover {
+	opacity: 0.8;
+}
+th, .single th, .wp-block-calendar table th {
+	background: #111;	
+	color: #eee;
+}
+
+body .marquee-cont,
+#commentform textarea:focus, textarea:focus, input:focus {
+	background: #222;
+}
+
+pre, hr {
+    background: #222;
+}
+
+
+footer #wp-calendar thead th,
+aside #wp-calendar thead th {
+	color: #fff !important;
+}
+
+#wp-calendar tbody td {
+	background: #333;
+	border: 1px solid #222 !important;
+}
+.main-navigation ul ul li a {
+	color: #fff;
+}
+
+.gallery-items {
+	border: 10px solid #333 !important;
+    box-shadow: rgb(0 0 0) 0px 2px 10px -5px !important;
+}
+@media screen and (max-width: 600px) {
+  	body .lt-left::before {
+		border: medium solid #444 !important;
+		border-width: 10px 10px 10px 0 !important;
+		border-color: transparent #444 transparent transparent !important;
+	}
+}

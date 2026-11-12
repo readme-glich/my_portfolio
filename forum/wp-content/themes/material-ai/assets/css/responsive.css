@@ -1,0 +1,1010 @@
+html,
+body {
+	overflow-x: hidden !important;
+	max-width: 100vw;
+}
+.materialai-topbar .wp-block-group.has-background-color {
+	transition: box-shadow 0.3s ease;
+}
+
+.materialai-topbar .wp-block-group.has-background-color:hover {
+	box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+}
+.materialai-topbar .has-primary-background-color.has-white-color {
+	animation: mai-badge-pulse 2s ease-in-out infinite;
+	display: inline-block;
+}
+
+@keyframes mai-badge-pulse {
+	0%, 100% {
+		box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.35);
+		transform: scale(1);
+	}
+	50% {
+		box-shadow: 0 0 0 6px rgba(255, 255, 255, 0);
+		transform: scale(1.05);
+	}
+}
+.materialai-topbar p[style*="font-size:16px"]:last-child {
+	transition: transform 0.25s ease, opacity 0.25s ease;
+	cursor: pointer;
+}
+.materialai-topbar p[style*="font-size:16px"]:last-child:hover {
+	transform: translateX(4px);
+	opacity: 0.85;
+}
+
+/* ---------- 3. Social icons — bounce + rotate on hover ---------- */
+.materialai-topbar .wp-block-social-links .wp-social-link {
+	transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease;
+}
+
+.materialai-topbar .wp-block-social-links .wp-social-link:hover {
+	transform: translateY(-4px) rotate(8deg) scale(1.15);
+}
+
+/* ---------- 4. Logo — gentle hover scale + subtle idle float ---------- */
+.materialai-main-header .wp-block-site-logo img,
+.materialai-main-header .wp-block-site-logo a {
+	transition: transform 0.35s ease;
+	display: inline-block;
+}
+
+/* ---------- 5. "Call Us" button — ringing phone effect ---------- */
+.materialai-button-call .wp-block-button__link {
+	position: relative;
+	overflow: visible;
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+
+/* ---------- 6. Navigation menu — underline grow on hover ---------- */
+.materialai-navbar .wp-block-navigation .wp-block-navigation-item > a,
+.materialai-navbar .wp-block-navigation .wp-block-navigation-item > .wp-block-navigation-item__content {
+	position: relative;
+	transition: all 0.25s ease;
+}
+
+.materialai-navbar .wp-block-navigation .wp-block-navigation-item > a::after,
+.materialai-navbar .wp-block-navigation .wp-block-navigation-item > .wp-block-navigation-item__content::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -4px;
+	width: 0%;
+	height: 2px;
+	background: currentColor;
+	transition: width 0.3s ease;
+}
+
+.materialai-navbar .wp-block-navigation .wp-block-navigation-item:hover > a::after,
+.materialai-navbar .wp-block-navigation .wp-block-navigation-item:hover > .wp-block-navigation-item__content::after {
+	width: 100%;
+}
+
+/* ---------- 7. Search icon button — rotate + scale on hover ---------- */
+.materialai-actions .search-btn button,
+.materialai-actions .wp-block-search__button {
+	transition: transform 0.35s ease, background 0.3s ease;
+}
+
+.materialai-actions .search-btn button:hover,
+.materialai-actions .wp-block-search__button:hover {
+	transform: rotate(-90deg);
+}
+
+/* ---------- 8. "Get Started" button — animated gradient + arrow feel ---------- */
+.materialai-btn-right-only-icon .wp-block-button__link,
+.materialai-button-right .wp-block-button__link {
+	position: relative;
+	background-size: 200% 200%;
+	transition: all 0.3s ease, box-shadow 0.3s ease, background-position 0.6s ease;
+}
+
+/* .materialai-btn-right-only-icon .wp-block-button__link:hover, */
+/* .materialai-button-right .wp-block-button__link:hover{ */
+	/* transform: translateY(-3px) scale(1.03); */
+	/* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); */
+	/* background-position: 100% 50%; */
+/* } */
+/* .materialai-button-right .wp-block-button__link:active { */
+	/* transform: translateY(-1px) scale(0.98); */
+/* } */
+/* ---------- 11. Respect users who prefer reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+	.materialai-header,
+	.materialai-header * {
+		animation: none !important;
+		transition: none !important;
+	}
+}
+@media (min-width: 992px) {
+	.materialai-header .wp-block-navigation .has-child ul.wp-block-navigation__submenu-container{
+		position: absolute;
+		padding:16px 0;
+		min-width:200px;
+		width: 200px;
+		height: auto;
+		background: #ffffff;
+		box-shadow: 0px 10px 25px 0px color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--secondary) 91%, #ffffff) 12%, transparent);
+		border-radius:10px;
+		border: none;
+		transform: translateY(10px);
+		-webkit-transition: all 0.3s ease;
+		-moz-transition: all 0.3s ease;
+		-ms-transition: all 0.3s ease;
+		-o-transition: all 0.3s ease;
+		transition: all 0.3s ease;
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+	}
+	.materialai-header .wp-block-navigation .has-child .wp-block-navigation-submenu .wp-block-navigation-item__content{
+		color: #696E73;
+		padding: .5em 1em;
+		font-size: 16px;
+		line-height: 1.2;
+	}
+	.materialai-header .wp-block-navigation .has-child .wp-block-navigation-submenu .wp-block-navigation-item__content:hover,
+	.materialai-header .wp-block-navigation .has-child .wp-block-navigation-submenu .wp-block-navigation-item__content:focus{
+		color: #101010;
+	}
+	.materialai-header .wp-block-navigation .has-child .wp-block-navigation-submenu .wp-block-navigation-item__content span{
+		position: relative;
+	}
+	.materialai-header .wp-block-navigation .has-child .wp-block-navigation-submenu .wp-block-navigation-item__content span::after{
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: auto;
+		right: 0;
+		width: 0;
+		height: 1px;
+		background:#101010;
+		-webkit-transition: all 0.3s ease;
+		-moz-transition: all 0.3s ease;
+		-ms-transition: all 0.3s ease;
+		-o-transition: all 0.3s ease;
+		transition: all 0.3s ease;
+	}
+	.materialai-header .wp-block-navigation .has-child:hover ul.wp-block-navigation__submenu-container,
+	.materialai-header .wp-block-navigation .has-child:focus-within ul.wp-block-navigation__submenu-container{
+		transform: translateY(0);
+		opacity: 1;
+		visibility: visible;
+		pointer-events: all;
+		top: 24px;
+	}
+	.materialai-header .wp-block-navigation .has-child .wp-block-navigation-submenu .wp-block-navigation-item__content:hover span::after,
+	.materialai-header .wp-block-navigation .has-child .wp-block-navigation-submenu .wp-block-navigation-item__content:focus span::after{
+		right: auto;
+		left: 0;
+		width: 100%;
+	}
+	.materialai-header .wp-block-navigation .has-child .wp-block-navigation-submenu > .has-child > ul.wp-block-navigation-submenu{
+		--tranY: 10px;
+		position: absolute;
+		left: calc(100% + 0px);
+		top: 0px;
+		padding: 16px 0;
+		background: var(--white);
+		box-shadow: 0px 10px 25px 0px color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--secondary) 91%, #ffffff) 12%, transparent);
+		border-radius: 10px;
+		transform: translateY(var(--tranY));
+		-webkit-transition: all 0.3s ease;
+		-moz-transition: all 0.3s ease;
+		-ms-transition: all 0.3s ease;
+		-o-transition: all 0.3s ease;
+		transition: all 0.3s ease;
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+	}
+	.materialai-header .wp-block-navigation .has-child .wp-block-navigation-submenu > .has-child:hover > ul.wp-block-navigation-submenu,
+	.materialai-header .wp-block-navigation .has-child .wp-block-navigation-submenu > .has-child:focus-within > ul.wp-block-navigation-submenu{
+		--tranY: 0px;
+		opacity: 1;
+		visibility: visible;
+		pointer-events: all;
+	}
+	.wp-block-navigation .wp-block-navigation__submenu-icon{
+		width: .5rem;
+		height: .5rem;
+	}
+	.wp-block-navigation .wp-block-navigation__submenu-icon svg{
+		transition: all 0.3s;
+	}
+}
+@media (min-width: 1100px) {
+	.materialai-header .materialai-nav-wrap{
+		display: block;
+	}
+}
+@media (min-width: 1120px) {
+	.materialai-services-section .materialai-service-columns,
+	.ma-ai-section .ma-ai-features,
+	.faq-split .faq-split__row,
+	.contact-section__content,
+	.why-choose-us .why-choose-us__row,
+	.main-container{
+		max-width: var(--wp--style--global--content-size);
+	}
+}
+.materialai-section-heading .materialai-heading-default{
+	font-weight: 500 !important;
+	font-size: 18px !important;
+}
+.materialai-nav-wrap .materialai-navbar .wp-block-navigation-item__label{
+	font-weight: 400;
+}
+.mai-blog .mai-blog__list .mai-post{
+	padding: 10px;
+}
+.mai-blog .mai-post .mai-post__media img{
+	width: 100% !important;
+	border-radius: 10px;
+}
+.mai-blog .mai-post__body{
+	gap: 6px;
+}
+.mai-blog .mai-post__body .mai-post__meta,
+.mai-blog .mai-post__body .mai-post__actions{
+	width: 100%;
+}
+.mai-blog__list .mai-post__media{
+	height: auto !important;
+}
+.mai-blog .mai-post__body .mai-post__title{
+	margin: 0 0 0 0 !important;
+}
+.materialai-footer .footer-cta h2.wp-block-heading{
+	font-size: 30px;
+	line-height: 1.2 !important;
+	margin-bottom: 10px;
+}
+.materialai-footer .footer-cta p.wp-block-paragraph{
+	font-size: 16px;
+	margin: 0;
+}
+.materialai-header .wp-block-navigation.items-justified-right .wp-block-navigation__container .has-child .wp-block-navigation__submenu-container{
+	left: 0;
+	right: auto;
+}
+.materialai-header .wp-block-navigation .has-child .wp-block-navigation-submenu .wp-block-navigation-item__content::after{
+	display: none;
+}
+/* ------ Laptop  Responsive Css Start  ------------   */
+@media (min-width: 992px) and (max-width: 1439px) {
+	.materialai-main-header{
+		padding: 0 35px;
+	}
+	.materialai-main-header .gt_float_switcher img {
+		height: 35px !important;
+		width: 35px !important;
+	}
+	.slider-1 .wp-block-group-is-layout-constrained .are-vertically-aligned-center{
+		padding-right: 35px !important;
+		padding-left: 35px !important;
+	}
+	.materialai-main-header .materialai-button-call .wp-block-button__link{
+		font-weight: 500;
+	}
+	.slider-1 h2.wp-block-heading{
+		font-size: 48px !important;
+	}
+	.slider-1 .are-vertically-aligned-center .wp-block-buttons .has-primary-border-color{
+		font-weight: 500;
+	}
+	.ma-ai-section .ma-ai-inner {
+		padding: 0 20px;
+	}
+	.materialai-services-section {
+		padding: 60px 20px;
+	}
+	.materialai-cta-banner .wp-block-columns-is-layout-flex{
+		padding: 0 20px;
+	}
+	.materialai-cta-banner-btn .wp-block-button__link{
+		font-weight: 500;
+		font-size: 16px;
+		padding: 5px 5px 5px 20px;
+	}
+	.materialai-topbar .has-secondary-background-color.wp-block-group{
+		padding-left: 20px !important;
+		padding-right: 20px !important;
+	}
+	.materialai-topbar .has-secondary-background-color .wp-block-group{
+		gap: 14px;
+	}
+	.materialai-topbar .has-secondary-background-color .wp-block-group p.wp-block-paragraph{
+		font-size: 14px !important;
+	}
+	.materialai-topbar .has-secondary-background-color .wp-block-navigation .wp-block-navigation-item__label{
+		font-weight: 400;
+		font-size: 14px;
+	}
+	.materialai-topbar .has-secondary-background-color .wp-block-social-links .wp-social-link svg{
+		width: 16px;
+		height: 16px;
+	}
+	.ma-ai-section .ma-ai-inner .has-huge-font-size{
+		font-size: 38px !important;
+	}
+	.materialai-ai-layout .materialai-feature-card{
+		margin-block-start: 0px;
+	}
+	.mai-logos{
+		padding-top:50px !important;
+		padding-bottom: 50px !important;
+	}
+	.mai-ticker{
+		margin-top: 30px !important;
+	}
+}
+@media (max-width: 1199px){
+	.ma-ai-section .ma-ai-video-wrap{
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+	.materialai-cta-banner .wp-block-columns-is-layout-flex,
+	.wp-block-group-is-layout-constrained.alignfull,
+	.maip-projects,
+	.materialai-footer .footer-cta,
+	.materialai-footer .materialai-footer-main,
+	.materialai-footer .wp-block-group-is-layout-flex.wp-container-core-group-is-layout-f4644fb6{
+		padding-left: 20px !important;
+		padding-right: 20px !important;
+	}
+	.materialai-cta-banner-btn .wp-block-button__link{
+		font-weight: 500;
+		font-size: 16px;
+		padding: 10px 70px 10px 20px !important;
+	}
+	.mai-cards{
+		margin-top: 10px;
+	}
+	.materialai-blog-index{
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+@media (max-width: 1100px){
+   .materialai-ai-layout .materialai-ai-center{
+		display: none;
+	}
+	.materialai-ai-layout{
+		padding-block: 0px;
+	}
+}
+@media (max-width: 1099px){
+	.materialai-left-border, 
+	.materialai-right-border{
+		display: none;
+	}
+	.materialai-topbar > .wp-block-group-is-layout-flow,
+	.aipost-section{
+		padding-right: 20px !important;
+		padding-left: 20px !important;
+	}
+	.mai-ticker{
+		margin-top: 50px !important;
+	}
+	.materialai-stats-slider{
+		padding-left: 20px !important;
+		padding-right: 20px !important;
+	}
+}
+/* ------ Tablet  Responsive Css Start  ------------   */
+@media (min-width: 768px) and (max-width: 991px) {
+	.materialai-main-header{
+		padding: 0 20px;
+	}
+	.slider-1 .wp-block-group-is-layout-constrained .are-vertically-aligned-center{
+		padding-right: 20px !important;
+		padding-left: 20px !important;
+	}
+	.materialai-nav-wrap .materialai-navbar .wp-block-navigation-item__label{
+		font-size: 16px;
+	}
+	.materialai-actions .materialai-button-right .has-normal-font-size{
+		font-size: 16px !important;
+		font-weight: 500;
+		padding: 10px 55px 10px 20px;
+	}
+	.slider-1 h2.wp-block-heading{
+		font-size: 40px !important;
+	}
+	.stats-card h3.wp-block-heading{
+		font-size: 18px !important;
+		font-weight: 500;
+	}
+	.stats-card p.wp-block-paragraph{
+		font-weight: 300;
+		font-size: 14px !important;
+	}
+	.materialai-slider-image-column .materialai-circle-container{
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+	.slider-1 .are-vertically-aligned-center .wp-block-buttons .has-primary-border-color{
+		font-weight: 400;
+		font-size: 16px;
+	}
+	.materialai-nav-wrap .materialai-button-right .wp-block-button__link::after{
+		width: 45px;
+		height: 45px;
+	}
+	.materialai-header .materialai-topbar .is-content-justification-left:not(nav) {
+		display: none;
+	}
+	.materialai-header .materialai-topbar .has-secondary-background-color .is-content-justification-right {
+		display: contents;
+	}
+	.materialai-header .items-justified-right {
+		justify-content: start;
+	}
+	.materialai-main-header .gt_float_switcher img {
+		height: 40px !important;
+		width: 40px !important;
+	}
+	.materialai-slider-image-wrap .wp-image-584{
+		border-top-left-radius: 35px !important;
+		border-top-right-radius: 35px !important;
+		border-bottom-left-radius: 35px !important;
+		border-bottom-right-radius: 35px !important;
+	}
+	p.materialai-heading-default::before{
+		bottom: -35px;
+	}
+	p.materialai-heading-default::after{
+		bottom: -31px;
+	}
+	
+}
+@media (max-width: 991px){
+	.materialai-services-section .materialai-service-top{
+		flex-wrap: nowrap !important;
+	}
+	.materialai-service-button .wp-block-button__link{
+		font-weight: 500;
+		font-size: 14px;
+		padding: 5px 42px 5px 14px !important;
+	}
+	.materialai-cta-banner .wp-block-image{
+		text-align: center;
+	}
+	.materialai-topbar .wp-block-navigation__responsive-container{
+		width: 250px !important;
+		display: flex;
+		left: -270px;
+		position:fixed !important;
+		transition: all 0.5s;
+	}
+	.materialai-topbar .wp-block-navigation__responsive-container.is-menu-open{
+		padding: 20px;
+		left: 0;
+		justify-content: start;
+		text-align: start;
+	}
+	.materialai-topbar .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content{
+		justify-content: start;
+		align-items: start;
+	}
+	.materialai-topbar .wp-block-navigation__responsive-container .wp-block-navigation__responsive-container-content .wp-block-navigation{
+		align-items: start;
+		width: 100%;
+		gap: 10px;
+	}
+	.materialai-topbar .wp-block-navigation__responsive-container .wp-block-navigation__responsive-container-content .wp-block-navigation > li.wp-block-navigation-item{
+		width: 100%;
+		align-items: flex-start;
+		border-bottom: 1px solid #E9E9E9;
+	}
+	.materialai-topbar .wp-block-navigation__responsive-container .wp-block-navigation__responsive-container-content .wp-block-navigation > li.wp-block-navigation-item:last-child{
+		border-bottom: none;
+	}
+	.materialai-topbar .wp-block-navigation__responsive-container .wp-block-navigation__responsive-container-content .wp-block-navigation > li.wp-block-navigation-item .wp-block-navigation-item__content{
+		font-weight: 500;
+		display: block;
+		align-items: center;
+		padding: 10px 0;
+		justify-content: space-between;
+	}
+	.wp-block-navigation__responsive-container .wp-block-navigation__container .has-child .wp-block-navigation-submenu__toggle{
+		display: block;
+		position: absolute;
+		right: 0;
+		color: #101010;
+		top: 5px;
+	}
+	.wp-block-navigation__responsive-container .wp-block-navigation__container .has-child .wp-block-navigation-submenu__toggle svg{
+		width: 0.8rem;
+		height: 0.8rem;
+		transition: all 0.3s;
+		transform: rotate(0deg);
+	}
+	.wp-block-navigation__responsive-container .wp-block-navigation__container .has-child.show .wp-block-navigation-submenu__toggle svg{
+		transform: rotate(180deg);
+	}
+	.materialai-header .wp-block-navigation .has-child ul.wp-block-navigation__submenu-container {
+		min-width: unset !important;
+		width: 100% !important;
+		position:  relative !important;
+		padding-left: 15px !important;
+		padding-right: 0px !important;
+		padding-top: 0px;
+		padding-bottom: 0px;
+		margin-left: 10px ;
+		border-left: 1px solid #E9E9E9 !important;
+		display: block !important;
+	}
+	.materialai-navbar .wp-block-navigation__responsive-container-close,
+	.materialai-header .wp-block-navigation__responsive-container-close{
+		color: #fff;
+		width: 35px;
+		height: 35px;
+		background-color: #eb0f0f;
+		text-align: center;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.materialai-topbar .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation .wp-block-navigation-item__content{
+		color: rgb(0 0 0);
+		font-size: 16px;
+	}
+	.materialai-cta-banner h2.wp-block-heading{
+		font-size: 36px;
+	}
+	.materialai-topbar > .wp-block-group-is-layout-flow {
+		padding-right: 20px !important;
+		padding-left: 20px !important;
+	}
+	.materialai-navbar .wp-block-navigation__responsive-container-open{
+		width:50px;
+		height:50px;
+		display:flex;
+		align-items:center;
+		justify-content:center;
+		background:color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 23%, #000000) 95%, transparent);
+		border:2px solid transparent;
+		border-radius:12px;
+		background-image:
+		linear-gradient(color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 23%, #000000) 95%, transparent), color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 23%, #000000) 95%, transparent)),
+		linear-gradient(135deg, color-mix(in srgb, var(--wp--preset--color--primary) 90%, #ffffff), color-mix(in srgb, var(--wp--preset--color--secondary) 33%, #ffffff));
+		background-origin:border-box;
+		background-clip:padding-box, border-box;
+		box-shadow:
+		0 0 0px color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 85%, #000000) 80%, transparent),
+		0 0 0px lab(69.36% 72.52 -46.5 / 0.6),
+		inset 0 0 10px rgba(255,255,255,.08);
+		transition:all .3s ease;
+	}
+	.materialai-topbar .has-secondary-background-color .wp-block-navigation__responsive-container-open{
+		width:40px;
+		height:40px;
+		display:flex;
+		align-items:center;
+		justify-content:center;
+		background:var(--wp--preset--color--primary);
+		border:2px solid transparent;
+		border-radius:8px;
+		background-image:
+		linear-gradient(var(--wp--preset--color--primary), var(--wp--preset--color--primary)),
+		linear-gradient(135deg, color-mix(in srgb, var(--wp--preset--color--primary) 90%, #ffffff), color-mix(in srgb, var(--wp--preset--color--secondary) 33%, #ffffff));
+		background-origin:border-box;
+		background-clip:padding-box, border-box;
+		transition:all .3s ease;
+		display: none;
+	}
+	.materialai-navbar .wp-block-navigation__responsive-container-open:hover,
+	.materialai-navbar .wp-block-navigation__responsive-container-open:focus{
+		box-shadow:
+		0 0 7px color-mix(in srgb, var(--wp--preset--color--primary) 97%, #000000),
+		0 0 10px color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 98%, #ffffff) 80%, transparent),
+		0 0 89px color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 98%, #ffffff) 50%, transparent);
+	}
+	.materialai-navbar .wp-block-navigation__responsive-container-open svg{
+		width:26px;
+		height:26px;
+		fill:#fff;
+	}
+	.materialai-navbar .wp-block-navigation__responsive-container-open svg line{
+		stroke:#fff;
+		stroke-width:2.5;
+	}
+	.materialai-header .wp-block-navigation .has-child ul.wp-block-navigation__submenu-container,
+	.materialai-header .wp-block-navigation .has-child .wp-block-navigation-submenu > .has-child > ul.wp-block-navigation-submenu{
+		display: none;
+	}
+	.materialai-navbar .wp-block-navigation .wp-block-navigation-item > a::after, .materialai-navbar .wp-block-navigation .wp-block-navigation-item > .wp-block-navigation-item__content::after{
+		display: none;
+	}
+	.materialai-navbar .wp-block-navigation__submenu-container.wp-block-navigation-submenu {
+		max-height: 0;
+		opacity: 0 !important;
+		overflow: hidden;
+		visibility: hidden !important;
+		left: unset !important;
+		right: unset !important;
+		transition: all 0.5s ease;
+	}
+	.materialai-navbar .wp-block-navigation-submenu.show .wp-block-navigation__submenu-container.wp-block-navigation-submenu {
+		max-height: 500px;
+		opacity: 1 !important;
+		visibility: visible !important;
+		display: block;
+		padding-top: 4px;
+		padding-bottom: 4px;
+	}
+	.materialai-navbar .wp-block-navigation__responsive-container.is-menu-open:where(:not(.disable-default-overlay)) .wp-block-navigation__responsive-container-content .wp-block-navigation-item{
+		align-items: self-start;
+	}
+	.materialai-footer .footer-cta .wp-block-buttons.is-content-justification-right{
+		margin-bottom: 25px;
+		justify-content: flex-start !important;
+	}
+	.materialai-blog-index .materialai-blog-layout{
+		flex-wrap: wrap !important;
+	}
+	.materialai-blog-layout > .wp-block-template-part {
+		flex-basis: 100%;
+		width: 100%;
+	}
+	.materialai-footer .footer-top-border-box{
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      min-height: 40px;
+      margin: 0 auto;
+   }
+   .materialai-footer .footer-top-border-box .footer-border-icon {
+      width: 40px !important;
+      height: 40px !important;
+      min-width: 40px;
+      min-height: 40px;
+      padding: 0 !important;
+      line-height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+   }
+   .materialai-footer .footer-top-border-box hr{
+   	display: none;
+   }
+   .materialai-footer .wp-block-group-is-layout-flex.wp-container-core-group-is-layout-f4644fb6 {
+      padding: 20px !important;
+   }
+   .aipost-layout.wp-block-columns .wp-block-template-part,
+   .materialai-blog-layout.wp-block-group .wp-block-template-part{
+      flex-basis: 100% !important;
+   }
+}
+/* ------ Mobile  Responsive Css Start  ------------   */
+@media (max-width: 767px){
+	.materialai-header .materialai-topbar .is-content-justification-left:not(nav) {
+		display: none;
+	}
+	.materialai-main-header .wp-block-buttons, .materialai-main-header .gtranslate_wrapper {
+		display: none;
+	}
+	.materialai-header .materialai-topbar .is-content-justification-right {
+		display: contents;
+	}
+	.materialai-main-header {
+		display: flex;
+	}
+	.slider-1 .wp-block-columns .wp-block-buttons-is-layout-flex{
+		gap: 35px;
+	}
+	.slider-1 .wp-block-columns .wp-block-buttons>.materialai-btn-right-only-icon, 
+	.slider-1 .wp-block-columns .wp-block-buttons>.materialai-button-right{
+		margin-bottom: 15px;
+	}
+	.slider-1 .wp-block-group-is-layout-constrained .are-vertically-aligned-center{
+		padding-right: 15px !important;
+		padding-left: 15px !important;
+	}
+	.materialai-nav-wrap .materialai-button-right .wp-block-button__link::after,
+	.slider-1 .materialai-button-right .wp-block-button__link::after,
+	.materialai-button-right .wp-block-button__link::before{
+		right: -14px;
+		width: 36px;
+		height: 36px;
+		font-size: 16px;
+		font-weight: 500;
+	}
+	.materialai-nav-wrap .materialai-button-right .wp-block-button__link::before,
+	.slider-1 .materialai-button-right .wp-block-button__link::before{
+		right: -14px;
+		width: 36px;
+		height: 36px;
+		line-height: 36px;
+	}
+	.slider-1 h2.wp-block-heading{
+		font-size: 25px !important;
+	}
+	.slider-1 p.wp-block-paragraph{
+		font-weight: 300;
+		font-size: 14px !important;
+	}
+	.slider-1 .are-vertically-aligned-center .wp-block-buttons .has-primary-border-color{
+		font-weight: 500;
+		font-size: 16px;
+	}
+	.slider-1 .materialai-btn-right-only-icon .wp-block-button__link,
+	.materialai-nav-wrap .materialai-button-right .wp-block-button__link{
+		padding: 8px 50px 8px 20px;
+		font-weight: 400;
+		font-size: 16px !important;
+	}
+	.materialai-nav-wrap .materialai-navbar{
+		gap: 16px;
+		padding: 0 20px;
+	}
+	.materialai-nav-wrap .materialai-navbar .search-btn .wp-block-search__button{
+		width: 40px;
+		height: 40px;
+		min-width: 40px;
+	}
+	.materialai-nav-wrap .materialai-actions .wp-block-search__inside-wrapper{
+		align-items: center;
+	}
+	.materialai-slider-image-column .materialai-circle-container{
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+	.materialai-stats-slider .materialai-box-slider{
+		border: none;
+	}
+	.stats-card .stat{
+		margin-block-start: 0px !important;
+		width: 100%;
+		background-color: var(--wp--preset--color--secondary) !important;
+		padding:15px 10px;
+		border-radius: 10px;
+		border: 1px solid color-mix(in srgb, var(--wp--preset--color--primary) 53%, #000000);
+	}
+	.stats-card .stat .progress{
+		width: 60px;
+		height: 60px;
+		margin: 0 !important;
+	}
+	.stats-card .stat .content{
+		margin: 0px !important;
+		text-align: left;
+	}
+	.stats-card .stat .progress::before{
+		width: 50px;
+		height: 50px;
+	}
+	.stats-card .stat .progress p{
+		font-size: 12px;
+	}
+	.stats-card .stat .wp-block-heading{
+		font-size: 16px;
+      line-height: 1.2 !important;
+      margin-bottom: 12px;
+	}
+	.stats-card .stat .wp-block-paragraph{
+		font-size: 14px;
+      font-weight: 400;
+      margin: 0;
+      line-height: 1.2 !important;
+	}
+	.materialai-box-slider::before,
+	.materialai-box-slider::after{
+		display: none;
+	}
+	:root :where(.stat) > *{
+		margin-block-start:0px !important;
+	}
+	.materialai-circle-container .materialai-circle-text span{
+		font-size: 14px;
+		font-weight: 500;
+	}
+	.materialai-slider-image-wrap .wp-image-584{
+		border-top-left-radius: 35px !important;
+		border-top-right-radius: 35px !important;
+		border-bottom-left-radius: 35px !important;
+		border-bottom-right-radius: 35px !important;
+	}
+	.materialai-section-heading{
+		margin-bottom: 30px;
+	}
+	.wp-block-group-is-layout-constrained .materialai-ai-layout{
+		padding-block: 15px;
+	}
+	p.materialai-heading-default::before{
+		bottom: -35px;
+	}
+	p.materialai-heading-default::after{
+		bottom: -31px;
+	}
+	.wp-block-heading{
+		font-size: 34px;
+	}
+	.materialai-services-section .wp-block-heading,
+	.materialai-testimonial-section .wp-block-heading{
+		font-size: 28px !important;
+	}
+	.materialai-service-columns .wp-block-heading{
+		font-size: 24px;
+	}
+	.materialai-service-columns .wp-block-paragraph{
+		font-size: 16px;
+		margin-block-start:14px;
+	}
+	.materialai-cta-banner .wp-block-column-is-layout-flow{
+		padding-top: 80px !important;
+		padding-bottom: 60px;
+	}
+	.materialai-cta-banner h2.wp-block-heading{
+		font-size: 34px !important;
+	}
+	.ai-team-socials .wp-block-social-link a{
+		justify-content: center;
+	}
+	.materialai-cta-banner .wp-block-column-is-layout-flow{
+		padding-bottom: 0px !important;
+	}
+	.materialai-topbar > .wp-block-group-is-layout-flow > .has-secondary-background-color{
+		padding-left: 20px !important;
+		padding-right: 20px !important;
+	}
+	.materialai-topbar > .wp-block-group-is-layout-flow > .has-secondary-background-color > .wp-block-group-is-layout-flex{
+		gap: 15px !important;
+		flex-wrap: wrap;
+	}
+	.Preloader .pl{
+		width: 9em;
+		height: 9em;
+	}
+	.Preloader .pl__nucleus-particle{
+		width: 1em;
+		height: 1em;
+	}
+	.materialai-circle-container{
+		width: 125px;
+		height: 125px;
+	}
+	.circular-text-outer{
+		width: 120px;
+		height: 120px;
+	}
+	.materialai-circle-center{
+		width: 50px;
+		height: 50px;
+		line-height: 50px;
+		font-size: 25px;
+	}
+	.wp-block-group-is-layout-constrained.alignfull{
+		padding-top: 60px !important;
+		padding-bottom: 60px !important;
+	}
+	.wp-block-group-is-layout-constrained.mai-ticker{
+		padding-top: 30px !important;
+		padding-bottom: 30px !important;
+	}
+	.materialai-header .materialai-main-header{
+		padding-top: 20px !important;
+		padding-bottom: 20px !important;
+		margin-top: 0px;
+	}
+	.materialai-nav-wrap{
+		margin-top: 0px;
+	}
+	.materialai-pricing-section{
+		padding-bottom: 100px !important;
+	}
+	.maip-dots .maip-dot-line .wp-block-button__link{
+		width: 11px !important;
+		height: 2px !important;
+		min-height: 2px;
+	}
+	.mai-blog .mai-blog__list .mai-post{
+		flex-wrap: wrap;
+	}
+	.mai-blog .mai-post__media{
+		flex: 1;
+		flex-basis: 100%;
+	}
+	.materialai-footer .wp-block-group-is-layout-flex.wp-container-core-group-is-layout-f4644fb6{
+		padding:20px !important;
+	}
+	
+	.materialai-blog-actions{
+		width: 100%;
+		justify-content: space-between;
+	}
+	.contact-section__main .contact-section__countries {
+		grid-template-columns: repeat(1, 1fr);
+	}
+	.slider-1 .owl-dots{
+		padding: 10px 25px !important;
+		border-radius: 40px !important;
+		bottom:-75px !important;
+	}
+	.materialai-stats-slider{
+		height: auto !important;
+		margin-top: 0px;
+		padding-top: 80px !important;
+		padding-bottom: 80px !important;
+	}
+	.materialai-stats-slider .materialai-box-slider .stats-card{
+		flex-direction: column;
+		gap: 20px;
+		padding-bottom: 0px !important;
+	}
+	.slider-bottom-style{
+		display: none;
+	}
+	.materialai-header .wp-block-search.wp-block-search__button-only .wp-block-search__input{
+		right: -100px;
+		width: 200px;
+	}
+	.materialai-footer .footer-top-border-box{
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    margin:0 auto;
+	}
+	.materialai-footer .footer-top-border-box hr{
+		display: none;
+	}
+	.mai-blog .mai-blog__query .owl-dots .owl-dot span{
+	  width: 20px !important;
+     min-width: 20px !important;
+	}
+}
+@media (max-width: 380px){
+	.materialai-nav-wrap .materialai-navbar{
+		gap: 10px;
+		padding: 0 18px;
+	}
+	.materialai-nav-wrap .materialai-button-right .wp-block-button__link{
+		padding: 10px 45px 8px 15px;
+		font-size: 14px !important;
+	}
+	.materialai-nav-wrap .materialai-navbar  .materialai-actions{
+		gap: 15px !important;
+	}
+	.materialai-navbar .wp-block-navigation__responsive-container-open{
+		width: 40px;
+		height: 40px;
+	}
+	.materialai-nav-wrap .materialai-button-right .wp-block-button__link{
+		font-size: 12px !important;
+	}
+	.materialai-nav-wrap .materialai-button-right .wp-block-button__link::after,
+	.materialai-nav-wrap .materialai-button-right .wp-block-button__link::before{
+		width: 32px;
+		height: 32px;
+		line-height: 32px;
+	}
+}
+.materialai-left-border,
+.materialai-right-border{
+	width:min(1100px);
+	height: 0px;
+	position: relative;
+	margin:auto;
+}
+.materialai-left-border:after{
+	width: 950px;
+	left: -944px;
+}
+.materialai-left-border:before{
+	width: 960px;
+	left: -950px;
+}
+.materialai-right-border:after{
+	width: 950px;
+	right: -944px;
+}
+.materialai-right-border:before{
+	width: 960px;
+	right: -950px;
+}

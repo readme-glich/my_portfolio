@@ -1,0 +1,23 @@
+/*
+Theme Name: Music Star Amplify
+Template: music-star
+Author: seosbg
+Author URI: https://seosthemes.com/
+Description: Music Star Amplify is a child theme of Music Star for bands, DJs, labels and music blogs. Its Live Visualizer reacts to the real music: when a visitor plays an audio file on the site, animated bars or a wave under the header move with the frequencies of the song. Stage Lights adds a spotlight that follows the mouse over the header image. Release Countdown shows a live countdown to a new album or event, and the News Ticker scrolls the latest posts. The Raleway font is hosted locally. All options are in the Customizer under "Amplify Options".
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 7.1
+Requires PHP: 7.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: music-star-amplify
+Tags: one-column, two-columns, left-sidebar, translation-ready, footer-widgets, theme-options, custom-header, custom-logo, custom-menu, custom-colors, custom-background, featured-images, full-width-template, sticky-post, threaded-comments, entertainment, blog, news
+
+Music Star Amplify WordPress Theme, (C) 2026 seosbg.
+Music Star Amplify is distributed under the terms of the GNU GPL v2 or later.
+*/
+
+/*
+ * The parent stylesheet is loaded from functions.php.
+ * The child styles live in assets/css/amplify.css.
+ */

@@ -1,0 +1,40 @@
+<!-- wp:template-part {"slug":"header","theme":"material-ai","tagName":"header"} /-->
+<!-- wp:template-part {"slug":"breadcrumb","theme":"material-ai","tagName":"breadcrumb"} /-->
+
+<!-- wp:woocommerce/page-content-wrapper {"page":"cart"} -->
+<!-- wp:group {"tagName":"main","className":"materialai-woo-cart","layout":{"type":"constrained"}} -->
+<main class="wp-block-group materialai-woo-cart">
+
+	<!-- wp:woocommerce/store-notices /-->
+
+	<!-- wp:columns {"className":"materialai-woo-layout"} -->
+	<div class="wp-block-columns materialai-woo-layout">
+
+		<!-- wp:column {"width":"66.66%","className":"materialai-woo-main"} -->
+		<div class="wp-block-column materialai-woo-main" style="flex-basis:66.66%">
+
+			<!-- wp:post-title {"level":1,"className":"screen-reader-text"} /-->
+
+			<!-- wp:post-content /-->
+
+			<!-- wp:pattern {"slug":"material-ai/woo-clear-cart"} /-->
+
+		</div>
+		<!-- /wp:column -->
+
+		<!-- wp:column {"width":"33.33%","className":"materialai-woo-sidebar"} -->
+		<div class="wp-block-column materialai-woo-sidebar" style="flex-basis:33.33%">
+
+			<!-- wp:template-part {"slug":"sidebar-woocommerce","theme":"material-ai"} /-->
+
+		</div>
+		<!-- /wp:column -->
+
+	</div>
+	<!-- /wp:columns -->
+
+</main>
+<!-- /wp:group -->
+<!-- /wp:woocommerce/page-content-wrapper -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

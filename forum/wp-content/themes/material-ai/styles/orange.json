@@ -1,0 +1,96 @@
+{
+  "version": 2,
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "title": "Orange",
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#EE591F",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#2C1107",
+          "name": "Secondary"
+        },
+        {
+          "slug": "primary-shade-one",
+          "color": "#F78558",
+          "name": "Primary Shade 1"
+        },
+        {
+          "slug": "primary-shade-2",
+          "color": "#AA390D",
+          "name": "Primary Shade 2"
+        },
+        {
+          "slug": "secondary-shade-1",
+          "color": "#451C0D",
+          "name": "Secondary Shade 1"
+        },
+        {
+          "slug": "secondary-shade-2",
+          "color": "#1A0A04",
+          "name": "Secondary Shade 2"
+        },
+        {
+          "slug": "light-color",
+          "color": "#FFFFFE",
+          "name": "Light Color"
+        },
+        {
+          "slug": "black-color",
+          "color": "#101010",
+          "name": "Black Color"
+        },
+        {
+          "slug": "dark-shade",
+          "color": "#0A0A0A",
+          "name": "Dark Shade"
+        },
+        {
+          "slug": "heading-color",
+          "color": "#1E262A",
+          "name": "Heading Color"
+        },
+        {
+          "slug": "background",
+          "color": "#FFFFFF",
+          "name": "Background"
+        },
+        {
+          "slug": "background-alt",
+          "color": "#050909",
+          "name": "Background Alt"
+        },
+        {
+          "slug": "foreground",
+          "color": "#6C6C6C",
+          "name": "Foreground"
+        },
+        {
+          "slug": "foreground-alt",
+          "color": "#C0C0C0",
+          "name": "Foreground Alternative"
+        },
+        {
+          "slug": "meta-color",
+          "color": "#C2C2C2",
+          "name": "Meta Color"
+        },
+        {
+          "slug": "border-color",
+          "color": "#1E2D2C",
+          "name": "Border Color"
+        },
+        {
+          "color": "#ffffff00",
+          "name": "Transparent",
+          "slug": "transparent"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,346 @@
+<?php
+
+/**
+ * bbPress Forum Capabilites
+ *
+ * Used to map forum capabilities to WordPress's existing capabilities.
+ *
+ * @package bbPress
+ * @subpackage Capabilities
+ */
+
+/**
+ * Return forum capabilities
+ *
+ * @since 2.0.0 bbPress (r2593)
+ *
+ * @return array Forum capabilities
+ */
+function bbp_get_forum_caps() {
+
+	// Filter & return
+	return (array) apply_filters(
+		'bbp_get_forum_caps',
+		array(
+			'create_posts'        => 'create_forums',
+			'edit_posts'          => 'edit_forums',
+			'edit_others_posts'   => 'edit_others_forums',
+			'publish_posts'       => 'publish_forums',
+			'read_private_posts'  => 'read_private_forums',
+			'read_hidden_posts'   => 'read_hidden_forums',
+			'delete_posts'        => 'delete_forums',
+			'delete_others_posts' => 'delete_others_forums'
+		)
+	);
+}
+
+/**
+ * Maps forum capabilities
+ *
+ * @since 2.2.0 bbPress (r4244)
+ *
+ * @param array $caps Capabilities for meta capability
+ * @param string $cap Capability name
+ * @param int $user_id User id
+ * @param array $args Arguments
+ * @return array Actual capabilities for meta capability
+ */
+function bbp_map_forum_meta_caps( $caps = array(), $cap = '', $user_id = 0, $args = array() ) {
+
+	// What capability is being checked?
+	switch ( $cap ) {
+		case 'create_forums' :
+			$caps = bbp_is_forums_status( 'frozen' )
+				? array( 'do_not_allow' )
+				: map_meta_cap( 'edit_forums', $user_id );
+			break;
+
+		/** Reading ***********************************************************/
+
+		case 'read_private_forums' :
+		case 'read_hidden_forums'  :
+
+			// Moderators can always read private/hidden forums
+			if ( user_can( $user_id, 'moderate' ) ) {
+				$caps = array( 'moderate' );
+			}
+
+			break;
+
+		case 'read_forum' :
+			$can_read = user_can( $user_id, 'spectate' ) || bbp_is_anonymous();
+
+			if ( ! $can_read && ! empty( $args[0] ) ) {
+				/**
+				 * Allow integrations to grant read access to a specific forum without
+				 * requiring the bbPress spectate capability.
+				 *
+				 * @since 2.6.20 bbPress (r7833)
+				 */
+				$can_read = (bool) apply_filters( 'bbp_allow_read_without_spectate', false, $user_id, (int) $args[0], $cap );
+			}
+
+			// User cannot spectate
+			if ( ! $can_read ) {
+				$caps = array( 'do_not_allow' );
+
+			// Do some post ID based logic
+			} else {
+
+				// Bail if no post ID
+				if ( empty( $args[0] ) ) {
+					break;
+				}
+
+				// Get the post.
+				$_post = get_post( $args[0] );
+				if ( ! empty( $_post ) ) {
+
+					// Allow moderators of this forum through restricted ancestors
+					$parent_id = bbp_get_forum_parent_id( $_post->ID );
+					if ( ! empty( $parent_id ) && ! bbp_is_user_forum_moderator( $user_id, $_post->ID ) && bbp_is_forum_restricted_for_user( $parent_id, $user_id ) ) {
+						$caps = array( 'do_not_allow' );
+						break;
+					}
+
+					// Get caps for post type object
+					$post_type = get_post_type_object( $_post->post_type );
+
+					// Post is public
+					if ( bbp_get_public_status_id() === $_post->post_status ) {
+
+						// Anonymous users do not have caps, but can 'exist'
+						if ( bbp_is_anonymous() ) {
+							$caps = array( 'exist' );
+
+						// Registered users need the 'spectate' cap
+						} else {
+							$caps = array( 'spectate' );
+						}
+
+					// User is author so allow read
+					} elseif ( (int) $user_id === (int) $_post->post_author ) {
+						$caps = array( 'spectate' );
+
+					// Moderators can always read forum content
+					} elseif ( user_can( $user_id, 'moderate', $_post->ID ) ) {
+						$caps = array( 'spectate' );
+
+					// Private
+					} elseif ( bbp_get_hidden_status_id() === $_post->post_status ) {
+						$caps = array( $post_type->cap->read_hidden_posts );
+
+					// Hidden
+					} elseif ( bbp_get_private_status_id() === $_post->post_status ) {
+						$caps = array( $post_type->cap->read_private_posts );
+
+					// Unknown, so map to private
+					} else {
+						$caps = array( $post_type->cap->read_private_posts );
+					}
+				}
+			}
+
+			break;
+
+		/** Publishing ********************************************************/
+
+		case 'publish_forums'  :
+			// Keep this capability for existing forums and BuddyPress group-root setup.
+			// Ordinary new forums are checked through create_forums and the form handler.
+
+			// Moderators can always edit
+			if ( user_can( $user_id, 'moderate' ) ) {
+				$caps = array( 'moderate' );
+			}
+
+			break;
+
+		/** Editing ***********************************************************/
+
+		// Used primarily in wp-admin
+		case 'edit_forums'         :
+		case 'edit_others_forums'  :
+
+			// Moderators can always edit
+			if ( bbp_is_user_keymaster( $user_id ) ) {
+				$caps = array( 'spectate' );
+
+			// Otherwise, block
+			} else {
+				$caps = array( 'do_not_allow' );
+			}
+
+			break;
+
+		// Used for forum status, type, and visibility
+		case 'manage_forum_attributes' :
+
+			// Bail if no forum ID
+			if ( empty( $args[0] ) ) {
+				$caps = array( 'do_not_allow' );
+				break;
+			}
+
+			// Only allow this capability for forums
+			$_post = get_post( $args[0] );
+			$caps  = ( ! empty( $_post ) && ( bbp_get_forum_post_type() === $_post->post_type ) )
+				? array( 'assign_moderators' )
+				: array( 'do_not_allow' );
+
+			break;
+
+		// Used everywhere
+		case 'edit_forum' :
+
+			// Bail if no post ID
+			if ( empty( $args[0] ) ) {
+				break;
+			}
+
+			// Get the post.
+			$_post = get_post( $args[0] );
+			if ( ! empty( $_post ) ) {
+
+				// Get caps for post type object
+				$post_type = get_post_type_object( $_post->post_type );
+
+				// An auto-draft's first save creates a forum.
+				if ( 'auto-draft' === $_post->post_status && bbp_is_forums_status( 'frozen' ) ) {
+					$caps = array( 'do_not_allow' );
+
+				// Frozen forums permit edits only by Keymasters and Moderators.
+				} elseif ( ! bbp_user_can_edit_in_forums( $user_id ) ) {
+					$caps = array( 'do_not_allow' );
+
+				// Add 'do_not_allow' cap if user is spam or deleted
+				} elseif ( bbp_is_user_inactive( $user_id ) ) {
+					$caps = array( 'do_not_allow' );
+
+				// Moderators can always read forum content
+				} elseif ( user_can( $user_id, 'moderate', $_post->ID ) ) {
+					$caps = array( 'spectate' );
+
+				// User is author so allow edit if not in admin
+				} elseif ( ! is_admin() && ( (int) $user_id === (int) $_post->post_author ) ) {
+					$caps = array( $post_type->cap->edit_posts );
+
+				// Unknown, so map to edit_others_posts
+				} else {
+					$caps = array( $post_type->cap->edit_others_posts );
+				}
+			}
+
+			break;
+
+		/** Deleting **********************************************************/
+
+		// Allow forum authors to delete forums (for BuddyPress groups, etc)
+		case 'delete_forum' :
+
+			// Bail if no post ID
+			if ( empty( $args[0] ) ) {
+				break;
+			}
+
+			// Get the post.
+			$_post = get_post( $args[0] );
+			if ( ! empty( $_post ) ) {
+
+				// Get caps for post type object
+				$post_type = get_post_type_object( $_post->post_type );
+
+				// Add 'do_not_allow' cap if user is spam or deleted
+				if ( bbp_is_user_inactive( $user_id ) ) {
+					$caps = array( 'do_not_allow' );
+
+				// User is author so allow to delete
+				} elseif ( (int) $user_id === (int) $_post->post_author ) {
+					$caps = array( $post_type->cap->delete_posts );
+
+				// Unknown so map to delete_others_posts
+				} else {
+					$caps = array( $post_type->cap->delete_others_posts );
+				}
+			}
+
+			break;
+
+		/** Admin *************************************************************/
+
+		// Forum admin area.
+		case 'bbp_forums_admin' :
+			$caps = array( 'edit_forums' );
+			break;
+	}
+
+	// Filter & return
+	return (array) apply_filters( 'bbp_map_forum_meta_caps', $caps, $cap, $user_id, $args );
+}
+
+/**
+ * Can a user moderate a forum?
+ *
+ * @since 2.6.0 bbPress (r6056)
+ *
+ * @param int $user_id User id.
+ * @param int $forum_id Forum id.
+ *
+ * @return bool Return true if user is moderator of forum
+ */
+function bbp_is_user_forum_moderator( $user_id = 0, $forum_id = 0 ) {
+	$user_id  = bbp_get_user_id( $user_id, false, empty( $user_id ) );
+	$forum_id = bbp_get_forum_id( $forum_id );
+	$retval   = user_can( $user_id, 'moderate', $forum_id );
+
+	// Filter & return
+	return (bool) apply_filters( 'bbp_is_user_forum_moderator', $retval, $user_id, $forum_id );
+}
+
+/**
+ * Filter an array of forum IDs that are being excluded, and remove any forum
+ * IDs a user explicitly has access to.
+ *
+ * This typically means private or hidden forums the user has moderation rights
+ * to, but it can be filtered to mean just about anything.
+ *
+ * This function filters the return values of the following functions:
+ * - `bbp_get_private_forum_ids()`
+ * - `bbp_get_hidden_forum_ids()`
+ *
+ * @since 2.6.0 bbPress (r6425)
+ *
+ * @param array $forum_ids Forum IDs to check if the user ID is a moderator of
+ * @param int   $user_id   User ID to check if is a moderator of forums
+ *
+ * @return array
+ */
+function bbp_allow_forums_of_user( $forum_ids = array(), $user_id = 0 ) {
+	$user_id = bbp_get_user_id( $user_id, false, empty( $user_id ) );
+
+	// Store the original forum IDs
+	$original_forum_ids = $forum_ids;
+
+	// Per-forum Moderators
+	if ( bbp_allow_forum_mods() ) {
+		// Capability checks read each forum and its metadata. Load large sets in
+		// batches instead of issuing two queries for every forum.
+		if ( count( $forum_ids ) > 20 ) {
+			foreach ( array_chunk( wp_parse_id_list( $forum_ids ), 500 ) as $batch ) {
+				_prime_post_caches( $batch, false, true );
+			}
+		}
+
+		// Loop through forum IDs
+		foreach ( $forum_ids as $key => $forum_id ) {
+
+			// Unset forum ID if user is a moderator or can otherwise read it
+			if ( bbp_is_user_forum_moderator( $user_id, $forum_id ) || user_can( $user_id, 'read_forum', $forum_id ) ) {
+				unset( $forum_ids[ $key ] );
+			}
+		}
+	}
+
+	// Filter & return
+	return (array) apply_filters( 'bbp_allow_forums_of_user', $forum_ids, $user_id, $original_forum_ids );
+}

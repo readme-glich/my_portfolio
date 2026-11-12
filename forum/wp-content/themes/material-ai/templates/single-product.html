@@ -1,0 +1,80 @@
+<!-- wp:template-part {"slug":"header","theme":"material-ai","tagName":"header"} /-->
+<!-- wp:template-part {"slug":"breadcrumb","theme":"material-ai","tagName":"breadcrumb"} /-->
+
+<!-- wp:group {"tagName":"main","className":"materialai-woo-product","layout":{"type":"constrained"}} -->
+<main class="wp-block-group materialai-woo-product">
+
+	<!-- wp:woocommerce/store-notices /-->
+
+	<!-- wp:columns {"className":"materialai-woo-layout"} -->
+	<div class="wp-block-columns materialai-woo-layout">
+
+		<!-- wp:column {"width":"66.66%","className":"materialai-woo-main"} -->
+		<div class="wp-block-column materialai-woo-main" style="flex-basis:66.66%">
+
+			<!-- wp:columns {"className":"materialai-woo-detail"} -->
+			<div class="wp-block-columns materialai-woo-detail">
+
+				<!-- wp:column {"width":"45%","className":"materialai-woo-detail-media"} -->
+				<div class="wp-block-column materialai-woo-detail-media" style="flex-basis:45%">
+					<!-- wp:woocommerce/product-image-gallery /-->
+				</div>
+				<!-- /wp:column -->
+
+				<!-- wp:column {"width":"55%","className":"materialai-woo-detail-summary"} -->
+				<div class="wp-block-column materialai-woo-detail-summary" style="flex-basis:55%">
+
+					<!-- wp:post-title {"level":1,"className":"materialai-woo-product-title","__woocommerceNamespace":"woocommerce/product-query/product-title"} /-->
+
+					<!-- wp:woocommerce/product-rating {"isDescendentOfSingleProductTemplate":true} /-->
+
+					<!-- wp:woocommerce/product-price {"isDescendentOfSingleProductTemplate":true,"className":"materialai-woo-detail-price"} /-->
+
+					<!-- wp:post-excerpt {"__woocommerceNamespace":"woocommerce/product-query/product-summary"} /-->
+
+					<!-- wp:woocommerce/add-to-cart-form {"quantitySelectorStyle":"stepper"} /-->
+
+				</div>
+				<!-- /wp:column -->
+
+			</div>
+			<!-- /wp:columns -->
+
+			<!-- wp:woocommerce/product-details {"className":"materialai-woo-tabs"} /-->
+
+			<!-- wp:woocommerce/related-products {"className":"materialai-woo-related"} -->
+			<div class="wp-block-woocommerce-related-products materialai-woo-related"><!-- wp:query {"queryId":2,"query":{"perPage":3,"pages":0,"offset":0,"postType":"product","order":"asc","orderBy":"title","author":"","search":"","exclude":[],"sticky":"","inherit":false},"namespace":"woocommerce/related-products","lock":{"remove":true,"move":true}} -->
+			<div class="wp-block-query">
+				<!-- wp:heading {"level":2,"className":"materialai-woo-related-title"} -->
+				<h2 class="wp-block-heading materialai-woo-related-title">Related Product</h2>
+				<!-- /wp:heading -->
+
+				<!-- wp:post-template {"className":"products-block-post-template materialai-woo-grid","layout":{"type":"grid","columnCount":3},"__woocommerceNamespace":"woocommerce/product-query/product-template"} -->
+					<!-- wp:woocommerce/product-image {"showSaleBadge":true,"imageSizing":"single","isDescendentOfQueryLoop":true} /-->
+					<!-- wp:post-title {"textAlign":"center","level":3,"isLink":true,"className":"materialai-woo-card-title","__woocommerceNamespace":"woocommerce/product-query/product-title"} /-->
+					<!-- wp:woocommerce/product-price {"isDescendentOfQueryLoop":true,"textAlign":"center"} /-->
+					<!-- wp:woocommerce/product-rating {"isDescendentOfQueryLoop":true,"textAlign":"center"} /-->
+					<!-- wp:woocommerce/product-button {"textAlign":"center","isDescendentOfQueryLoop":true} /-->
+				<!-- /wp:post-template -->
+			</div>
+			<!-- /wp:query --></div>
+			<!-- /wp:woocommerce/related-products -->
+
+		</div>
+		<!-- /wp:column -->
+
+		<!-- wp:column {"width":"33.33%","className":"materialai-woo-sidebar"} -->
+		<div class="wp-block-column materialai-woo-sidebar" style="flex-basis:33.33%">
+
+			<!-- wp:template-part {"slug":"sidebar-woocommerce","theme":"material-ai"} /-->
+
+		</div>
+		<!-- /wp:column -->
+
+	</div>
+	<!-- /wp:columns -->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

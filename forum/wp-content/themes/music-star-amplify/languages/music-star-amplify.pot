@@ -1,0 +1,314 @@
+# Copyright (C) 2026 seosbg
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Music Star Amplify 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/music-star-amplify\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-04T12:56:46+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Domain: music-star-amplify\n"
+
+#. Theme Name of the theme
+#: style.css
+msgid "Music Star Amplify"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "Music Star Amplify is a child theme of Music Star for bands, DJs, labels and music blogs. Its Live Visualizer reacts to the real music: when a visitor plays an audio file on the site, animated bars or a wave under the header move with the frequencies of the song. Stage Lights adds a spotlight that follows the mouse over the header image. Release Countdown shows a live countdown to a new album or event, and the News Ticker scrolls the latest posts. The Raleway font is hosted locally. All options are in the Customizer under \"Amplify Options\"."
+msgstr ""
+
+#. Author of the theme
+#: style.css
+msgid "seosbg"
+msgstr ""
+
+#. Author URI of the theme
+#: style.css
+msgid "https://seosthemes.com/"
+msgstr ""
+
+#: footer.php:44 footer.php:50
+msgid "Music Star Theme by Seos Themes"
+msgstr ""
+
+#: footer.php:47
+msgid "https://wordpress.org/"
+msgstr ""
+
+#: footer.php:47
+msgid "Powered by WordPress"
+msgstr ""
+
+#: footer.php:49
+msgid "All rights reserved"
+msgstr ""
+
+#: footer.php:56
+msgid "Back to top"
+msgstr ""
+
+#: header.php:25
+msgid "Skip to content"
+msgstr ""
+
+#: inc/customizer.php:57
+msgid "All pages"
+msgstr ""
+
+#: inc/customizer.php:58
+msgid "Front page only"
+msgstr ""
+
+#: inc/customizer.php:64
+msgid "Amplify Options"
+msgstr ""
+
+#: inc/customizer.php:65
+msgid "Live Visualizer, Stage Lights, Release Countdown and News Ticker."
+msgstr ""
+
+#: inc/customizer.php:76
+msgid "Live Visualizer"
+msgstr ""
+
+#: inc/customizer.php:77
+msgid "Animated bars or a wave that move with the real music when a visitor plays an audio file of your site (for example an Audio block in a post). Audio files from other websites cannot be analysed by the browser; for them the visualizer plays a soft animation instead."
+msgstr ""
+
+#: inc/customizer.php:87
+msgid "Show the Live Visualizer"
+msgstr ""
+
+#: inc/customizer.php:98
+msgid "Style"
+msgstr ""
+
+#: inc/customizer.php:102
+msgid "Bars"
+msgstr ""
+
+#: inc/customizer.php:103
+msgid "Mirrored bars"
+msgstr ""
+
+#: inc/customizer.php:104
+msgid "Wave line"
+msgstr ""
+
+#: inc/customizer.php:115 inc/customizer.php:282 inc/customizer.php:397
+msgid "Position"
+msgstr ""
+
+#: inc/customizer.php:119 inc/customizer.php:287 inc/customizer.php:402
+msgid "Under the header"
+msgstr ""
+
+#: inc/customizer.php:120
+msgid "Fixed at the bottom of the screen while music plays"
+msgstr ""
+
+#: inc/customizer.php:131
+msgid "Height (px)"
+msgstr ""
+
+#: inc/customizer.php:148
+msgid "Soft animation while no music plays"
+msgstr ""
+
+#: inc/customizer.php:160
+msgid "Show the Visualizer On"
+msgstr ""
+
+#: inc/customizer.php:174
+msgid "Color 1"
+msgstr ""
+
+#: inc/customizer.php:175
+msgid "Colors 1 and 2 are used by the visualizer, the countdown and the ticker."
+msgstr ""
+
+#: inc/customizer.php:186
+msgid "Color 2"
+msgstr ""
+
+#: inc/customizer.php:197
+msgid "Stage Lights"
+msgstr ""
+
+#: inc/customizer.php:198
+msgid "A spotlight that follows the mouse over the header image."
+msgstr ""
+
+#: inc/customizer.php:208
+msgid "Spotlight on the header image"
+msgstr ""
+
+#: inc/customizer.php:209
+msgid "On touch screens the spotlight moves slowly by itself."
+msgstr ""
+
+#: inc/customizer.php:220
+msgid "Spotlight Size (px)"
+msgstr ""
+
+#: inc/customizer.php:238
+msgid "Release Countdown"
+msgstr ""
+
+#: inc/customizer.php:239
+msgid "A live countdown to a new album, single or concert. The time zone of the site is used (Settings > General)."
+msgstr ""
+
+#: inc/customizer.php:249
+msgid "Show the Release Countdown"
+msgstr ""
+
+#: inc/customizer.php:256
+msgid "Title"
+msgstr ""
+
+#: inc/customizer.php:257
+msgid "Date"
+msgstr ""
+
+#: inc/customizer.php:258
+msgid "Time"
+msgstr ""
+
+#: inc/customizer.php:259
+msgid "Button Text"
+msgstr ""
+
+#: inc/customizer.php:260
+msgid "Button URL"
+msgstr ""
+
+#: inc/customizer.php:261
+msgid "Text When the Time Is Up"
+msgstr ""
+
+#: inc/customizer.php:286 inc/customizer.php:401
+msgid "Bar at the top of the page"
+msgstr ""
+
+#: inc/customizer.php:298
+msgid "Show the Countdown On"
+msgstr ""
+
+#: inc/customizer.php:312
+msgid "News Ticker"
+msgstr ""
+
+#: inc/customizer.php:313
+msgid "A scrolling line with the titles of your latest posts. It stops when the mouse is over it."
+msgstr ""
+
+#: inc/customizer.php:323
+msgid "Show the News Ticker"
+msgstr ""
+
+#: inc/customizer.php:334
+msgid "Label"
+msgstr ""
+
+#: inc/customizer.php:341
+msgid "All categories"
+msgstr ""
+
+#: inc/customizer.php:350
+msgid "Category"
+msgstr ""
+
+#: inc/customizer.php:363
+msgid "Number of Posts"
+msgstr ""
+
+#: inc/customizer.php:380
+msgid "Speed"
+msgstr ""
+
+#: inc/customizer.php:384
+msgid "Slow"
+msgstr ""
+
+#: inc/customizer.php:385
+msgid "Normal"
+msgstr ""
+
+#: inc/customizer.php:386
+msgid "Fast"
+msgstr ""
+
+#: inc/customizer.php:413
+msgid "Show the Ticker On"
+msgstr ""
+
+#: inc/helpers.php:65
+msgid "New album in"
+msgstr ""
+
+#: inc/helpers.php:67
+msgid "Pre-save"
+msgstr ""
+
+#: inc/helpers.php:69
+msgid "Out now!"
+msgstr ""
+
+#: inc/helpers.php:71
+msgid "Latest"
+msgstr ""
+
+#: inc/template-functions.php:41
+msgid "days"
+msgstr ""
+
+#: inc/template-functions.php:42
+msgid "hrs"
+msgstr ""
+
+#: inc/template-functions.php:43
+msgid "min"
+msgstr ""
+
+#: inc/template-functions.php:44
+msgid "sec"
+msgstr ""
+
+#: inc/template-functions.php:162
+msgid "Latest posts"
+msgstr ""
+
+#: inc/template-functions.php:265
+msgid "Recent Posts"
+msgstr ""
+
+#: inc/template-functions.php:272
+msgid "Categories"
+msgstr ""
+
+#: inc/template-functions.php:275
+msgid "Archives"
+msgstr ""
+
+#: inc/template-functions.php:278
+msgid "Search"
+msgstr ""
+
+#. translators: %d: footer column number.
+#: inc/template-functions.php:300
+#, php-format
+msgid "Footer %d"
+msgstr ""
+
+#. translators: %d: footer column number.
+#: inc/template-functions.php:303
+#, php-format
+msgid "Widgets in this area are shown in column %d of the footer. While the four footer areas are empty on a fresh installation, the footer shows a preview with recent posts, categories, archives and search."
+msgstr ""

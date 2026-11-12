@@ -1,0 +1,157 @@
+<!-- wp:template-part {"slug":"header","theme":"material-ai","tagName":"header"} /-->
+<!-- wp:template-part {"slug":"breadcrumb","theme":"material-ai"} /-->
+<!-- wp:group {"tagName":"main","className":"aipost-section","layout":{"type":"constrained","contentSize":"1300px"}} -->
+<main class="wp-block-group aipost-section">
+
+	<!-- wp:group {"className":"main-container","layout":{"type":"constrained"}} -->
+	<div class="wp-block-group main-container">
+
+		<!-- wp:columns {"className":"aipost-layout"} -->
+		<div class="wp-block-columns aipost-layout">
+
+			<!-- wp:column {"width":"68%","className":"aipost-main"} -->
+			<div class="wp-block-column aipost-main" style="flex-basis:68%">
+
+				<!-- wp:group {"className":"aipost-card","layout":{"type":"constrained"}} -->
+				<div class="wp-block-group aipost-card">
+
+					<!-- wp:post-featured-image {"className":"aipost-card__image","style":{"border":{"radius":"20px"}}} /-->
+
+					<!-- wp:group {"className":"aipost-card__meta","layout":{"type":"flex","flexWrap":"wrap"}} -->
+					<div class="wp-block-group aipost-card__meta">
+
+						<!-- wp:post-author {"showAvatar":false,"showBio":false,"className":"aipost-card__meta-item has-meta-color-color has-small-font-size"} /-->
+
+						<!-- wp:post-date {"className":"aipost-card__meta-item has-meta-color-color has-small-font-size"} /-->
+
+					</div>
+					<!-- /wp:group -->
+
+					<!-- wp:post-title {"level":2,"className":"aipost-card__title has-light-color-color has-text-color has-medium-font-size"} /-->
+
+					<!-- wp:post-content {"className":"aipost-card__content"} /-->
+
+					<!-- wp:group {"className":"aipost-card__footer","layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap"}} -->
+					<div class="wp-block-group aipost-card__footer">
+
+						<!-- wp:post-terms {"term":"post_tag","className":"aipost-card__tags has-light-color-color has-small-font-size"} /-->
+
+						<!-- wp:social-links {"iconColor":"light-color","iconColorValue":"#FFFFFE","className":"aipost-card__share is-style-logos-only"} -->
+						<ul class="wp-block-social-links has-icon-color aipost-card__share is-style-logos-only">
+
+							<!-- wp:social-link {"url":"#","service":"facebook"} /-->
+
+							<!-- wp:social-link {"url":"#","service":"linkedin"} /-->
+
+							<!-- wp:social-link {"url":"#","service":"pinterest"} /-->
+
+							<!-- wp:social-link {"url":"#","service":"twitter"} /-->
+
+						</ul>
+						<!-- /wp:social-links -->
+
+					</div>
+					<!-- /wp:group -->
+
+				</div>
+				<!-- /wp:group -->
+
+
+				<!-- wp:group {"className":"aipost-pagination has-primary-background-color has-background","layout":{"type":"flex","justifyContent":"space-between"}} -->
+				<div class="wp-block-group aipost-pagination has-primary-background-color has-background">
+
+					<!-- wp:post-navigation-link {"type":"previous","label":"Previous","arrow":"arrow","className":"aipost-pagination__prev has-light-color-color has-text-color"} /-->
+
+					<!-- wp:icon {"icon":"core/category","style":{"elements":{"link":{"color":{"text":"var:preset|color|light-color"}}},"dimensions":{"width":"40px"}},"textColor":"light-color"} /-->
+
+					<!-- wp:post-navigation-link {"type":"next","label":"Next","arrow":"arrow","className":"aipost-pagination__next has-light-color-color has-text-color"} /-->
+
+				</div>
+				<!-- /wp:group -->
+
+
+				<!-- wp:spacer {"height":"20px"} -->
+				<div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
+				<!-- /wp:spacer -->
+
+
+				<!-- wp:comments {"className":"aipost-comments-wrap"} -->
+				<div class="wp-block-comments aipost-comments-wrap">
+
+					<!-- wp:comments-title {"className":"aipost-comments-title has-heading-color-color has-text-color"} /-->
+
+					<!-- wp:comment-template -->
+
+						<!-- wp:columns {"className":"aipost-comment has-background-color has-background"} -->
+						<div class="wp-block-columns aipost-comment has-background-color has-background">
+
+							<!-- wp:column {"width":"56px","className":"aipost-comment__avatar"} -->
+							<div class="wp-block-column aipost-comment__avatar" style="flex-basis:56px">
+
+								<!-- wp:avatar {"size":56,"style":{"border":{"radius":"50%"}}} /-->
+
+							</div>
+							<!-- /wp:column -->
+
+
+							<!-- wp:column {"className":"aipost-comment__body"} -->
+							<div class="wp-block-column aipost-comment__body">
+
+								<!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between"}} -->
+								<div class="wp-block-group">
+
+									<!-- wp:comment-author-name {"className":"aipost-comment__name has-heading-color-color has-text-color has-normal-font-size"} /-->
+
+									<!-- wp:comment-reply-link {"className":"aipost-comment__reply has-primary-color has-text-color has-small-font-size"} /-->
+
+								</div>
+								<!-- /wp:group -->
+
+
+								<!-- wp:comment-date {"className":"aipost-comment__date has-meta-color-color has-text-color has-small-font-size"} /-->
+
+								<!-- wp:comment-content {"className":"aipost-comment__text has-foreground-color has-text-color has-small-font-size"} /-->
+
+							</div>
+							<!-- /wp:column -->
+
+						</div>
+						<!-- /wp:columns -->
+
+					<!-- /wp:comment-template -->
+
+
+					<!-- wp:comments-pagination -->
+						<!-- wp:comments-pagination-previous /-->
+						<!-- wp:comments-pagination-numbers /-->
+						<!-- wp:comments-pagination-next /-->
+					<!-- /wp:comments-pagination -->
+
+				</div>
+				<!-- /wp:comments -->
+
+
+				<!-- wp:group {"className":"aipost-comment-form has-secondary-background-color has-background","layout":{"type":"constrained"}} -->
+				<div class="wp-block-group aipost-comment-form has-secondary-background-color has-background">
+
+					<!-- wp:heading {"level":3,"className":"aipost-comment-form__title has-light-color-color has-text-color"} -->
+					<h3 class="wp-block-heading aipost-comment-form__title has-light-color-color has-text-color">
+						Leave a Comment
+					</h3>
+					<!-- /wp:heading -->
+
+					<!-- wp:post-comments-form /-->
+
+				</div>
+				<!-- /wp:group -->
+			</div>
+			<!-- /wp:column -->
+			<!-- wp:template-part {"slug":"sidebar","theme":"material-ai"} /-->
+
+		</div>
+		<!-- /wp:columns -->
+	</div>
+	<!-- /wp:group -->
+</main>
+<!-- /wp:group -->
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

@@ -1,0 +1,2459 @@
+/*
+Theme Name: Material AI
+Theme URI: https://www.nayrathemes.com/materialai-free/
+Author: Nayra Themes
+Author URI: https://www.nayrathemes.com/
+Description: Material AI is an FSE (Full Site Editing) WordPress theme built entirely with blocks and patterns. It provides a true visual editing experience in WordPress, allowing you to easily customize your website without coding. This multipurpose theme is suitable for business websites, agencies, portfolios, blogs, and other professional websites. No extra plugins are required with the theme, helping your website run smoothly and efficiently. Material AI includes multiple style variations, allowing you to quickly switch between different color schemes and visual styles. The free version includes 11 professionally designed patterns that you can use to build beautiful page layouts. With the WordPress Site Editor, you can easily manage various aspects of your website, including colors, typography, spacing, layouts, and styles. The Material AI Pro version comes with many additional blocks and professionally designed patterns, organized page-wise as showcased in our demo. It provides more design options and flexibility for creating complete websites. Checkout Pro Demo: https://nayrathemes.com/demo/pro/materialai/
+Version: 2.3
+Tested up to: 7.1
+Requires PHP: 5.8
+License: GPLv3 or later
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Text Domain: material-ai
+Slug: material-ai
+Tags: blog, portfolio, entertainment, grid-layout, one-column, two-columns, three-columns, four-columns, block-patterns, block-styles, custom-logo, custom-menu, editor-style, featured-images, full-site-editing, full-width-template, style-variations, template-editing, theme-options, translation-ready, wide-blocks
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+*/
+
+:root {
+	--dark: #000000;
+	--white: #ffffff;
+}
+.materialai-services-section .materialai-service-columns,
+.ma-ai-section .ma-ai-features,
+.faq-split .faq-split__row,
+.contact-section__content,
+.why-choose-us .why-choose-us__row,
+.main-container{
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+}
+.materialai-navbar{
+	z-index:10;
+}
+
+.materialai-navbar::before{
+	content: "";
+	position: absolute;
+	inset: 9px;
+	border:1px solid color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 64%, #ffffff) 60%, transparent);
+	border-radius: 14px 14px 0 0;
+	pointer-events: none;
+	border-bottom: none;
+}
+.materialai-navbar::after{
+	content: "";
+	position: absolute;
+	border: 1px solid rgba(255, 255, 255, .18);
+	border-radius: 14px 14px 0 0;
+	pointer-events: none;
+	border-bottom: none;
+	background: transparent;
+	box-shadow: none;
+	top: 5px;
+	left: 5px;
+	right: 5px;
+	bottom: 13px;
+}
+/* Header, main content and footer sit flush - remove the root block gap
+   that core adds between top-level template sections. */
+   body .wp-site-blocks > * + * {
+   	margin-block-start: 0;
+   }
+   .materialai-navbar nav {
+   	flex: 1
+   }
+   .materialai-nav-wrap{
+   	position:relative;
+   	width:100%;
+   	height:90px;
+   	display:flex;
+   	justify-content:center;
+   	align-items:flex-end;
+   	overflow:visible;
+   }
+   .materialai-nav-wrap::after{
+   	content:"";
+   	position:absolute;
+   	left:0;
+   	bottom:0;
+   	width:100%;
+   	height:20px;
+   	background:var(--wp--preset--color--primary);
+   	z-index:1;
+   }
+   .materialai-navbar{
+   	position:relative;
+   	width:min(1100px);
+   	height:90px;
+   	margin:auto;
+   	display:flex;
+   	align-items:center;
+   	justify-content:space-between;
+   	padding:0 28px;
+   	background:var(--wp--preset--color--primary);
+   	border-radius:20px 20px 0 0;
+   }
+   .materialai-right-border:after{
+   	content: '';
+   	position: absolute;
+   	background: rgb(255 255 255 / 18%);
+   	bottom: 12px;
+   	height: 1px;
+   	z-index: 10;
+   }
+   .materialai-right-border:before{
+   	content: '';
+   	position: absolute;
+   	background: rgb(255 255 255 / 18%);
+   	bottom: 8px;
+   	height: 1px;
+   	z-index: 10;
+   }
+   .materialai-left-border:after{
+   	content: '';
+   	position: absolute;
+   	background: rgb(255 255 255 / 18%);
+   	bottom: 12px;
+   	height: 1px;
+   	z-index: 10;
+   }
+   .materialai-left-border:before{
+   	content: '';
+   	position: absolute;
+   	background: rgb(255 255 255 / 18%);
+   	bottom: 8px;
+   	height: 1px;
+   	z-index: 10;
+   }
+   .materialai-navbar .search-btn .wp-block-search__button{
+   	width:50px;
+   	height:50px;
+   	border-radius:50%;
+   	border:0;
+   	background:var(--wp--preset--color--secondary);
+   	color:var(--white);
+   	display:flex;
+   	align-items:center;
+   	justify-content:center;
+   	padding:0;
+   	min-width:50px;
+   	transform: rotate(-90deg);
+   	transition: all 0.3s;
+   }
+   .materialai-actions .search-btn .wp-block-search__button svg{
+   	transition: all 0.3s;
+   }
+   .materialai-actions .search-btn .wp-block-search__button:hover,
+   .materialai-actions .search-btn .wp-block-search__button:focus{
+   	background-color: #fff;
+   }
+   .materialai-actions .search-btn .wp-block-search__button:hover svg,
+   .materialai-actions .search-btn .wp-block-search__button:focus svg{
+   	fill: var(--wp--preset--color--secondary);
+   }
+   .materialai-button-right .wp-block-button__link{
+   	font-size: 20px;
+   	position: relative;
+   	padding: 10px 60px 10px 25px;
+   	overflow: hidden;
+   }
+   .slider-1 .wp-block-buttons-is-layout-flex{
+   	margin-top: 40px;
+   	gap: 50px;
+   }
+   .slider-1 .materialai-btn-right-only-icon{
+   	position: relative;
+   }
+   .slider-1 .wp-block-buttons>.materialai-btn-right-only-icon,
+   .slider-1 .wp-block-buttons>.materialai-button-right{
+   	margin-bottom: 30px;
+   }
+   .slider-1 .materialai-button-right .wp-block-button__link{
+   	overflow: visible;
+   }
+   .slider-1 .materialai-btn-right-only-icon .wp-block-button__link,
+   .slider-1 .materialai-button-right .wp-block-button__link{
+   	box-shadow: 0 0 0 3px color-mix(in srgb, var(--wp--preset--color--secondary) 88%, #ffffff), 0 0 0 4px color-mix(in srgb, var(--wp--preset--color--secondary) 75%, #ffffff), 0 0 0 7px color-mix(in srgb, var(--wp--preset--color--secondary) 88%, #ffffff), 0 0 0 8px color-mix(in srgb, var(--wp--preset--color--secondary) 75%, #ffffff), 0 0 0 11px color-mix(in srgb, var(--wp--preset--color--secondary) 88%, #ffffff), 0 0 0 12px color-mix(in srgb, var(--wp--preset--color--secondary) 75%, #ffffff);
+   }
+
+   .materialai-footer .materialai-button-right .wp-block-button__link{
+   	border: 2px solid var(--wp--preset--color--primary);
+   }
+   .materialai-button-circle-white {
+   	--circle-bg: var(--white);
+   	--circle-color:var(--wp--preset--color--primary);
+   }
+
+   .materialai-button-circle-primary {
+   	--circle-bg:var(--wp--preset--color--primary);
+   	--circle-color: var(--white);
+   }
+   .materialai-button-circle-secondary {
+   	--circle-bg:var(--wp--preset--color--secondary);
+   	--circle-color: var(--white);
+   }
+   .materialai-nav-wrap .materialai-actions .materialai-button-right{
+   	display: flex;
+   }
+   .materialai-button-right .wp-block-button__link::after{
+   	content: "";
+   	background: var(--circle-bg);
+   	display: block;
+   	width: 45px;
+   	height: 45px;
+   	right:-19px;
+   	line-height: 45px;
+   	color: #000;
+   	position: absolute;
+   	border-radius: 50%;
+   	top: 50%;
+   	transform: translate(-50%, -50%) scale(1);
+   	transition: all .4s ease-in-out;
+   	z-index: 0;
+   }
+   .materialai-button-right .wp-block-button__link::before{
+   	content: "➜";
+   	display: block;
+   	width: 45px;
+   	height: 45px;
+   	right:-19px;
+   	line-height: 45px;
+   	color: #fff;
+   	position: absolute;
+   	border-radius: 50%;
+   	top:50%;
+   	transform: translate(-50%, -50%) scale(1);
+   	transition: all .4s ease-in-out;
+   	z-index:1;
+   }
+   .materialai-header .materialai-button-right .wp-block-button__link::before{
+   	color: var(--wp--preset--color--secondary);
+   }
+   .has-modal-open .admin-bar .is-menu-open:where(:not(.disable-default-overlay)) .wp-block-navigation__responsive-dialog {
+   	margin-top:0;
+   }
+   .slider-1 .materialai-button-right .wp-block-button__link::after{
+   	content: "";
+   	width: 50px;
+   	height: 50px;
+   	right: -1px;
+   	line-height: 50px;
+   	transform: unset !important;
+   	top:-1px;
+   }
+   .slider-1 .materialai-button-right .wp-block-button__link::before{
+   	content: "➜";
+   	width: 50px;
+   	height: 50px;
+   	right:-1px;
+   	line-height: 50px;
+   	color: #fff;
+   	transform: unset !important;
+   	top:-1px;
+   }
+   .materialai-btn-right-only-icon .wp-block-button__link{
+   	position: relative;
+   	padding: 10px 60px 10px 25px;
+   	font-size: 16px;
+   	font-weight: 400;
+   }
+   .materialai-button-right .wp-block-button__link {
+   	position: relative;
+   	padding: 10px 60px 10px 25px;
+   	font-size: 16px;
+   	font-weight: 700;
+   }
+   .materialai-btn-right-only-icon .wp-block-button__link::after{
+   	content: "➜";
+   	position: absolute;
+   	right: 20px;
+   	top: 50%;
+   	transform: translateY(-50%);
+   	border-radius: 50%;
+   	color: var(--white);
+   	display: flex;
+   	align-items: center;
+   	justify-content: center;
+   }
+   .materialai-button-left .wp-block-button__link{
+   	position: relative;
+   	padding: 16px 30px 16px 70px;
+   }
+   .materialai-button-left .wp-block-button__link::before{
+   	content: "➜";
+   	position: absolute;
+   	left: 2px;
+   	top: 50%;
+   	transform: translateY(-50%);
+   	width: 42px;
+   	height: 42px;
+   	border-radius: 50%;
+   	background: var(--circle-bg);
+   	color: var(--circle-color);
+   	display: flex;
+   	align-items: center;
+   	justify-content: center;
+   }
+   .materialai-button-call .wp-block-button__link{
+   	font-family: var(--wp--preset--font-family--poppins);
+   	position: relative;
+   	display: inline-flex;
+   	align-items: center;
+   	justify-content: center;
+   	gap: 5px;
+   	padding: 8px 15px 8px 55px;
+   	background: var(--wp--preset--color--primary);
+   	color: var(--white);
+   	border: 2px solid var(--white);
+   	border-radius: 999px;
+   	font-size: 18px;
+   	font-weight: 600;
+   	text-decoration: none;
+   	transition: .3s ease;
+   	box-shadow:
+   	0 0 0 2px var(--wp--preset--color--secondary),
+   	0 0 0 2px var(--wp--preset--color--secondary);
+   }
+   .materialai-button-call .wp-block-button__link::before{
+   	content: "";
+   	position: absolute;
+   	left: 2px;
+   	top: 50%;
+   	transform: translateY(-50%);
+   	width: 42px;
+   	height: 42px;
+   	border-radius: 50%;
+   	background: var(--circle-bg);
+   	color: var(--circle-color);
+   	font-size: 25px;
+   	display: flex;
+   	align-items: center;
+   	justify-content: center;
+   	background: var(--wp--preset--color--secondary)
+   	url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.89.33 1.76.63 2.6a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.48-1.15a2 2 0 0 1 2.11-.45c.84.3 1.71.51 2.6.63A2 2 0 0 1 22 16.92z'/%3E%3C/svg%3E")
+   	no-repeat center;
+   	background-size: 16px;
+   }
+   .materialai-btn-right-only-icon .wp-block-button__link::after{
+   	content: "➜";
+   	width: 50px;
+   	height: 50px;
+   	right:-1px;
+   	line-height: 50px;
+   	color: #fff;
+   	transform: unset !important;
+   	top:-1px;
+   }
+   .wp-block-separator {
+   	border-top: 1px solid;
+   }
+   .gt_float_switcher img {
+
+   	border-radius: 50% !important;
+   }
+   .gt_float_switcher .gt-selected .gt-current-lang span.gt-lang-code{
+   	display: none;
+   }
+
+   .gt_float_switcher {
+   	box-shadow: none !important;
+   }
+   .gt_float_switcher img{
+   	height: 50px !important;
+   	width: 50px !important;
+   	object-fit: cover;
+   }
+   .materialai-footer-links{
+   	list-style:none;
+   	margin:0;
+   	padding:0;
+   }
+   .materialai-footer-links li{
+   	position:relative;
+   	padding:14px 0 14px 18px;
+   	border-bottom:1px solid rgba(255,255,255,.08);
+   }
+   .materialai-footer-links li:last-child{
+   	border-bottom:none;
+   }
+   .materialai-footer-links li::before{
+   	content:"";
+   	position:absolute;
+   	left:0;
+   	top:50%;
+   	width:5px;
+   	height:5px;
+   	border-radius:50%;
+   	background:var(--wp--preset--color--primary);
+   	transform:translateY(-50%);
+   }
+   .materialai-footer-links a{
+   	color:var(--white);
+   	text-decoration:none;
+   	font-size:16px;
+   	font-weight:500;
+   	transition:.3s;
+   }
+   .materialai-footer-links a:hover{
+   	color:var(--wp--preset--color--primary);
+   	padding-left:6px;
+   }
+   .materialai-footer-title{
+   	position:relative;
+   	display:inline-block;
+   	margin-bottom:35px !important;
+   }
+   .materialai-footer-title::after{
+   	content:"•••";
+   	position:absolute;
+   	left:0;
+   	bottom:-18px;
+   	color:var(--wp--preset--color--primary);
+   	font-size:10px;
+   	letter-spacing:2px;
+   	line-height:1;
+   }
+   .materialai-footer-title::before{
+   	content:"";
+   	position:absolute;
+   	left:22px;
+   	bottom:-14px;
+   	width:30px;
+   	height:2px;
+   	background:var(--wp--preset--color--primary);
+   	border-radius:20px;
+   	box-shadow:0 0 8px color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 84%, #ffffff) 80%, transparent);
+   }
+   .subscribe-button-wrap{
+   	position:relative;
+   	display:block !important;
+   }
+   .subscribe-button{
+   	width:100%;
+   	height:45px;
+   	padding:0 60px 0 24px;
+   	border:2px solid var(--white);
+   	border-radius:999px;
+   	background:var(--wp--preset--color--primary);
+   	color:var(--white);
+   	font-size:16px;
+   	font-weight:700;
+   	text-align:left;
+   	cursor:pointer;
+   	transition:.3s;
+   }
+   .subscribe-button-wrap::after{
+   	content:"➜";
+   	position:absolute;
+   	top:22px;
+   	right:0px;
+   	transform:translateY(-50%);
+   	width:40px;
+   	height:40px!important;
+   	border-radius:50%;
+   	border:2px solid var(--white);
+   	background: var(--wp--preset--color--secondary);
+   	color: var(--white);
+   	display:flex;
+   	align-items:center;
+   	justify-content:center;
+   	font-size:20px;
+   	font-weight:700;
+   }
+   .subscribe-email{
+   	width:100%;
+   	height:45px;
+   	padding:0 22px;
+   	border:1px solid var(--wp--preset--color--primary);
+   	border-radius:999px;
+   	background:transparent;
+   	color:var(--white);
+   	font-size:16px;
+   	font-weight:400;
+   	margin-bottom: 15px;
+   	line-height:1.5;
+   	outline:none;
+   	box-sizing:border-box;
+   	transition:all .3s ease;
+   	appearance:none;
+   	-webkit-appearance:none;
+   }
+   .subscribe-email:focus-visible{
+   	outline:2px solid var(--wp--preset--color--primary);
+   	outline-offset:2px;
+   }
+   .materialai-subscribe-card .wpcf7-form p{
+   	margin: 0px;
+   }
+   .newsletter-card{
+   	border:1px dashed var(--wp--preset--color--primary);
+   	border-radius:10px;
+   }
+   .materialai-badge p:first-child{
+   	width:34px;
+   	height:34px;
+   	display:flex;
+   	align-items:center;
+   	justify-content:center;
+   	border-radius:50%;
+   	background:var(--wp--preset--color--primary);
+   	color:var(--white);
+   	margin:0;
+   	font-weight: 600;
+   }
+   .materialai-badge{
+   	position: relative;
+   	display: inline-flex;
+   	align-items:left;
+   	gap: 7px;
+   	padding: 7px 14px 7px 7px;
+   	border: 1px solid var(--wp--preset--color--primary);
+   	border-radius: 999px;
+   	width: fit-content;
+   	z-index: 1;
+   }
+   .materialai-badge::before{
+   	content: "";
+   	position: absolute;
+   	inset: 4px;
+   	border: 1px solid var(--wp--preset--color--primary);
+   	border-radius: inherit;
+   	pointer-events: none;
+   }
+   .materialai-slider-image-wrap{
+   	position: relative;
+   }
+   .materialai-stats-slider{
+   	position:relative;
+   	height:220px;
+   }
+   .materialai-box-slider{
+   	border:1px solid color-mix(in srgb, var(--wp--preset--color--secondary) 81%, #ffffff);
+   	border-bottom:none;
+   	border-radius:18px 18px 0 0;
+   	position:relative;
+
+   	background:
+   	linear-gradient(
+   		90deg,
+   		transparent,
+   		var(--wp--preset--color--primary) 50%,
+   		transparent
+   	),
+   	linear-gradient(
+   		90deg,
+   		transparent,
+   		var(--wp--preset--color--primary) 50%,
+   		transparent
+   	);
+
+   	background-repeat:no-repeat;
+   	background-size:
+   	30px 2px,
+   	30px 2px;
+
+   	background-position:
+   	calc(50% - 220px) top,
+   	calc(50% + 220px) top;
+
+   	animation: topDashMove 4s ease-in-out infinite;
+   }
+
+   @keyframes topDashMove{
+   	0%,100%{
+   		background-position:
+   		calc(50% - 220px) top,
+   		calc(50% + 220px) top;
+
+   		background-size:
+   		16px 2px,
+   		16px 2px;
+   	}
+
+   	50%{
+   		background-position:
+   		calc(50% - 200px) top,
+   		calc(50% + 200px) top;
+
+   		background-size:
+   		24px 2px,
+   		24px 2px;
+   	}
+   }
+   .materialai-box-slider::before{
+   	content:"";
+   	position:absolute;
+   	top:100%;
+   	right:100%;
+   	width:80%;
+   	height:1px;
+   	overflow:hidden;
+   	background:
+   	linear-gradient(
+   		90deg,
+   		color-mix(in srgb, var(--wp--preset--color--secondary) 81%, #ffffff) 0%,
+   		color-mix(in srgb, var(--wp--preset--color--secondary) 81%, #ffffff) 42%,
+   		color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 77%, #ffffff) 30%, transparent) 47%,
+   		color-mix(in srgb, var(--wp--preset--color--primary) 77%, #ffffff) 50%,
+   		color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 77%, #ffffff) 30%, transparent) 53%,
+   		color-mix(in srgb, var(--wp--preset--color--secondary) 81%, #ffffff) 58%,
+   		color-mix(in srgb, var(--wp--preset--color--secondary) 81%, #ffffff) 100%
+   	);
+   	background-size:200% 100%;
+   	animation:leftLine 4s ease-in-out infinite;
+   }
+   @keyframes leftLine{
+   	0%,100%{
+   		background-position:45% 0;
+   	}
+   	50%{
+   		background-position:55% 0;
+   	}
+   }
+   .materialai-box-slider::after{
+   	content:"";
+   	position:absolute;
+   	top:100%;
+   	left:100%;
+   	width:80%;
+   	height:1px;
+   	background:color-mix(in srgb, var(--wp--preset--color--secondary) 81%, #ffffff);
+   	overflow:hidden;
+   	background-image:
+   	linear-gradient(
+   		90deg,
+   		transparent 0,
+   		transparent 47%,
+   		color-mix(in srgb, var(--wp--preset--color--primary) 77%, #ffffff) 50%,
+   		transparent 53%,
+   		transparent 100%
+   	);
+
+   	background-size:180% 100%;
+   	animation:rightDash 4s ease-in-out infinite;
+   }
+
+   @keyframes rightDash{
+   	0%,100%{
+   		background-position:60% 0;
+   	}
+   	50%{
+   		background-position:40% 0;
+   	}
+   }
+   .stats-card{
+   	display:flex;
+   }
+   .stats-card .stat{
+   	margin-top: 0px;
+   }
+   .stat{
+   	display:flex;
+   	align-items:center;
+   	gap:18px;
+   }
+   .progress{
+   	width:72px;
+   	height:72px;
+   	border-radius:50%;
+   	display:grid;
+   	place-items:center;
+   	position:relative;
+   }
+
+   .progress::before{
+   	content:'';
+   	position:absolute;
+   	width:55px;
+   	height:55px;
+   	background:color-mix(in srgb, var(--wp--preset--color--primary) 23%, #000000);
+   	border-radius:50%;
+   }
+
+   .progress p{
+   	position:relative;
+   }
+   .progress{
+   	background:
+   	conic-gradient(
+   		var(--wp--preset--color--primary) var(--progress),
+   		var(--wp--preset--color--secondary) 0
+   	);
+   }
+   .owl-dots button span{
+   	width:30px;
+   	min-height:30px;
+   	line-height: 30px;
+   	padding:0;
+   	border-radius:50%;
+   	display:flex;
+   	align-items:center;
+   	justify-content:center;
+   	font-size:13px;
+   	background:var(--wp--preset--color--secondary);
+   }
+   .owl-dots button.active span{
+   	width:30px;
+   	height:30px;
+   	min-height:30px;
+   	padding:0;
+   	border-radius:50%;
+   	display:flex;
+   	font-size:13px;
+   	background:var(--white);
+   	color:var(--wp--preset--color--secondary);
+   }
+   .slider-1 .owl-dots{
+   	position: absolute;
+   	left: 50%;
+   	bottom: -268px;
+   	transform: translateX(-50%);
+   	display: flex;
+   	align-items: center;
+   	gap: 8px;
+   	padding: 8px 8px;
+   	background: var(--wp--preset--color--primary);
+   	border-radius: 20px 20px 0 0;
+   }
+   .slider-1 .owl-nav{
+   	display: none !important;
+   }
+   .materialai-heading-default{
+   	font-size: 18px;
+   	position: relative;
+   	display: inline-block;
+   	padding-bottom: 60px;
+   }
+
+   .materialai-heading-default::before{
+   	content:"";
+   	position:absolute;
+   	left:50%;
+   	bottom:-35px;
+   	transform:translateX(-50%);
+   	width:118px;
+   	height:18px;
+   	background:
+   	radial-gradient(circle at center,var(--wp--preset--color--primary) 0 9px,transparent 9px) left center/18px 18px no-repeat,
+   	radial-gradient(circle at center,var(--wp--preset--color--primary) 0 9px,transparent 9px) right center/18px 18px no-repeat,
+   	linear-gradient(color-mix(in srgb, var(--wp--preset--color--secondary) 98%, #ffffff),color-mix(in srgb, var(--wp--preset--color--secondary) 98%, #ffffff)) center 10px/84px 2px no-repeat,
+   	linear-gradient(var(--wp--preset--color--primary),var(--wp--preset--color--primary)) center 8px/84px 6px no-repeat;
+   }
+   .materialai-heading-default::after{
+   	content:"";
+   	position:absolute;
+   	bottom:-31px;
+   	left:calc(50% - 42px);
+   	width:6px;
+   	height:6px;
+   	background:var(--white);
+   	border-radius:50%;
+   	animation:maRunner 1.2s linear infinite alternate;
+   }
+   @keyframes maRunner{ from{ left:calc(50% - 42px); } to{ left:calc(50% + 36px); } }
+   .materialai-cta-banner{
+   	padding: 0px !important;
+   }
+   .materialai-cta-banner-btn .wp-block-button__link{
+   	display:inline-flex;
+   	align-items:center;
+   	justify-content:flex-start;
+   	gap:18px;
+   	padding:10px 70px 10px 20px;
+   	font-size: 20px;
+   	font-weight: 700;
+   	border:3px solid var(--white);
+   	background:var(--wp--preset--color--secondary);
+   	position:relative;
+   	transition:.35s;
+   }
+   .materialai-cta-banner-btn .wp-block-button__link::after{
+   	content: "➜";
+   	width: 50px;
+   	height: 50px;
+   	border-radius: 50%;
+   	background: var(--wp--preset--color--primary);
+   	border: 3px solid var(--white);
+   	display: flex;
+   	align-items: center;
+   	justify-content: center;
+   	margin-left: auto;
+   	font-size: 22px;
+   	position: absolute;
+   	transform: none;
+   	right: -2px;
+   }
+   .materialai-cta-banner-btn .wp-block-button__link:hover{
+   	background:transparent;
+   	padding-left:24px;
+   }
+
+   .wp-block-template-part .gtranslate_wrapper .gt_float_switcher{
+   	overflow: visible;
+   	position: relative;
+   	z-index: 999;
+   }
+   .wp-block-template-part .gtranslate_wrapper .gt_float_switcher .gt_options{
+   	position: absolute;
+   	right: 0;
+   	top: 100%;
+   	width: 140px;
+   	background-color: #fff;
+   	box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.10);
+   	padding: 15px 15px;
+   	visibility: hidden;
+   	opacity: 0;
+   	z-index: 9;
+   	border-radius: 5px;
+   	box-shadow: 0 0 0 1px rgba(68, 68, 68, 0.11);
+   	text-align: left;
+   	transition: visibility 0s .2s, opacity .2s, -webkit-transform .2s
+   	ease-out;
+   	transition: visibility 0s .2s, opacity .2s, transform .2s
+   	ease-out;
+   	transition: visibility 0s .2s, opacity .2s, transform .2s
+   	ease-out, -webkit-transform .2s
+   	ease-out;
+   }
+   .wp-block-template-part .gtranslate_wrapper .gt_float_switcher .gt_options.gt-open{
+   	visibility: visible;
+   	opacity: 1;
+   	-webkit-transform: translateY(4px);
+   	-ms-transform: translateY(4px);
+   	transform: translateY(4px);
+   	transition: opacity .2s, -webkit-transform .2s
+   	ease-out;
+   	transition: opacity .2s, transform .2s
+   	ease-out;
+   	transition: opacity .2s, transform .2s
+   	ease-out, -webkit-transform .2s
+   	ease-out;
+   }
+   .wp-block-template-part .gtranslate_wrapper .gt_float_switcher .gt-selected .gt-current-lang{
+   	padding: 0px;
+   	color: #fff;
+   	font-size: 14px;
+   	font-weight: 400;
+   }
+   .wp-block-template-part .gtranslate_wrapper .gt_float_switcher .gt_options a{
+   	padding: 4px 0px 4px 33px;
+   	font-size: 14px;
+   	font-weight: 400;
+   	position: relative;
+   	background-color: #fff;
+   	transition: all 0.3s;
+   }
+   .wp-block-template-part .gtranslate_wrapper .gt_float_switcher .gt_options a img{
+   	height: 20px !important;
+   	width: 20px !important;
+   	margin-right: 0px;
+   	position: absolute;
+   	top: 4px;
+   	left: 0;
+   	border-radius: 50%;
+   }
+   .wp-block-template-part .gt_float_switcher .gt_options a:hover{
+   	background: var(--wp--preset--color--primary);
+   	color: #fff;
+
+   }
+   .editor-styles-wrapper .ai-team-list{
+   	height:auto !important;
+   	justify-content:flex-start !important;
+   	gap:16px !important;
+   }
+   .editor-styles-wrapper .ai-team-item{
+   	margin-bottom:4px !important;
+   }
+   .mai-ticker {
+   	--mai-ticker-duration: 30s;
+   	--mai-ticker-space: 46px;
+   	position: relative;
+   	overflow: hidden;
+   	margin-top: 0px !important;
+   }
+
+   .mai-ticker .mai-ticker__track {
+   	width: max-content;
+   	max-width: none;
+   	margin-inline: 0;
+   	align-items: center;
+   	gap: 0;
+   	animation: mai-ticker-run var(--mai-ticker-duration) linear infinite;
+   }
+
+   @keyframes mai-ticker-run {
+   	to {
+   		transform: translate3d(-50%, 0, 0);
+   	}
+   }
+
+   .mai-ticker:hover .mai-ticker__track {
+   	animation-play-state: paused;
+   }
+
+   .mai-ticker .mai-ticker__item {
+   	flex: 0 0 auto;
+   	margin: 0 var(--mai-ticker-space) 0 0;
+   	white-space: nowrap;
+   	font-size: 16px;
+   	font-style: italic;
+   	font-weight: 700;
+   	line-height: 1.5;
+   }
+   .mai-ticker .mai-ticker__item::before {
+   	content: "*";
+   	margin-right: 9px;
+   	font-style: normal;
+   }
+   @media (max-width: 781px) {
+   	.mai-ticker {
+   		--mai-ticker-duration: 20s;
+   		--mai-ticker-space: 30px;
+   	}
+
+   	.mai-ticker .mai-ticker__item {
+   		font-size: 14px;
+   	}
+   }
+
+   @media (prefers-reduced-motion: reduce) {
+   	.mai-ticker .mai-ticker__track {
+   		animation: none;
+   	}
+   }
+   .editor-styles-wrapper .mai-ticker {
+   	overflow-x: auto;
+   }
+
+   .editor-styles-wrapper .mai-ticker .mai-ticker__track {
+   	animation: none;
+   }
+/* Breadcrumb */
+.mai-breadcrumb {
+	--mai-violet: var(--wp--preset--color--primary);
+	--mai-violet-light: color-mix(in srgb, var(--wp--preset--color--primary) 75%, #ffffff);
+	--mai-violet-x-light: color-mix(in srgb, var(--wp--preset--color--primary) 35%, #ffffff);
+	--mai-hair: color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 37%, #ffffff) 16%, transparent);
+	--mai-line: color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 24%, #ffffff) 24%, transparent);
+	--mai-crumb-line: #fff;
+	--mai-bg-position: center center;
+	--mai-bg-tint: .0;
+	--mai-crumb-fill: var(--wp--preset--color--secondary);
+	--mai-accent-h: clamp(1px, .12vw, 2px);
+	--mai-bar-h: clamp(13px, 1.802vw, 30px);
+	--mai-frame-l: 12.372%;
+	--mai-frame-r: 12.613%;
+	--mai-frame-t: 48.756%;
+	--mai-frame-b: 10.448%;
+	--mai-frame-rad: clamp(6px, .841vw, 14px);
+	--mai-rail-b: 89.552%;
+	--mai-track-h: clamp(34px, 4.204vw, 70px);
+	--mai-plate-px: calc(var(--mai-track-h) * .5);
+	--mai-plate-pt: calc(var(--mai-track-h) * .214);
+	--mai-plate-pb: calc(var(--mai-track-h) * .214);
+	--mai-plate-r: calc(var(--mai-track-h) * .229);
+	--mai-line-w: max(1px, calc(var(--mai-track-h) * .0143));
+	--mai-ring-gap: calc(var(--mai-track-h) * .0714);
+	--mai-ring-tip: calc(var(--mai-track-h) * .109);
+	--mai-body-h: calc(var(--mai-track-h) - 2 * var(--mai-ring-gap));
+	--mai-arrow-out: calc(var(--mai-body-h) * .433);
+	--mai-arrow-in: calc(var(--mai-body-h) * .433);
+	--mai-seg-r: calc(var(--mai-track-h) * .5);
+	--mai-body-r: calc(var(--mai-body-h) * .5);
+	--mai-circle: calc(var(--mai-track-h) * .714);
+	--mai-icon: calc(var(--mai-track-h) * .286);
+	--mai-fs: calc(var(--mai-track-h) * .357);
+	--mai-gap-ic: calc(var(--mai-track-h) * .229);
+	--mai-gap-seg: calc(var(--mai-track-h) * .114);
+	--mai-font: var(--wp--preset--font-family--jost, "Jost", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif);
+	--mai-home-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23632dff'%3E%3Cpath d='M12.72 2.28a1.06 1.06 0 0 0-1.44 0L2.4 10.3a1.05 1.05 0 0 0 .72 1.83h1.2v8.3c0 .87.7 1.57 1.57 1.57h3.4v-5.28c0-.87.7-1.57 1.56-1.57h2.3c.87 0 1.57.7 1.57 1.57V22h3.4c.86 0 1.56-.7 1.56-1.57v-8.3h1.2a1.05 1.05 0 0 0 .72-1.83l-8.88-8.02Z'/%3E%3C/svg%3E");
+
+	position: relative;
+	width: 100%;
+	aspect-ratio: 1665/402;
+	min-height: 200px;
+	overflow: hidden;
+	isolation: isolate;
+	margin: 0;
+	padding: 0;
+}
+.mai-breadcrumb > * {
+	margin: 0;
+}
+.mai-breadcrumb__fx {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	pointer-events: none;
+}
+.mai-breadcrumb__accent {
+	position: absolute;
+	inset: 0 0 auto;
+	height: var(--mai-accent-h);
+	z-index: 5;
+	background: var(--mai-violet);
+	transform-origin: 50% 0;
+	animation: mai-draw-x .8s cubic-bezier(.22, .61, .36, 1) both;
+}
+.mai-breadcrumb__field {
+	position: absolute;
+	inset: var(--mai-accent-h) 0 var(--mai-bar-h);
+	z-index: 0;
+	overflow: hidden;
+	transform-origin: 58% 46%;
+	animation: mai-fade-in 1.1s ease-out both, mai-sway 30s ease-in-out 1.1s infinite alternate;
+}
+.mai-breadcrumb__field::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	opacity: var(--mai-bg-tint);
+	background:
+	radial-gradient(38% 62% at 79% 6%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 72%, #000000) 38%, transparent) 0%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 63%, #000000) 16%, transparent) 45%, transparent 78%),
+	radial-gradient(30% 70% at 51% 34%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 72%, #000000) 30%, transparent) 0%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 60%, #000000) 12%, transparent) 48%, transparent 80%),
+	radial-gradient(46% 90% at 30% 74%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--secondary) 89%, #ffffff) 34%, transparent) 0%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--secondary) 95%, #ffffff) 14%, transparent) 50%, transparent 82%),
+	linear-gradient(90deg, color-mix(in srgb, var(--wp--preset--color--primary) 10%, #000000) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 12%, #000000) 6%, color-mix(in srgb, var(--wp--preset--color--primary) 15%, #000000) 12%, color-mix(in srgb, var(--wp--preset--color--primary) 18%, #000000) 20%, color-mix(in srgb, var(--wp--preset--color--primary) 21%, #000000) 28%, color-mix(in srgb, var(--wp--preset--color--primary) 25%, #000000) 36%, color-mix(in srgb, var(--wp--preset--color--primary) 29%, #000000) 46%, color-mix(in srgb, var(--wp--preset--color--primary) 35%, #000000) 56%, color-mix(in srgb, var(--wp--preset--color--secondary) 90%, #ffffff) 66%, color-mix(in srgb, var(--wp--preset--color--secondary) 86%, #ffffff) 76%, color-mix(in srgb, var(--wp--preset--color--primary) 45%, #000000) 84%, color-mix(in srgb, var(--wp--preset--color--primary) 36%, #000000) 93%, color-mix(in srgb, var(--wp--preset--color--primary) 31%, #000000) 100%);
+}
+.mai-breadcrumb__glows {
+	position: absolute;
+	inset: var(--mai-accent-h) 0 var(--mai-bar-h);
+	z-index: 1;
+	overflow: hidden;
+	pointer-events: none;
+	mix-blend-mode: screen;
+	animation: mai-fade-in 1.4s ease-out both;
+}
+.mai-breadcrumb__glow {
+	position: absolute;
+	inset: 0;
+	background-repeat: no-repeat;
+}
+.mai-breadcrumb__glow--a {
+	background-image:
+	radial-gradient(closest-side, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 72%, #000000) 11%, transparent) 0%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 57%, #000000) 6%, transparent) 42%, transparent 82%),
+	radial-gradient(closest-side, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 62%, #000000) 6%, transparent) 0%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 52%, #000000) 3%, transparent) 44%, transparent 84%);
+	background-position: -9% 30%, 38% 4%;
+	background-size: 34% 124%, 26% 96%;
+	animation: mai-pulse-a 13s ease-in-out infinite;
+}
+.mai-breadcrumb__glow--b {
+	background-image:
+	radial-gradient(closest-side, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 94%, #000000) 4%, transparent) 0%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 86%, #000000) 2%, transparent) 44%, transparent 84%),
+	radial-gradient(closest-side, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 98%, #ffffff) 4%, transparent) 0%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 98%, #ffffff) 2%, transparent) 42%, transparent 82%);
+	background-position: 74% -30%, 59% -46%;
+	background-size: 40% 150%, 33% 118%;
+	animation: mai-pulse-b 11s ease-in-out infinite;
+}
+.mai-breadcrumb__flare {
+	position: absolute;
+	left: 59.7%;
+	top: 4.73%;
+	width: 28%;
+	height: 1.25%;
+	z-index: 1;
+	border-radius: 50%;
+	filter: blur(2px);
+	pointer-events: none;
+	background: linear-gradient(90deg, transparent 0%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 80%, #ffffff) 42%, transparent) 13%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 33%, #ffffff) 95%, transparent) 22%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 75%, #ffffff) 58%, transparent) 40%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 98%, #ffffff) 22%, transparent) 72%, transparent 100%);
+	transform-origin: 22% 50%;
+	animation: mai-flare 7s ease-in-out infinite;
+}
+.mai-breadcrumb__flare::after {
+	content: "";
+	position: absolute;
+	left: 20.7%;
+	top: -115%;
+	width: 3.6%;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	filter: blur(1.5px);
+	background: radial-gradient(closest-side, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 16%, #ffffff) 95%, transparent) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 77%, #ffffff) 45%, transparent 76%);
+	animation: mai-core-pulse 5s ease-in-out infinite;
+}
+.mai-breadcrumb__sparks {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	pointer-events: none;
+	animation: mai-fade-in 1.6s ease-out .3s both;
+}
+.mai-breadcrumb__sparks-layer {
+	position: absolute;
+	inset: 0;
+	background-repeat: no-repeat;
+	will-change: opacity, transform;
+}
+.mai-breadcrumb__sparks-layer--a {
+	animation: mai-twinkle 3.6s ease-in-out infinite;
+}
+.mai-breadcrumb__sparks-layer--b {
+	animation: mai-twinkle 4.4s ease-in-out 1.1s infinite;
+}
+.mai-breadcrumb__sparks-layer--c {
+	animation: mai-twinkle 5.2s ease-in-out 2.3s infinite;
+}
+.mai-breadcrumb__sparks-layer--a {
+	background-image:
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%);
+	background-position:
+	53.724% 0.995%,
+	42.703% 2.239%,
+	65.225% 3.980%,
+	28.078% 5.721%,
+	39.520% 6.468%,
+	42.793% 7.960%,
+	41.381% 9.453%,
+	27.147% 11.194%,
+	29.850% 14.303%,
+	34.625% 14.428%,
+	35.856% 16.915%,
+	36.787% 17.910%,
+	46.336% 19.030%,
+	38.018% 20.522%,
+	34.925% 24.005%,
+	70.901% 26.741%,
+	71.892% 28.731%,
+	31.171% 30.348%,
+	69.760% 34.453%,
+	27.958% 37.687%,
+	29.489% 39.801%,
+	30.180% 53.980%,
+	30.811% 65.299%,
+	30.390% 74.129%,
+	62.583% 75.498%,
+	36.547% 78.109%,
+	63.333% 78.607%,
+	40.721% 80.224%,
+	27.628% 83.209%,
+	32.973% 87.811%,
+	31.652% 90.423%;
+	background-size:
+	10px 10px,
+	10px 10px,
+	10px 10px,
+	15px 15px,
+	10px 10px,
+	15px 15px,
+	10px 10px,
+	10px 10px,
+	15px 15px,
+	10px 10px,
+	10px 10px,
+	10px 10px,
+	15px 15px,
+	10px 10px,
+	15px 15px,
+	15px 15px,
+	10px 10px,
+	10px 10px,
+	15px 15px,
+	15px 15px,
+	10px 10px,
+	15px 15px,
+	10px 10px,
+	10px 10px,
+	10px 10px,
+	10px 10px,
+	10px 10px,
+	10px 10px,
+	10px 10px,
+	10px 10px,
+	10px 10px;
+}
+.mai-breadcrumb__sparks-layer--b {
+	background-image:
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 42%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 42%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 42%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%);
+	background-position:
+	55.616% 1.368%,
+	29.700% 3.234%,
+	54.204% 4.602%,
+	68.709% 5.970%,
+	48.829% 6.716%,
+	69.670% 8.085%,
+	44.505% 10.448%,
+	30.150% 13.060%,
+	39.580% 14.677%,
+	32.492% 15.920%,
+	37.748% 17.040%,
+	40.330% 18.284%,
+	35.946% 19.279%,
+	70.691% 22.512%,
+	67.658% 24.627%,
+	29.580% 27.861%,
+	70.931% 29.104%,
+	99.459% 31.592%,
+	28.078% 36.318%,
+	29.670% 38.308%,
+	30.210% 42.537%,
+	31.652% 62.935%,
+	29.670% 65.672%,
+	37.447% 75.249%,
+	62.703% 75.746%,
+	63.273% 78.109%,
+	36.426% 79.726%,
+	59.099% 80.224%,
+	60.450% 85.821%,
+	39.369% 89.303%;
+	background-size:
+	15px 15px,
+	10px 10px,
+	15px 15px,
+	10px 10px,
+	10px 10px,
+	10px 10px,
+	10px 10px,
+	15px 15px,
+	15px 15px,
+	10px 10px,
+	15px 15px,
+	15px 15px,
+	15px 15px,
+	10px 10px,
+	10px 10px,
+	10px 10px,
+	10px 10px,
+	15px 15px,
+	10px 10px,
+	10px 10px,
+	10px 10px,
+	10px 10px,
+	10px 10px,
+	15px 15px,
+	10px 10px,
+	10px 10px,
+	15px 15px,
+	10px 10px,
+	10px 10px,
+	10px 10px;
+}
+.mai-breadcrumb__sparks-layer--c {
+	background-image:
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 42%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 42%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 42%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 42%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 42%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 42%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%),
+	radial-gradient(circle closest-side, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 16%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 61%, #ffffff) 38%, transparent) 32%, transparent 72%);
+	background-position:
+	29.910% 2.114%,
+	43.904% 3.731%,
+	39.790% 5.224%,
+	36.577% 6.592%,
+	53.483% 7.214%,
+	37.778% 8.458%,
+	70.991% 10.821%,
+	39.580% 13.184%,
+	99.339% 14.428%,
+	42.853% 16.667%,
+	31.411% 17.164%,
+	67.417% 18.159%,
+	70.811% 20.025%,
+	32.613% 23.134%,
+	36.517% 25.373%,
+	31.111% 27.985%,
+	40.661% 29.353%,
+	30.330% 32.338%,
+	99.429% 37.189%,
+	71.231% 38.557%,
+	30.060% 50.000%,
+	33.093% 65.174%,
+	29.189% 71.891%,
+	62.342% 75.249%,
+	28.559% 77.736%,
+	36.486% 78.731%,
+	63.393% 79.602%,
+	33.814% 81.219%,
+	51.261% 87.562%,
+	29.189% 90.547%;
+	background-size:
+	15px 15px,
+	10px 10px,
+	15px 15px,
+	15px 15px,
+	10px 10px,
+	10px 10px,
+	10px 10px,
+	15px 15px,
+	15px 15px,
+	10px 10px,
+	10px 10px,
+	10px 10px,
+	15px 15px,
+	10px 10px,
+	10px 10px,
+	15px 15px,
+	10px 10px,
+	10px 10px,
+	15px 15px,
+	10px 10px,
+	10px 10px,
+	10px 10px,
+	10px 10px,
+	15px 15px,
+	15px 15px,
+	15px 15px,
+	10px 10px,
+	10px 10px,
+	10px 10px,
+	10px 10px;
+}
+/* ---------- structure: vertical rails ---------- */
+.mai-breadcrumb__struct {
+	position: absolute;
+	inset: var(--mai-accent-h) 0 0;
+	z-index: 2;
+	pointer-events: none;
+	background-repeat: no-repeat;
+	background-size: 1px 48.756%;
+	background-position: 13.934% 0, 31.892% 0, 49.910% 0, 67.868% 0, 85.886% 0;
+	background-image:
+	linear-gradient(180deg, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 37%, #ffffff) 10%, transparent) 0%, var(--mai-hair) 55%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 31%, #ffffff) 24%, transparent) 100%),
+	linear-gradient(180deg, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 37%, #ffffff) 10%, transparent) 0%, var(--mai-hair) 55%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 31%, #ffffff) 24%, transparent) 100%),
+	linear-gradient(180deg, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 37%, #ffffff) 10%, transparent) 0%, var(--mai-hair) 55%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 31%, #ffffff) 24%, transparent) 100%),
+	linear-gradient(180deg, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 37%, #ffffff) 10%, transparent) 0%, var(--mai-hair) 55%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 31%, #ffffff) 24%, transparent) 100%),
+	linear-gradient(180deg, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 37%, #ffffff) 10%, transparent) 0%, var(--mai-hair) 55%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 31%, #ffffff) 24%, transparent) 100%);
+	animation: mai-draw-y .9s cubic-bezier(.22, .61, .36, 1) both;
+	transform-origin: 50% 0;
+}
+/* ---------- structure: enclosure frame ---------- */
+.mai-breadcrumb__frame {
+	position: absolute;
+	left: var(--mai-frame-l);
+	right: var(--mai-frame-r);
+	top: var(--mai-frame-t);
+	bottom: var(--mai-frame-b);
+	z-index: 2;
+	pointer-events: none;
+	border: 1px solid var(--mai-line);
+	border-bottom: 0;
+	border-radius: var(--mai-frame-rad) var(--mai-frame-rad) 0 0;
+	animation: mai-frame-in 1s cubic-bezier(.22, .61, .36, 1) .5s both;
+}
+
+/* the frame's bottom edge, visible only outside the enclosure */
+.mai-breadcrumb__frame::before,
+.mai-breadcrumb__frame::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	height: 1px;
+	background: var(--mai-line);
+	animation: mai-draw-x .7s cubic-bezier(.22, .61, .36, 1) 1.05s both;
+}
+.mai-breadcrumb__field .mai-breadcrumb__frame{
+	width: 1100px;
+	margin: 0 auto !important;
+}
+.mai-breadcrumb__frame::before {
+	right: 100%;
+	width: 60.5%;
+	transform-origin: 100% 50%;
+}
+
+.mai-breadcrumb__frame::after {
+	left: 100%;
+	width: 60.9%;
+	transform-origin: 0 50%;
+}
+
+/* ---------- structure: violet ticks and rail accents ---------- */
+.mai-breadcrumb__ticks {
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+	pointer-events: none;
+	background-repeat: no-repeat;
+	background-image:
+	linear-gradient(180deg, color-mix(in srgb, var(--wp--preset--color--primary) 0%, transparent) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 28%, transparent) 45%, var(--mai-violet-light) 84%, var(--mai-violet-x-light) 100%),
+	linear-gradient(180deg, color-mix(in srgb, var(--wp--preset--color--primary) 0%, transparent) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 28%, transparent) 45%, var(--mai-violet-light) 84%, var(--mai-violet-x-light) 100%),
+	linear-gradient(180deg, color-mix(in srgb, var(--wp--preset--color--primary) 0%, transparent) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 28%, transparent) 45%, var(--mai-violet-light) 84%, var(--mai-violet-x-light) 100%),
+	linear-gradient(180deg, color-mix(in srgb, var(--wp--preset--color--primary) 0%, transparent) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 28%, transparent) 45%, var(--mai-violet-light) 84%, var(--mai-violet-x-light) 100%),
+	linear-gradient(180deg, color-mix(in srgb, var(--wp--preset--color--primary) 0%, transparent) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 28%, transparent) 45%, var(--mai-violet-light) 84%, var(--mai-violet-x-light) 100%),
+	linear-gradient(90deg, color-mix(in srgb, var(--wp--preset--color--primary) 0%, transparent) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 28%, transparent) 42%, var(--mai-violet-light) 80%, var(--mai-violet-x-light) 97%, color-mix(in srgb, var(--wp--preset--color--primary) 0%, transparent) 100%),
+	linear-gradient(90deg, color-mix(in srgb, var(--wp--preset--color--primary) 0%, transparent) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 28%, transparent) 42%, var(--mai-violet-light) 80%, var(--mai-violet-x-light) 97%, color-mix(in srgb, var(--wp--preset--color--primary) 0%, transparent) 100%),
+	linear-gradient(90deg, color-mix(in srgb, var(--wp--preset--color--primary) 0%, transparent) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 28%, transparent) 42%, var(--mai-violet-light) 80%, var(--mai-violet-x-light) 97%, color-mix(in srgb, var(--wp--preset--color--primary) 0%, transparent) 100%),
+	linear-gradient(90deg, color-mix(in srgb, var(--wp--preset--color--primary) 0%, transparent) 0%, color-mix(in srgb, var(--wp--preset--color--primary) 28%, transparent) 42%, var(--mai-violet-light) 80%, var(--mai-violet-x-light) 97%, color-mix(in srgb, var(--wp--preset--color--primary) 0%, transparent) 100%);
+	background-size:
+	2px 12.935%, 2px 13.682%, 2px 12.189%, 2px 12.687%, 2px 15.672%,
+	2.943% 3px, 2.282% 3px, 2.820% 3px, 2.820% 3px;
+	background-position:
+	13.934% 13.143%, 31.892% 27.666%, 49.910% 13.597%, 67.868% 28.491%, 85.886% 13.570%,
+	26.918% calc(var(--mai-frame-t) - 1px), 71.604% calc(var(--mai-frame-t) - 1px),
+	0.988% calc(var(--mai-rail-b) - 1px), 98.950% calc(var(--mai-rail-b) - 1px);
+	filter: drop-shadow(0 0 6px color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 77%, #ffffff) 70%, transparent));
+	animation: mai-tick 4.5s ease-in-out infinite;
+}
+/* travelling highlights along the frame rails */
+.mai-breadcrumb__ticks::before,
+.mai-breadcrumb__ticks::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	width: 8%;
+	height: 3px;
+	border-radius: 4px;
+	background: linear-gradient(90deg, transparent 0%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 12%, #ffffff) 90%, transparent) 50%, transparent 100%);
+	will-change: transform, opacity;
+}
+.mai-breadcrumb__ticks::before {
+	top: calc(var(--mai-frame-t) - 1px);
+	animation: mai-sweep-x 6.4s linear infinite;
+}
+
+.mai-breadcrumb__ticks::after {
+	top: calc(var(--mai-rail-b) - 1px);
+	animation: mai-sweep-x 8.2s linear 1.6s infinite;
+}
+
+/* ---------- bottom bar ---------- */
+.mai-breadcrumb__bar {
+	position: absolute;
+	inset: auto 0 0;
+	height: var(--mai-bar-h);
+	z-index: 3;
+	overflow: hidden;
+	background: var(--mai-violet);
+	transform-origin: 50% 100%;
+	animation: mai-draw-x .8s cubic-bezier(.22, .61, .36, 1) .15s both;
+}
+
+.mai-breadcrumb__bar::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: -30%;
+	width: 26%;
+	pointer-events: none;
+	background: linear-gradient(100deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .16) 48%, rgba(255, 255, 255, 0) 100%);
+	will-change: transform;
+	animation: mai-sheen 9s ease-in-out 2s infinite;
+}
+
+/* ---------- breadcrumb trail ---------- */
+.mai-breadcrumb__trail {
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	max-width: 96%;
+	transform: translateX(-50%);
+	z-index: 4;
+	animation: mai-nav-in .85s cubic-bezier(.22, 1.2, .4, 1) .55s both;
+}
+
+.mai-breadcrumb__plate {
+	position: relative;
+	padding: var(--mai-plate-pt) var(--mai-plate-px) var(--mai-plate-pb);
+	border-radius: var(--mai-plate-r) var(--mai-plate-r) 0 0;
+	background: var(--mai-violet);
+}
+
+.mai-breadcrumb__plate::before {
+	content: "";
+	position: absolute;
+	left: -14%;
+	right: -14%;
+	bottom: 0;
+	top: -30%;
+	z-index: -1;
+	background: radial-gradient(60% 90% at 50% 100%, color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 92%, #ffffff) 50%, transparent) 0%, transparent 72%);
+	filter: blur(16px);
+}
+
+.mai-breadcrumb__track {
+	position: relative;
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: stretch;
+	gap: 0;
+	height: var(--mai-track-h);
+	padding: 0;
+	margin: 0;
+	background: none;
+	border: 0;
+	box-shadow: none;
+}
+
+.mai-breadcrumb__crumb {
+	position: relative;
+	display: flex;
+	flex: 0 0 auto;
+	min-width: 0;
+	background: var(--mai-crumb-line);
+	transition: filter .35s cubic-bezier(.22, .61, .36, 1), transform .3s ease;
+}
+
+.mai-breadcrumb__crumb::before {
+	content: "";
+	position: absolute;
+	inset: var(--mai-line-w);
+	z-index: 0;
+	background: var(--mai-violet);
+}
+
+.mai-breadcrumb__crumb-body {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	gap: var(--mai-gap-ic);
+	min-width: 0;
+	background: var(--mai-crumb-line);
+}
+
+.mai-breadcrumb__crumb-body::before {
+	content: "";
+	position: absolute;
+	inset: var(--mai-line-w);
+	z-index: 0;
+	background: var(--mai-crumb-fill);
+	transition: background .35s ease;
+}
+
+.mai-breadcrumb__crumb-body > * {
+	position: relative;
+	z-index: 1;
+}
+
+/* first button: rounded left, pointed right */
+.mai-breadcrumb__crumb--first {
+	padding: var(--mai-ring-gap) var(--mai-ring-tip) var(--mai-ring-gap) var(--mai-ring-gap);
+}
+
+.mai-breadcrumb__crumb--first,
+.mai-breadcrumb__crumb--first::before {
+	border-radius: var(--mai-seg-r) 0 0 var(--mai-seg-r);
+	clip-path: polygon(0 0, calc(100% - var(--mai-arrow-out)) 0, 100% 50%, calc(100% - var(--mai-arrow-out)) 100%, 0 100%);
+}
+
+.mai-breadcrumb__crumb--first .mai-breadcrumb__crumb-body {
+	padding: 0 calc(var(--mai-arrow-in) + var(--mai-track-h) * .057) 0 calc(var(--mai-track-h) * .057 + var(--mai-circle) + var(--mai-gap-ic));
+}
+
+.mai-breadcrumb__crumb--first .mai-breadcrumb__crumb-body,
+.mai-breadcrumb__crumb--first .mai-breadcrumb__crumb-body::before {
+	border-radius: var(--mai-body-r) 0 0 var(--mai-body-r);
+	clip-path: polygon(0 0, calc(100% - var(--mai-arrow-in)) 0, 100% 50%, calc(100% - var(--mai-arrow-in)) 100%, 0 100%);
+}
+
+/* last button: notched left, rounded right. It slides back so its notch
+	nests around the point of the previous button. */
+	.mai-breadcrumb__crumb--last {
+		padding: var(--mai-ring-gap) var(--mai-ring-gap) var(--mai-ring-gap) var(--mai-ring-tip);
+		margin-left: calc(var(--mai-gap-seg) - var(--mai-arrow-out));
+	}
+
+	.mai-breadcrumb__crumb--last,
+	.mai-breadcrumb__crumb--last::before {
+		border-radius: 0 var(--mai-seg-r) var(--mai-seg-r) 0;
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, var(--mai-arrow-out) 50%);
+	}
+
+	.mai-breadcrumb__crumb--last .mai-breadcrumb__crumb-body {
+		padding: 0 calc(var(--mai-track-h) * .3) 0 calc(var(--mai-arrow-in) + var(--mai-track-h) * .214);
+	}
+
+	.mai-breadcrumb__crumb--last .mai-breadcrumb__crumb-body,
+	.mai-breadcrumb__crumb--last .mai-breadcrumb__crumb-body::before {
+		border-radius: 0 var(--mai-body-r) var(--mai-body-r) 0;
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, var(--mai-arrow-in) 50%);
+	}
+
+/* the icon is drawn as a pseudo element below; an old markup copy may still
+	carry an empty icon div, which would only add a gap */
+	.mai-breadcrumb__icon {
+		display: none;
+	}
+
+/* home icon: a pseudo element, so the markup has no empty div for it */
+.mai-breadcrumb__crumb--first .mai-breadcrumb__crumb-body::after {
+	content: "";
+	position: absolute;
+	z-index: 1;
+	left: calc(var(--mai-track-h) * .057);
+	top: 50%;
+	width: var(--mai-circle);
+	height: var(--mai-circle);
+	border-radius: 50%;
+	background: var(--mai-home-icon) center / var(--mai-icon) var(--mai-icon) no-repeat, #fff;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, .28), 0 0 12px color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 64%, #ffffff) 35%, transparent);
+	transform: translateY(-50%);
+	transition: transform .4s cubic-bezier(.34, 1.56, .64, 1);
+}
+
+/* On archive/search views the crumb label comes from query-title; hide the
+   post-title fallback there (it would print the first post in the loop). */
+   .archive .mai-breadcrumb__label.wp-block-post-title,
+   .search .mai-breadcrumb__label.wp-block-post-title {
+   	display: none;
+   }
+
+   .mai-breadcrumb__crumb-body .mai-breadcrumb__label:empty {
+   	display: none;
+   }
+
+   .mai-breadcrumb__label {
+   	margin: 0;
+   	font-family: var(--mai-font);
+   	font-size: var(--mai-fs);
+   	font-weight: 600;
+   	font-style: normal;
+   	line-height: 1;
+   	letter-spacing: .01em;
+   	color: #fff;
+   	text-decoration: none;
+   	white-space: nowrap;
+   	overflow: hidden;
+   	text-overflow: ellipsis;
+   	max-width: 22ch;
+   	text-shadow: 0 1px 2px rgba(0, 0, 0, .45);
+   	transition: letter-spacing .3s ease, text-shadow .3s ease;
+   }
+
+   .mai-breadcrumb__label a {
+   	color: inherit;
+   	text-decoration: none;
+   	box-shadow: none;
+   }
+
+   .mai-breadcrumb__crumb:hover,
+   .mai-breadcrumb__crumb:focus-within {
+   	filter: drop-shadow(0 0 10px color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 71%, #ffffff) 80%, transparent)) drop-shadow(0 0 20px color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 98%, #000000) 50%, transparent));
+   }
+
+   .mai-breadcrumb__crumb:hover .mai-breadcrumb__crumb-body::before,
+   .mai-breadcrumb__crumb:focus-within .mai-breadcrumb__crumb-body::before {
+   	background: linear-gradient(180deg, var(--mai-violet-light) 0%, var(--mai-violet) 52%, color-mix(in srgb, var(--wp--preset--color--primary) 80%, #000000) 100%);
+   }
+
+   .mai-breadcrumb__crumb:hover .mai-breadcrumb__crumb-body::after,
+   .mai-breadcrumb__crumb:focus-within .mai-breadcrumb__crumb-body::after {
+   	transform: translateY(-50%) scale(1.07) rotate(-6deg);
+   }
+
+   .mai-breadcrumb__crumb:hover .mai-breadcrumb__label,
+   .mai-breadcrumb__crumb:focus-within .mai-breadcrumb__label {
+   	letter-spacing: .4px;
+   	text-shadow: 0 0 10px rgba(255, 255, 255, .5);
+   }
+
+   .mai-breadcrumb__label a:focus-visible {
+   	outline: 2px solid var(--mai-violet-x-light);
+   	outline-offset: 4px;
+   	border-radius: 4px;
+   }
+
+/* ---------- keyframes ---------- */
+@keyframes mai-twinkle {
+	0%, 100% { opacity: .18; transform: translate3d(0, 0, 0) scale(.94); }
+	50% { opacity: 1; transform: translate3d(1px, -4px, 0) scale(1); }
+}
+
+@keyframes mai-tick {
+	0%, 100% { opacity: .38; }
+	50% { opacity: 1; }
+}
+
+@keyframes mai-sweep-x {
+	0% { transform: translateX(0); opacity: 0; }
+	18% { opacity: 1; }
+	82% { opacity: 1; }
+	100% { transform: translateX(1150%); opacity: 0; }
+}
+
+@keyframes mai-flare {
+	0%, 100% { opacity: .5; transform: scaleX(.94); }
+	50% { opacity: 1; transform: scaleX(1.04); }
+}
+
+@keyframes mai-core-pulse {
+	0%, 100% { opacity: .45; transform: scale(.82); }
+	50% { opacity: 1; transform: scale(1.12); }
+}
+
+@keyframes mai-pulse-a {
+	0%, 100% { opacity: .45; }
+	50% { opacity: 1; }
+}
+
+@keyframes mai-pulse-b {
+	0%, 100% { opacity: 1; }
+	50% { opacity: .45; }
+}
+
+@keyframes mai-sway {
+	0% { transform: scale(1) translate3d(0, 0, 0); }
+	100% { transform: scale(1.02) translate3d(-.5%, -.4%, 0); }
+}
+
+@keyframes mai-sheen {
+	0% { transform: translateX(0) skewX(-17deg); }
+	55%, 100% { transform: translateX(520%) skewX(-17deg); }
+}
+
+@keyframes mai-fade-in {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+@keyframes mai-draw-y {
+	from { transform: scaleY(0); opacity: 0; }
+	to { transform: scaleY(1); opacity: 1; }
+}
+
+@keyframes mai-draw-x {
+	from { transform: scaleX(0); }
+	to { transform: scaleX(1); }
+}
+
+@keyframes mai-frame-in {
+	from { opacity: 0; transform: translateY(10px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes mai-nav-in {
+	from { opacity: 0; transform: translateX(-50%) translateY(46%); }
+	to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 900px) {
+	.mai-breadcrumb {
+		aspect-ratio: 1665/470;
+	}
+
+	.mai-breadcrumb__label {
+		max-width: 16ch;
+	}
+}
+
+@media (max-width: 620px) {
+	.mai-breadcrumb {
+		aspect-ratio: 1665/620;
+		min-height: 250px;
+		--mai-frame-l: 7%;
+		--mai-frame-r: 6%;
+		--mai-frame-rad: 12px;
+	}
+
+	.mai-breadcrumb__label {
+		max-width: 12ch;
+	}
+}
+
+@media (max-width: 430px) {
+	.mai-breadcrumb {
+		--mai-track-h: 34px;
+	}
+
+	.mai-breadcrumb__label {
+		max-width: 9ch;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.mai-breadcrumb *,
+	.mai-breadcrumb *::before,
+	.mai-breadcrumb *::after,
+	.mai-breadcrumb {
+		animation: none !important;
+		transition-duration: .01ms !important;
+	}
+}
+.mai-breadcrumb__fx,
+.mai-breadcrumb__accent,
+.mai-breadcrumb__field,
+.mai-breadcrumb__glows,
+.mai-breadcrumb__glow,
+.mai-breadcrumb__flare,
+.mai-breadcrumb__sparks,
+.mai-breadcrumb__sparks-layer,
+.mai-breadcrumb__struct,
+.mai-breadcrumb__frame,
+.mai-breadcrumb__ticks,
+.mai-breadcrumb__bar,
+.mai-breadcrumb__trail {
+	position: absolute !important;
+}
+.mai-breadcrumb__trail {
+	left: 50% !important;
+	right: auto !important;
+	top: auto !important;
+	bottom: 0 !important;
+	width: auto !important;
+	transform: translateX(-50%) !important;
+	z-index: 4 !important;
+}
+.mai-breadcrumb__plate {
+	position: relative !important;
+	width: auto !important;
+}
+.mai-breadcrumb__fx {
+	z-index: 0 !important;
+}
+.mai-breadcrumb .is-layout-flow > *,
+.mai-breadcrumb .is-layout-constrained > * {
+	max-width: none;
+	margin-left: 0;
+	margin-right: 0;
+}
+.mai-breadcrumb .is-layout-flow > * + *,
+.mai-breadcrumb .is-layout-constrained > * + * {
+	margin-block-start: 0;
+}
+.mai-breadcrumb :where(.wp-block-group),
+.mai-breadcrumb :where(p) {
+	margin: 0;
+}
+.mai-breadcrumb__crumb--last {
+	margin-left: calc(var(--mai-gap-seg) - var(--mai-arrow-out)) !important;
+}
+
+/* Generated flex-layout styles (.wp-container-* > * { margin: 0 }) load after
+   this sheet and can null the nesting pull above; labels carry no margins. */
+   .mai-breadcrumb__crumb-body .mai-breadcrumb__label {
+   	margin: 0 !important;
+   }
+   .mai-breadcrumb .block-editor-block-variation-picker,
+   .mai-breadcrumb .block-library-group__placeholder,
+   .mai-breadcrumb .components-placeholder,
+   .mai-breadcrumb .block-list-appender,
+   .mai-breadcrumb .block-editor-button-block-appender,
+   .mai-breadcrumb .block-editor-block-list__empty-block-inserter {
+   	display: none !important;
+   }
+   .mai-breadcrumb .wp-block-group:empty,
+   .mai-breadcrumb .block-editor-block-list__block:empty {
+   	min-height: 0;
+   	padding: 0;
+   }
+   .mai-breadcrumb .wp-block-post-title {
+   	margin: 0;
+   	padding: 0;
+   }
+   :root {
+   	--bg: var(--wp--preset--color--secondary, #1C0E41);
+   	--fg: hsl(0, 0%, 100%);
+   	--primary: var(--wp--preset--color--primary, #632CFF);
+   	--trans-dur: 0.3s;
+   }
+   .Preloader {
+   	/* Fluid size for the loader rings only - must not sit on :root. */
+   	font-size: calc(20px + (40 - 20) * (100vw - 320px) / (2560 - 320));
+   	position: fixed;
+   	inset: 0;
+   	width: 100%;
+   	display: flex;
+   	align-items: center;
+   	justify-content: center;
+   	background-color: var(--bg);
+   	z-index: 999999;
+   	opacity: 1;
+   	visibility: visible;
+   	transition: opacity 0.8s ease, visibility 0.8s ease;
+   	background-color: var(--bg);
+   	color: var(--fg);
+   	display: flex;
+   	font-family: sans-serif;
+   	line-height: 2.5;
+   	height: 100vh;
+   	transition:all var(--trans-dur);
+   }
+   .Preloader.hide{
+   	opacity: 0;
+   	visibility: hidden;
+   	pointer-events: none;
+   }
+
+/* Fallback: hide the preloader even if JavaScript never runs. */
+@keyframes materialai-preloader-out {
+	to {
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+	}
+}
+.Preloader {
+	animation: materialai-preloader-out 0.8s ease 2.5s forwards;
+}
+
+.pl {
+	--dur: 3s;
+	margin: auto;
+	position: relative;
+	width: 11em;
+	height: 11em;
+}
+.pl__nucleus,
+.pl__nucleus-particle {
+	position: absolute;
+}
+.pl__nucleus {
+	top: 50%;
+	left: 50%;
+	transform-style: preserve-3d;
+}
+.pl__nucleus-particle,
+.pl__ring,
+.pl__orbit,
+.pl__electron {
+	animation: particleTop var(--dur) linear infinite;
+}
+.pl__nucleus-particle {
+	background-color: var(--primary);
+	background-image: radial-gradient(37.5% 37.5% at 37.5% 37.5%,color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 10%, #ffffff) 25%, transparent) 48%,transparent 50%);
+	border-radius: 50%;
+	box-shadow: -0.125em -0.125em 0 color-mix(in srgb, var(--wp--preset--color--secondary) 25%, transparent) inset;
+	top: calc(50% - 0.5em);
+	left: calc(50% - 0.5em);
+	width: 1.2em;
+	height: 1.2em;
+	transition: background-color var(--trans-dur);
+}
+.pl__nucleus-particle:nth-child(2n) {
+	background-color: color-mix(in srgb, var(--wp--preset--color--primary) 72%, #ffffff);
+}
+.pl__nucleus-particle:nth-child(n + 4):nth-child(-n + 9) {
+	animation-name: particleMiddle;
+}
+.pl__nucleus-particle:nth-child(n + 10):nth-child(-n + 12) {
+	animation-name: particleBottom;
+}
+.pl__nucleus-particle:nth-child(2) { animation-delay: calc(var(--dur) * -0.33); }
+.pl__nucleus-particle:nth-child(3) { animation-delay: calc(var(--dur) * -0.67); }
+.pl__nucleus-particle:nth-child(5) { animation-delay: calc(var(--dur) * -0.17); }
+.pl__nucleus-particle:nth-child(6) { animation-delay: calc(var(--dur) * -0.33); }
+.pl__nucleus-particle:nth-child(7) { animation-delay: calc(var(--dur) * -0.5); }
+.pl__nucleus-particle:nth-child(8) { animation-delay: calc(var(--dur) * -0.67); }
+.pl__nucleus-particle:nth-child(9) { animation-delay: calc(var(--dur) * -0.83); }
+.pl__nucleus-particle:nth-child(11) { animation-delay: calc(var(--dur) * -0.33); }
+.pl__nucleus-particle:nth-child(12) { animation-delay: calc(var(--dur) * -0.67); }
+.pl__nucleus-particle:last-child { animation: none; }
+
+.pl__rings {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+.pl__ring {
+	animation-name: ring;
+	transform-origin: 64px 64px;
+}
+.pl__ring:nth-child(n + 5):nth-child(-n + 7) {
+	animation-delay: calc(var(--dur) * -0.25);
+}
+.pl__orbit,
+.pl__electron {
+	animation-name: orbit;
+	transition: stroke var(--trans-dur);
+}
+.pl__orbit:first-child {
+	stroke: transparent;
+}
+.pl__orbit:nth-child(2) {
+	stroke: color-mix(in srgb, var(--wp--preset--color--primary) 50%, transparent);
+}
+.pl__orbit:nth-child(3) {
+	stroke: color-mix(in srgb, var(--wp--preset--color--primary) 70%, transparent);
+}
+.pl__ring:first-child .pl__orbit:first-child { stroke: color-mix(in srgb, var(--wp--preset--color--primary) 30%, transparent); }
+.pl__ring:nth-child(2) .pl__orbit { animation-delay: calc(var(--dur) * -0.125); }
+.pl__ring:nth-child(3) .pl__orbit { animation-delay: calc(var(--dur) * -0.25); }
+.pl__ring:nth-child(4) .pl__orbit { animation-delay: calc(var(--dur) * -0.375); }
+.pl__ring:nth-child(5) .pl__orbit:first-child { stroke: color-mix(in srgb, var(--wp--preset--color--primary) 30%, transparent); }
+.pl__ring:nth-child(6) .pl__orbit { animation-delay: calc(var(--dur) * -0.25); }
+.pl__ring:nth-child(7) .pl__electron:nth-child(2) { animation-delay: calc(var(--dur) * -0.25); }
+.pl__ring:nth-child(8) .pl__electron:nth-child(2) { animation-delay: calc(var(--dur) * -0.125); }
+.pl__ring:nth-child(8) .pl__electron:nth-child(3) { animation-delay: calc(var(--dur) * -0.25); }
+.pl__ring:nth-child(8) .pl__electron:nth-child(4) { animation-delay: calc(var(--dur) * -0.375); }
+
+/* Animations */
+@keyframes orbit {
+	from { stroke-dashoffset: 0; }
+	to { stroke-dashoffset: 580; }
+}
+@keyframes ring {
+	from { transform: rotate(0); }
+	to { transform: rotate(1turn); }
+}
+@keyframes particleTop {
+	from { transform: rotateY(0) rotateZ(-35deg) translateY(-100%) rotateZ(35deg) rotateY(0); }
+	to { transform: rotateY(-1turn) rotateZ(-35deg) translateY(-100%) rotateZ(35deg) rotateY(1turn); }
+}
+@keyframes particleMiddle {
+	from { transform: rotateY(0) rotateZ(90deg) translateY(-100%) rotateZ(-90deg) rotateY(0); }
+	to { transform: rotateY(-1turn) rotateZ(90deg) translateY(-100%) rotateZ(-90deg) rotateY(1turn); }
+}
+@keyframes particleBottom {
+	from { transform: rotateY(0) rotateZ(-145deg) translateY(-100%) rotateZ(145deg) rotateY(0); }
+	to { transform: rotateY(-1turn) rotateZ(-145deg) translateY(-100%) rotateZ(145deg) rotateY(1turn); }
+}
+/** =========================================================
+	AI BACK TO TOP
+========================================================= */
+.materialai-back-to-top {
+	position: relative;
+	z-index: 99999;
+}
+
+/* =========================================================
+	BUTTON
+========================================================= */
+.materialai-back-to-top__button {
+	position: fixed;
+	right: 28px;
+	bottom: 28px;
+	width: 78px;
+	height: 78px;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background:
+	radial-gradient(
+		circle at center,
+		color-mix(in srgb, var(--wp--preset--color--primary) 85%, #ffffff) 0%,
+		var(--wp--preset--color--primary) 42%,
+		color-mix(in srgb, var(--wp--preset--color--primary) 55%, var(--wp--preset--color--secondary)) 72%,
+		var(--wp--preset--color--secondary) 100%
+	);
+	color: #ffffff;
+	text-decoration: none;
+	cursor: pointer;
+	z-index: 999999;
+	overflow: visible;
+	box-shadow:
+	0 0 0 1px color-mix(in srgb, var(--wp--preset--color--primary) 85%, transparent),
+	0 0 14px color-mix(in srgb, var(--wp--preset--color--primary) 65%, transparent),
+	0 0 32px color-mix(in srgb, var(--wp--preset--color--primary) 40%, transparent);
+	transition:
+	transform 0.35s ease,
+	box-shadow 0.35s ease;
+}
+
+/* =========================================================
+	OUTER GLOW
+========================================================= */
+.materialai-back-to-top__button::before {
+	content: "";
+	position: absolute;
+	inset: -4px;
+	border-radius: 50%;
+	border: 1px solid color-mix(in srgb, color-mix(in srgb, var(--wp--preset--color--primary) 66%, #ffffff) 80%, transparent);
+	pointer-events: none;
+}
+
+/* =========================================================
+	DASHED RING
+========================================================= */
+.materialai-back-to-top__button::after {
+	content: "";
+	position: absolute;
+	inset: -8px;
+	border-radius: 50%;
+	border: 1px dashed rgba(255, 255, 255, 0.48);
+	pointer-events: none;
+	animation:
+	materialai-back-to-top-ring
+	12s linear infinite;
+}
+
+/* =========================================================
+	CIRCULAR TEXT
+========================================================= */
+.materialai-back-to-top__text {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 118px;
+	height: 118px;
+	margin: 0;
+	padding: 0;
+	overflow: visible;
+	pointer-events: none;
+	z-index: 2;
+	transform:
+	translate(-50%, -50%);
+	animation:
+	materialai-back-to-top-text
+	18s linear infinite;
+}
+.materialai-back-to-top__text text {
+	fill: color-mix(in srgb, var(--wp--preset--color--primary) 65%, #ffffff);
+	font-family: var(--wp--preset--font-family--jost, sans-serif);
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 1px;
+	word-spacing: 3px;
+	text-transform: uppercase;
+}
+
+/* =========================================================
+	INNER RING
+========================================================= */
+.materialai-back-to-top__outer-ring {
+	position: absolute;
+	width: 58px;
+	height: 58px;
+	margin: 0;
+	padding: 0;
+	border-radius: 50%;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	box-shadow:
+	inset 0 0 12px rgba(255, 255, 255, 0.08),
+	0 0 12px color-mix(in srgb, var(--wp--preset--color--primary) 40%, transparent);
+	pointer-events: none;
+	z-index: 3;
+}
+
+/* =========================================================
+	CENTER CORE
+========================================================= */
+
+.materialai-back-to-top__core {
+	position: relative;
+	width: 43px;
+	height: 43px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+	padding: 0;
+	border-radius: 50%;
+	background: #ffffff;
+	z-index: 5;
+	box-shadow:
+	0 0 10px rgba(255, 255, 255, 0.6),
+	0 0 20px color-mix(in srgb, var(--wp--preset--color--primary) 60%, transparent);
+	transition:
+	transform 0.35s ease,
+	background-color 0.35s ease;
+}
+
+/* =========================================================
+	ARROW
+========================================================= */
+
+.materialai-back-to-top__arrow {
+	width: 19px;
+	height: 19px;
+	display: block;
+	margin: 0;
+	padding: 0;
+	fill: none;
+	stroke: var(--wp--preset--color--primary);
+	stroke-width: 2.5;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	transition:
+	transform 0.3s ease,
+	stroke 0.3s ease;
+}
+
+/* =========================================================
+	HOVER
+========================================================= */
+
+.materialai-back-to-top__button:hover {
+	transform:
+	translateY(-6px)
+	scale(1.04);
+	box-shadow:
+	0 0 0 1px var(--wp--preset--color--primary),
+	0 0 20px color-mix(in srgb, var(--wp--preset--color--primary) 80%, transparent),
+	0 0 45px color-mix(in srgb, var(--wp--preset--color--primary) 50%, transparent);
+}
+
+.materialai-back-to-top__button:hover
+.materialai-back-to-top__core {
+	background-color: var(--wp--preset--color--primary);
+	transform: scale(1.08);
+}
+
+.materialai-back-to-top__button:hover
+.materialai-back-to-top__arrow {
+	stroke: #ffffff;
+	transform: translateY(-2px);
+}
+
+/* =========================================================
+	KEYBOARD FOCUS
+========================================================= */
+
+.materialai-back-to-top__button:focus-visible {
+	outline: 3px solid #ffffff;
+	outline-offset: 5px;
+}
+
+/* =========================================================
+	ANIMATIONS
+========================================================= */
+
+@keyframes materialai-back-to-top-text {
+
+	from {
+		transform:
+		translate(-50%, -50%)
+		rotate(0deg);
+	}
+	to {
+		transform:
+		translate(-50%, -50%)
+		rotate(-360deg);
+	}
+}
+
+@keyframes materialai-back-to-top-ring {
+
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* =========================================================
+	REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+	.materialai-back-to-top__text,
+	.materialai-back-to-top__button::after {
+		animation: none;
+	}
+
+	.materialai-back-to-top__button,
+	.materialai-back-to-top__core,
+	.materialai-back-to-top__arrow {
+		transition: none;
+	}
+}
+
+/* =========================================================
+	TABLET / MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+
+	.materialai-back-to-top__button {
+		right: 18px;
+		bottom: 18px;
+
+		width: 64px;
+		height: 64px;
+	}
+	.materialai-back-to-top__text {
+		width: 98px;
+		height: 98px;
+	}
+	.materialai-back-to-top__text text {
+		font-size: 7px;
+		letter-spacing: 1.5px;
+	}
+	.materialai-back-to-top__outer-ring {
+		width: 48px;
+		height: 48px;
+	}
+	.materialai-back-to-top__core {
+		width: 36px;
+		height: 36px;
+	}
+	.materialai-back-to-top__arrow {
+		width: 16px;
+		height: 16px;
+	}
+}
+
+/* =========================================================
+	SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+	.materialai-back-to-top__button {
+		right: 14px;
+		bottom: 14px;
+
+		width: 58px;
+		height: 58px;
+	}
+	.materialai-back-to-top__text {
+		width: 88px;
+		height: 88px;
+	}
+	.materialai-back-to-top__text text {
+		font-size: 6px;
+		letter-spacing: 1.2px;
+	}
+	.materialai-back-to-top__outer-ring {
+		width: 44px;
+		height: 44px;
+	}
+	.materialai-back-to-top__core {
+		width: 33px;
+		height: 33px;
+	}
+	.materialai-back-to-top__arrow {
+		width: 15px;
+		height: 15px;
+	}
+}
+.site-branding-fallback {
+	display: block;
+}
+.site-branding:has(.wp-block-site-logo img) .site-branding-fallback {
+	display: none;
+}
+.site-branding:not(:has(.wp-block-site-logo img)) .site-branding-fallback {
+	display: block;
+}
+.site-branding-fallback {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.site-branding-fallback .wp-block-site-title {
+	margin: 0;
+}
+.site-branding-fallback .wp-block-site-title a {
+	position: relative;
+	text-decoration: none;
+}
+.site-branding-fallback .wp-block-site-title a::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -4px;
+	width: 100%;
+	height: 2px;
+	background: currentColor;
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 0.3s ease;
+}
+.site-branding-fallback .wp-block-site-title a:hover::after {
+	transform: scaleX(1);
+}
+.site-branding-fallback .wp-block-site-tagline {
+	margin: 0;
+}
+.materialai-footer .footer-top-border-box .footer-border-icon{
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	min-width: 40px;
+	min-height: 40px;
+	padding: 0px !important;
+	display: flex;
+	align-items: center;
+}
+.materialai-footer-sep{
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+.aipost-sidebar .wp-block-latest-posts.wp-block-latest-posts__list li{
+	margin: 0;
+}
+.wp-block-navigation .wp-block-navigation__submenu-icon { width: .875rem; height: .875rem; }
+.wp-block-navigation .wp-block-navigation__submenu-icon svg { width: 100%; height: 100%; }
+.wc-block-cart .wc-block-cart__submit-container a {
+	text-decoration: none;
+}
+.wp-block-accordion-heading__toggle:hover .wp-block-accordion-heading__toggle-title {
+    text-decoration: none;
+}

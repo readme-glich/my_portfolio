@@ -1,0 +1,83 @@
+<!-- wp:template-part {"slug":"header","theme":"material-ai","tagName":"header"} /-->
+<!-- wp:template-part {"slug":"breadcrumb","theme":"material-ai"} /-->
+<!-- wp:group {"tagName":"main","className":"materialai-search-page","layout":{"type":"constrained"}} -->
+<main class="wp-block-group materialai-search-page">
+
+	<!-- wp:query-title {"type":"search","level":2,"className":"materialai-search-title","textColor":"secondary"} /-->
+
+	<!-- wp:query -->
+	<div class="wp-block-query">
+
+		<!-- wp:post-template {"className":"materialai-search-results"} -->
+
+			<!-- wp:group {"className":"materialai-blog-card","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+			<div class="wp-block-group materialai-blog-card">
+
+				<!-- wp:group {"className":"materialai-blog-card__image","layout":{"type":"default"}} -->
+				<div class="wp-block-group materialai-blog-card__image">
+
+					<!-- wp:post-featured-image {"isLink":true,"sizeSlug":"large"} /-->
+
+				</div>
+				<!-- /wp:group -->
+
+				<!-- wp:group {"className":"materialai-blog-card__content","layout":{"type":"default"}} -->
+				<div class="wp-block-group materialai-blog-card__content">
+
+					<!-- wp:group {"className":"materialai-blog-meta","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+					<div class="wp-block-group materialai-blog-meta">
+
+						<!-- wp:post-author {"showAvatar":false} /-->
+
+						<!-- wp:post-date {"format":"F j, Y"} /-->
+
+					</div>
+					<!-- /wp:group -->
+
+					<!-- wp:post-title {"isLink":true,"className":"materialai-blog-card__title"} /-->
+
+					<!-- wp:group {"className":"materialai-blog-actions","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+					<div class="wp-block-group materialai-blog-actions">
+
+						<!-- wp:read-more {"content":"Read More","className":"materialai-read-more"} /-->
+
+					</div>
+					<!-- /wp:group -->
+
+				</div>
+				<!-- /wp:group -->
+
+			</div>
+			<!-- /wp:group -->
+
+		<!-- /wp:post-template -->
+
+		<!-- wp:query-pagination {"className":"materialai-blog-pagination","layout":{"type":"flex","justifyContent":"center"}} -->
+			<!-- wp:query-pagination-previous /-->
+			<!-- wp:query-pagination-numbers /-->
+			<!-- wp:query-pagination-next /-->
+		<!-- /wp:query-pagination -->
+
+		<!-- wp:query-no-results -->
+			<!-- wp:heading {"level":3,"className":"materialai-no-results-title"} -->
+			<h3 class="wp-block-heading materialai-no-results-title">
+				No results found
+			</h3>
+			<!-- /wp:heading -->
+
+			<!-- wp:paragraph {"className":"materialai-no-results-text"} -->
+			<p class="materialai-no-results-text">
+				Sorry, but nothing matched your search terms. Please try again with different keywords.
+			</p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:search {"label":"Search","showLabel":false,"buttonText":"Search","className":"materialai-no-results-search"} /-->
+		<!-- /wp:query-no-results -->
+
+	</div>
+	<!-- /wp:query -->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

@@ -1,0 +1,3191 @@
+/*
+Theme Name: Material Energy
+Template: material-ai
+Author: Nayra Themes
+Author URI: https://nayrathemes.com
+Description: Material Energy is an FSE (Full Site Editing) WordPress theme built entirely with blocks and patterns. It provides a true visual editing experience in WordPress, allowing you to easily customize your website without coding. This multipurpose theme is suitable for business websites, agencies, portfolios, blogs, and other professional websites. No extra plugins are required with the theme, helping your website run smoothly and efficiently. Material Energy includes multiple style variations, allowing you to quickly switch between different color schemes and visual styles. The free version includes 11 professionally designed patterns that you can use to build beautiful page layouts. With the WordPress Site Editor, you can easily manage various aspects of your website, including colors, typography, spacing, layouts, and styles. The Material Energy Pro version comes with many additional blocks and professionally designed patterns, organized page-wise as showcased in our demo. It provides more design options and flexibility for creating complete websites. Checkout Pro Demo: https://nayrathemes.com/demo/pro/material-energy/
+Version: 1.0
+Requires at least: 6.1
+Tested up to: 7.1
+Requires PHP: 5.8
+License: GPLv3 or later
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Text Domain: material-energy
+Tags: blog, portfolio, one-column, two-columns, block-patterns, block-styles, custom-logo, custom-menu, editor-style, featured-images, full-width-template, style-variations, template-editing, translation-ready, wide-blocks
+*/
+
+/* The rules below are the Header 02, floating-layout and Energy styles from
+   Material AI Pro, carried over so the design matches that theme exactly
+   rather than being rebuilt by hand. Only what this theme cannot use was
+   left out (Pro's carousel, editor preview and statistics panel, and the
+   top-bar phone and "Learn More" items, which this header does not have),
+   and the carousel's arrows, since this banner is a single static slide.
+   The rail is Material AI's own content width.
+   Every colour resolves through the theme.json palette, so the style
+   variations that ship with Material AI still recolour all of it. */
+
+.materialai-badge p:first-child,
+.materialai-badge > .wp-block-icon:first-child{
+	width:34px;
+	height:34px;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	border-radius:50%;
+	background:var(--wp--preset--color--primary);
+	color:var(--white);
+	margin:0;
+	font-weight:700;
+}
+/* A badge can lead with an Icon block instead of a letter; the icon fills the
+   same disc, inset so the glyph keeps some air around it. */
+.materialai-badge > .wp-block-icon:first-child{
+	flex: 0 0 auto;
+	box-sizing: border-box;
+	padding: 7px;
+	line-height: 0;
+}
+.materialai-badge > .wp-block-icon:first-child svg{
+	display: block;
+	width: 100%;
+	height: 100%;
+	fill: currentColor;
+}
+.materialai-badge{
+	position: relative;
+	display: inline-flex;
+	align-items:left;
+	gap: 7px;
+	padding: 7px 14px 7px 7px;
+	border: 1px solid var(--wp--preset--color--primary);
+	border-radius: 999px;
+	width: fit-content;
+	z-index: 1;
+}
+.materialai-badge::before{
+	content: "";
+	position: absolute;
+	inset: 4px;
+	border: 1px solid var(--wp--preset--color--primary);
+	border-radius: inherit;
+	pointer-events: none;
+}
+
+/* ==========================================================================
+   Design variant 02 — Header 02 + Hero Slider 02
+
+   Geometry is taken from the approved comp (measured at a 1920px viewport):
+     page gutter 40  ·  container 1170  ·  hero 1840x1050, radius 40
+     navbar 1170x91, flush with the top edge of the hero
+     badge 390x70   ·  h1 72/1.4  ·  buttons 200x55, gap 42
+     arrow tabs 78x136  ·  stats bar 1227x170, pills 380x130, rings 88
+   Colours come from the theme palette only (primary / secondary / light-color),
+   so every style variation in /styles/ recolours this variant automatically.
+   ========================================================================== */
+
+:root{
+	--mai-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E");
+	--mai-gutter: 40px;
+	--mai-shell: var(--wp--style--global--content-size, 1100px);
+	--mai-navbar-pad: 20px;
+	--mai-navbar-h: 91px;
+	--mai-shoulder: 30px;
+	--mai-hero-plinth: 5px;
+	--mai-plinth-fillet: 21px;
+}
+
+/* --------------------------------------------------------------- top bar */
+
+.materialai-header-02{
+	position: relative;
+	z-index: 30;
+}
+
+/* Same page gutter as the navbar wrapper below, from the same token, so the two
+   stay in step at every breakpoint. */
+.materialai-topbar-02__gutter{
+	padding-inline: var(--mai-gutter);
+}
+
+/* The top bar's dark strip runs the full width of the page gutter, but its
+   contents sit on the same rail as the floating navbar below it, so the "NEW"
+   badge lines up with the navbar's left edge and the currency switcher with its
+   right edge. Both use --mai-shell, so the two stay locked together. */
+.materialai-topbar-02 .materialai-topbar-02__row{
+	width: min(var(--mai-shell), 100%);
+	margin-inline: auto;
+	/* The navbar insets its own contents by --mai-navbar-pad. Matching it here
+	   is what actually puts the "NEW" badge under the logo rather than under
+	   the white bar's outer corner. */
+	padding-inline: var(--mai-navbar-pad);
+	gap: 14px 24px;
+	min-height: 32px;
+}
+
+.materialai-topbar-02__promo{
+	gap: 6px 12px;
+}
+
+.materialai-topbar-02__promo p,
+.materialai-topbar-02__meta p{
+	margin: 0;
+}
+
+.materialai-topbar-02__tag{
+	line-height: 1.75;
+}
+
+.materialai-topbar-02__meta a{
+	color: inherit;
+	text-decoration: none;
+	transition: color .3s ease;
+}
+
+.materialai-topbar-02__meta{
+	gap: 10px 18px;
+}
+
+/* Each top-bar entry is an editable Icon block + a paragraph. The icons come
+   from the theme's own "Material AI" icon library, so they can be swapped,
+   resized and recoloured from the block sidebar like any other icon. */
+.materialai-topbar-02__item{
+	display: inline-flex;
+	align-items: center;
+}
+
+.materialai-topbar-02 .materialai-topbar-02__item .wp-block-icon{
+	display: inline-flex;
+	align-items: center;
+	flex: 0 0 auto;
+	line-height: 0;
+}
+
+.materialai-topbar-02 .materialai-topbar-02__item .wp-block-icon svg{
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.materialai-topbar-02__item:hover a{
+	color: var(--wp--preset--color--primary);
+}
+
+/* -------------------------------------------------------- floating navbar */
+
+/* No top padding: the navbar's top edge sits exactly on the hero's top edge. */
+.materialai-nav-wrap-02{
+	display: flex;
+	justify-content: center;
+	padding: 0 var(--mai-gutter);
+}
+
+.materialai-navbar-02{
+	position: relative;
+	width: min(var(--mai-shell), 100%);
+	min-height: var(--mai-navbar-h);
+	gap: 24px;
+	padding: 18px var(--mai-navbar-pad);
+	border-radius: 0 0 10px 10px;
+	background: var(--white);
+	/* The negative spread keeps the blur from reaching back up past the bar's
+	   top edge. Without it the tail washes a grey smudge across the white
+	   strip between the top bar and the navbar; the drop below the bar, over
+	   the hero, is if anything a touch stronger than before. */
+	box-shadow: 0 22px 38px -22px rgba(0, 0, 0, .26);
+}
+
+/* Where the navbar meets the top edge of the hero the edge curves away in an
+   inverted (concave) corner, so the bar reads as cut out of the hero rather
+   than laid on top of it. border-radius only does convex corners, so each
+   shoulder is a square masked by a radial-gradient. */
+.materialai-navbar-02::before,
+.materialai-navbar-02::after{
+	content: "";
+	position: absolute;
+	top: 0;
+	width: var(--mai-shoulder);
+	height: var(--mai-shoulder);
+	pointer-events: none;
+}
+
+.materialai-navbar-02::before{
+	left: calc(-1 * var(--mai-shoulder));
+	background: radial-gradient(
+		circle at 0 100%,
+		transparent var(--mai-shoulder),
+		var(--wp--preset--color--background) calc(var(--mai-shoulder) + 0.5px)
+	);
+}
+
+.materialai-navbar-02::after{
+	right: calc(-1 * var(--mai-shoulder));
+	background: radial-gradient(
+		circle at 100% 100%,
+		transparent var(--mai-shoulder),
+		var(--wp--preset--color--background) calc(var(--mai-shoulder) + 0.5px)
+	);
+}
+
+.materialai-branding-02{
+	flex: 0 0 auto;
+}
+
+.materialai-branding-02 .wp-block-site-logo img{
+	height: auto;
+	max-height: 48px;
+	width: auto;
+}
+
+.materialai-branding-02 .site-branding-fallback .wp-block-site-title{
+	margin: 0;
+	line-height: 1.1;
+}
+
+.materialai-branding-02 .site-branding-fallback .wp-block-site-title a{
+	color: var(--wp--preset--color--secondary);
+	text-decoration: none;
+}
+
+.materialai-branding-02 .site-branding-fallback .wp-block-site-tagline{
+	margin: 0;
+	font-size: 13px;
+	color: var(--wp--preset--color--foreground);
+}
+
+.materialai-navbar-02 .wp-block-site-logo:not(:empty) + .site-branding-fallback{
+	display: none;
+}
+
+.materialai-nav-02{
+	flex: 1 1 auto;
+}
+
+.materialai-navbar-02 .wp-block-navigation{
+	gap: 8px 34px;
+}
+
+.materialai-navbar-02 .wp-block-navigation .wp-block-navigation-item__content{
+	color: var(--wp--preset--color--secondary);
+	font-weight: 700;
+	font-size: 17px;
+	text-decoration: none;
+	transition: color .3s ease;
+}
+
+.materialai-navbar-02 .wp-block-navigation .wp-block-navigation-item__content:hover,
+.materialai-navbar-02 .wp-block-navigation .current-menu-item > .wp-block-navigation-item__content{
+	color: var(--wp--preset--color--primary);
+}
+
+.materialai-navbar-02 .wp-block-navigation__submenu-container{
+	border: 0;
+	border-radius: 12px;
+	padding: 8px 0;
+	background: var(--white);
+	box-shadow: 0 16px 36px rgba(0, 0, 0, .14);
+}
+
+.materialai-navbar-02 .wp-block-navigation__responsive-container-open,
+.materialai-navbar-02 .wp-block-navigation__responsive-container-close{
+	color: var(--wp--preset--color--secondary);
+}
+
+.materialai-actions-02{
+	flex: 0 0 auto;
+	gap: 16px;
+}
+
+/* On the narrowest phones the promo sentence runs to a third line and the top
+   bar grows to ~91px. The size is set inline on the paragraph by the block
+   editor, so !important is the only way CSS can reach it; the override is
+   scoped to this one bar and this one width. */
+@media (max-width: 389px){
+
+	.materialai-topbar-02__copy p{
+		font-size: clamp(11px, 3.3vw, 14px) !important;
+	}
+
+	.materialai-topbar-02__copy{
+		gap: 8px;
+	}
+}
+
+/* Between the overlay and a comfortable desktop there is a band where the
+   menu fits only if something gives. The call to action is the widest thing
+   in the bar that is repeated elsewhere on the page, so it stands down and
+   the menu keeps its single line. */
+@media (min-width: 1025px) and (max-width: 1279px){
+
+	.materialai-header-02 .materialai-navbar-02 .wp-block-buttons{
+		display: none;
+	}
+
+	.materialai-header-02 .materialai-navbar-02 .wp-block-navigation{
+		gap: 8px 16px;
+	}
+}
+
+/* The site title inherits a fluid size, so on a wide screen the branding grew
+   and quietly took the room the menu needed. Pinning it keeps the bar's
+   proportions the same at every width. */
+.materialai-navbar-02 .site-branding-fallback .wp-block-site-title{
+	font-size: 24px;
+}
+
+/* ---------------------------------------------- header 02 — mobile menu */
+
+/* The navigation block's "mobile" overlay gives up at 600px. Below roughly
+   1025px there is not enough room in the bar for a logo, a menu, the search,
+   the cart and the button at once, and the menu wrapped onto three or four
+   lines on inner pages that have more than a couple of items. The overlay is
+   held open across the whole tablet range instead, which also matches the
+   width at which the top bar stacks. */
+@media (min-width: 601px) and (max-width: 1024px){
+
+	.materialai-header-02 .materialai-nav-02 .wp-block-navigation__responsive-container-open:not(.always-shown){
+		display: flex;
+	}
+
+	.materialai-header-02 .materialai-nav-02 .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open){
+		display: none;
+	}
+
+	.materialai-header-02 .materialai-nav-02 .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-close{
+		display: block;
+	}
+}
+
+/* The toggle is a filled tile with three rules across it, the middle one
+   short. They are painted as background layers so the button needs no extra
+   markup; core's own icon steps aside. */
+.materialai-header-02 .materialai-nav-02 .wp-block-navigation__responsive-container-open{
+	position: relative;
+	width: 50px;
+	height: 50px;
+	padding: 0;
+	border: 0;
+	border-radius: 8px;
+	background-color: var(--wp--preset--color--primary);
+	background-image:
+		linear-gradient(currentColor, currentColor),
+		linear-gradient(currentColor, currentColor),
+		linear-gradient(currentColor, currentColor);
+	background-size: 25px 2px, 18px 2px, 25px 2px;
+	background-position: 12px 16px, 12px 24px, 12px 32px;
+	background-repeat: no-repeat;
+	color: var(--wp--preset--color--light-color);
+	transition: background-color .3s ease;
+}
+
+.materialai-header-02 .materialai-nav-02 .wp-block-navigation__responsive-container-open:hover{
+	background-color: var(--wp--preset--color--secondary);
+}
+
+.materialai-header-02 .materialai-nav-02 .wp-block-navigation__responsive-container-open svg{
+	display: none;
+}
+
+/* The page behind is dimmed and blurred, and the menu itself rides in as a
+   panel down the right-hand edge. */
+.materialai-header-02 .wp-block-navigation__responsive-container.is-menu-open{
+	position: fixed;
+	inset: 0;
+	display: flex;
+	/* Core lays the overlay out as a column; the panel needs to sit on the
+	   right, so the axis is turned back. */
+	flex-direction: row;
+	align-items: stretch;
+	justify-content: flex-end;
+	padding: 0;
+	overflow: visible;
+	background: color-mix(in srgb, var(--wp--preset--color--secondary) 45%, transparent);
+	-webkit-backdrop-filter: blur(8px);
+	backdrop-filter: blur(8px);
+}
+
+.materialai-header-02 .is-menu-open .wp-block-navigation__responsive-close{
+	position: relative;
+	width: min(320px, 80vw);
+	max-width: none;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	border-right: 4px solid var(--wp--preset--color--primary);
+	background:
+		radial-gradient(110% 70% at 85% 12%, color-mix(in srgb, var(--wp--preset--color--primary) 38%, transparent), transparent 68%),
+		linear-gradient(200deg, color-mix(in srgb, var(--wp--preset--color--primary) 16%, var(--wp--preset--color--secondary)) 0%, var(--wp--preset--color--secondary) 62%);
+}
+
+.materialai-header-02 .is-menu-open .wp-block-navigation__responsive-dialog{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: none;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: visible;
+}
+
+/* Logo on the left of the panel head, close button on the right. The logo is
+   copied in from the navbar by script.js, since core's overlay has no slot
+   for one. */
+/* The panel head and the sub-menu carets belong to the open overlay. Above
+   the overlay's breakpoint that same container IS the inline navbar, so
+   anything left in it renders beside the real logo — which is how a second
+   site title appeared in the header. Everything here is display:none until
+   the panel is actually open. */
+.materialai-header-02 .mai-menu-head,
+.materialai-header-02 .mai-submenu-toggle{
+	display: none;
+}
+
+.materialai-header-02 .is-menu-open .mai-menu-head{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	flex: 0 0 auto;
+	padding: 22px 20px 20px;
+	color: var(--wp--preset--color--light-color);
+}
+
+.materialai-header-02 .is-menu-open .mai-menu-head .wp-block-site-logo img,
+.materialai-header-02 .is-menu-open .mai-menu-head img{
+	max-width: 180px;
+	height: auto;
+}
+
+/* The panel is dark, so the logo's light version stands in for it. The
+   light version only exists for the theme's bundled logos; an uploaded logo
+   is turned white instead, so it never disappears into the panel. */
+.materialai-logo-light,
+.materialai-header-02 .is-menu-open .mai-menu-head .wp-block-site-logo:has(.materialai-logo-light) .custom-logo{
+	display: none;
+}
+
+.materialai-header-02 .is-menu-open .mai-menu-head .materialai-logo-light{
+	display: block;
+}
+
+.materialai-header-02 .is-menu-open .mai-menu-head .wp-block-site-logo:not(:has(.materialai-logo-light)) img{
+	filter: brightness(0) invert(1);
+}
+
+.materialai-header-02 .is-menu-open .mai-menu-head .wp-block-site-title a{
+	color: var(--wp--preset--color--light-color);
+	font-size: 22px;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.materialai-header-02 .materialai-nav-02 .wp-block-navigation__responsive-container-close{
+	position: static;
+	flex: 0 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 34px;
+	height: 34px;
+	padding: 0;
+	transform: none;
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	color: var(--wp--preset--color--light-color);
+}
+
+.materialai-header-02 .materialai-nav-02 .wp-block-navigation__responsive-container-close svg{
+	width: 26px;
+	height: 26px;
+	fill: currentColor;
+}
+
+.materialai-header-02 .materialai-nav-02 .is-menu-open .wp-block-navigation__responsive-container-content{
+	display: block;
+	flex: 1 1 auto;
+	width: 100%;
+	max-width: none;
+	margin: 0;
+	/* Core pads the top of the overlay content; the panel's head does that job
+	   here, so it is cleared. */
+	padding: 0 0 28px;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+}
+
+/* Entries run down the panel, parted by hairlines. */
+.materialai-header-02 .is-menu-open .wp-block-navigation__container{
+	display: block;
+	gap: 0;
+	padding: 0;
+}
+
+.materialai-header-02 .is-menu-open .wp-block-navigation__container > .wp-block-navigation-item{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	width: calc(100% - 40px);
+	margin: 0 20px;
+	border-bottom: 1px solid color-mix(in srgb, var(--wp--preset--color--light-color) 16%, transparent);
+}
+
+.materialai-header-02 .is-menu-open .wp-block-navigation__container > .wp-block-navigation-item:last-child{
+	border-bottom: 0;
+}
+
+/* Core zeroes item padding inside an open overlay with a four-class rule, so
+   the panel's own spacing has to reach past it. */
+.materialai-header-02 .materialai-nav-02 .is-menu-open .wp-block-navigation-item .wp-block-navigation-item__content{
+	flex: 1 1 auto;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 11px 0;
+	color: var(--wp--preset--color--light-color);
+	font-family: var(--wp--preset--font-family--poppins);
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 1.4;
+	text-decoration: none;
+}
+
+.materialai-header-02 .materialai-nav-02 .is-menu-open .current-menu-item > .wp-block-navigation-item__content,
+.materialai-header-02 .materialai-nav-02 .is-menu-open .current_page_item > .wp-block-navigation-item__content,
+.materialai-header-02 .materialai-nav-02 .is-menu-open .wp-block-navigation-item .wp-block-navigation-item__content:hover,
+.materialai-header-02 .materialai-nav-02 .is-menu-open .wp-block-navigation-item .wp-block-navigation-item__content:focus{
+	color: var(--wp--preset--color--primary);
+}
+
+/* Core's decorative chevron gives way to a real button, so the sub-menu can
+   be opened from the keyboard as well as by tapping. */
+.materialai-header-02 .materialai-nav-02 .is-menu-open .wp-block-navigation-item .wp-block-navigation__submenu-icon{
+	display: none;
+}
+
+.materialai-header-02 .is-menu-open .mai-submenu-toggle{
+	flex: 0 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	align-self: stretch;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: var(--wp--preset--color--light-color);
+	cursor: pointer;
+}
+
+.materialai-header-02 .is-menu-open .mai-submenu-toggle::before{
+	content: "";
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 6px solid currentColor;
+	transition: transform .25s ease;
+}
+
+.materialai-header-02 .is-menu-open .mai-submenu-toggle[aria-expanded="true"]::before{
+	transform: rotate(180deg);
+}
+
+.materialai-header-02 .is-menu-open .mai-submenu-toggle:hover,
+.materialai-header-02 .is-menu-open .mai-submenu-toggle:focus-visible{
+	color: var(--wp--preset--color--primary);
+}
+
+/* Sub-entries are folded away until their entry is opened. */
+.materialai-header-02 .materialai-nav-02.wp-block-navigation .is-menu-open .wp-block-navigation-item .wp-block-navigation__submenu-container{
+	position: static;
+	flex: 0 0 100%;
+	width: 100%;
+	min-width: 0;
+	/* The first header forces a 15px inset on submenus with !important; the
+	   step-in here is carried by the links, so that has to be answered. */
+	padding-inline: 0 !important;
+	margin: 0;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+	background: transparent !important;
+	opacity: 1;
+	visibility: visible;
+	/* Folded by height rather than display: the theme and core each have a
+	   say over display here, and height keeps the open/close movement. */
+	max-height: 0;
+	padding-block: 0;
+	overflow: hidden;
+	transition: max-height .3s ease;
+}
+
+.materialai-header-02 .materialai-nav-02.wp-block-navigation .is-menu-open .wp-block-navigation-item.mai-open > .wp-block-navigation__submenu-container{
+	max-height: 70vh;
+	padding-block: 0 10px;
+}
+
+@media (prefers-reduced-motion: reduce){
+
+	.materialai-header-02 .materialai-nav-02.wp-block-navigation .is-menu-open .wp-block-navigation-item .wp-block-navigation__submenu-container{
+		transition: none;
+	}
+}
+
+.materialai-header-02 .materialai-nav-02 .is-menu-open .wp-block-navigation__submenu-container > .wp-block-navigation-item{
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+.materialai-header-02 .materialai-nav-02 .is-menu-open .wp-block-navigation__submenu-container .wp-block-navigation-item__content{
+	padding: 8px 0 8px 16px;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.5;
+	color: color-mix(in srgb, var(--wp--preset--color--light-color) 82%, transparent);
+}
+
+/* ------------------------------------------------ header 02 — mini cart */
+
+/* The cart is dressed as the same disc as the search button beside it, with
+   the item count riding on its top-right edge. WooCommerce ships the block
+   hidden until its own script runs, hence the visibility override. */
+.materialai-minicart-02{
+	display: flex;
+	align-items: center;
+	visibility: visible !important;
+}
+
+.materialai-minicart-02 .wc-block-mini-cart__button{
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 55px;
+	height: 55px;
+	min-width: 55px;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: var(--wp--preset--color--secondary);
+	color: var(--white);
+	cursor: pointer;
+	opacity: 1;
+	transition: background-color .3s ease;
+}
+
+.materialai-minicart-02 .wc-block-mini-cart__button:hover,
+.materialai-minicart-02 .wc-block-mini-cart__button:focus{
+	background: var(--wp--preset--color--primary);
+	color: var(--white);
+	opacity: 1;
+	transform: none;
+}
+
+.materialai-minicart-02 .wc-block-mini-cart__quantity-badge{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+}
+
+.materialai-minicart-02 .wc-block-mini-cart__icon{
+	width: 22px;
+	height: 22px;
+	fill: currentColor;
+}
+
+/* The running total lives in the drawer, not next to the icon. */
+.materialai-minicart-02 .wc-block-mini-cart__amount{
+	display: none;
+}
+
+.materialai-minicart-02 .wc-block-mini-cart__badge{
+	position: absolute;
+	top: -2px;
+	right: -2px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 21px;
+	height: 21px;
+	margin: 0;
+	padding: 0 5px;
+	border: 0;
+	border-radius: 999px;
+	background: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--light-color);
+	font-family: var(--wp--preset--font-family--poppins);
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 1;
+}
+
+/* A header saved in the Site Editor before this version has WooCommerce's
+   hooked account icon baked into it, where the server-side filter can no
+   longer reach it. */
+.materialai-navbar-02 .wp-block-woocommerce-customer-account{
+	display: none;
+}
+
+.materialai-actions-02 .search-btn-02 .wp-block-search__inside-wrapper{
+	border: 0;
+	padding: 0;
+}
+
+.materialai-actions-02 .search-btn-02 .wp-block-search__button{
+	width: 55px;
+	height: 55px;
+	min-width: 55px;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--wp--preset--color--primary);
+	color: var(--white);
+	transition: background-color .3s ease;
+}
+
+.materialai-actions-02 .search-btn-02 .wp-block-search__button svg{
+	width: 22px;
+	height: 22px;
+	fill: var(--white);
+	transition: fill .3s ease;
+}
+
+.materialai-actions-02 .search-btn-02 .wp-block-search__button:hover,
+.materialai-actions-02 .search-btn-02 .wp-block-search__button:focus{
+	background: var(--wp--preset--color--secondary);
+}
+
+.materialai-btn-started-02 .wp-block-button__link{
+	white-space: nowrap;
+}
+
+/* ------------------------------------------------- pill buttons + arrows */
+
+/* Base: a pill with a bare arrow at the right (hero button one, top bar). */
+.materialai-btn-arrow .wp-block-button__link{
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	min-height: 55px;
+	padding: 0 48px 0 28px;
+	border-radius: 999px;
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 1.2;
+	transition: all .3s ease;
+}
+
+.materialai-btn-arrow .wp-block-button__link::after{
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: 22px;
+	width: 18px;
+	height: 18px;
+	transform: translateY(-50%);
+	background-color: var(--arrow-color, var(--white));
+	-webkit-mask: var(--mai-arrow) center / contain no-repeat;
+	mask: var(--mai-arrow) center / contain no-repeat;
+	transition: transform .3s ease;
+}
+
+.materialai-btn-arrow .wp-block-button__link:hover::after,
+.materialai-btn-arrow .wp-block-button__link:focus::after{
+	transform: translateY(-50%) translateX(4px);
+}
+
+/* Modifier: the arrow sits in a filled disc flush with the pill's right end. */
+.materialai-btn-disc .wp-block-button__link{
+	padding-right: 70px;
+}
+
+.materialai-btn-disc .wp-block-button__link::before{
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: 2px;
+	width: 51px;
+	height: 51px;
+	transform: translateY(-50%);
+	border-radius: 50%;
+	background: var(--circle-bg, var(--wp--preset--color--primary));
+	transition: all .3s ease;
+}
+
+.materialai-btn-disc .wp-block-button__link::after{
+	right: 18px;
+	background-color: var(--circle-color, var(--white));
+}
+
+/* Double ring used by the hero buttons. */
+.materialai-btn-ring-02 .wp-block-button__link{
+	border: 1px solid var(--wp--preset--color--primary);
+	outline: 1px solid color-mix(in srgb, var(--wp--preset--color--primary) 45%, transparent);
+	outline-offset: 5px;
+}
+
+/* -------------------------------------------------------------- hero 02 */
+
+/* Slider and stats bar share one grid cell, so the bar sits over the bottom
+   of the slide exactly as it did when the hero was a single Cover — but the
+   picture now belongs to each slide instead of the hero. */
+.materialai-hero2{
+	position: relative;
+	z-index: 1;
+	display: grid;
+	grid-template-columns: 1fr;
+	padding: 0;
+	border-radius: 30px;
+	overflow: hidden;
+}
+
+.materialai-hero2 > *{
+	grid-area: 1 / 1;
+	min-width: 0;
+}
+
+/* Belt and braces for the same junction: whatever ends up deciding the hero
+   row's height, the carousel and the slide inside it fill that height, so the
+   artwork always reaches the plinth and no gap can open underneath it. */
+.materialai-hero2 > .slider-2,
+.materialai-hero2 .slider-2 .owl-stage-outer,
+.materialai-hero2 .slider-2 .materialai-hero2-slide{
+	height: 100%;
+}
+
+/* Owl's own stylesheet is not loaded in the editor, so the positioning context
+   the arrows resolve against is set here rather than inherited from it. */
+.materialai-hero2 .slider-2{
+	position: relative;
+}
+
+.materialai-hero2.alignfull{
+	width: auto;
+	max-width: none;
+	margin-left: var(--mai-gutter);
+	margin-right: var(--mai-gutter);
+}
+
+/* The hero photograph is cropped from its centre-left, which keeps the
+   subjects clear of the copy at every width. */
+.materialai-hero2-slide .wp-block-cover__image-background{
+	object-fit: cover;
+	object-position: 62% center;
+}
+
+/* Scrim: keeps the photograph readable on the right and darkens the left,
+   where the copy sits. Each slide carries its own, since each has its own
+   picture. */
+.materialai-hero2-slide::before{
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	pointer-events: none;
+	background: linear-gradient(
+		90deg,
+		color-mix(in srgb, var(--wp--preset--color--secondary) 22%, transparent) 0%,
+		color-mix(in srgb, var(--wp--preset--color--secondary) 8%, transparent) 35%,
+		transparent 55%
+	);
+}
+
+.materialai-hero2-slide > .wp-block-cover__inner-container{
+	position: relative;
+	z-index: 2;
+	width: 100%;
+	max-width: none;
+	padding: 0;
+}
+
+/* The navbar overlaps the hero, but only when Header 02 is the one in use. */
+body:has(.materialai-header-02) .materialai-hero2{
+	margin-top: calc(-1 * var(--mai-navbar-h));
+}
+
+.materialai-hero2 .slider-2{
+	position: static;
+	width: 100%;
+	max-width: none;
+	margin: 0;
+}
+
+.materialai-hero2 .slider-2 .owl-stage-outer{
+	width: 100%;
+}
+
+/* Each slide is a Cover: it owns its picture, overlay and dim, and its
+   min-height plus the stats bar make up the hero. Top padding clears the
+   floating navbar so the copy centres below it. */
+.materialai-hero2-slide{
+	width: 100%;
+	min-height: clamp(640px, 54.7vw, 1050px);
+	padding: calc(var(--mai-navbar-h) + 78px) 0 170px;
+}
+
+/* Holds the hero copy on the same 1170 grid as the rest of the site. */
+.materialai-hero2-inner{
+	width: min(var(--mai-shell), 100%);
+	max-width: none;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.materialai-hero2-content{
+	max-width: 900px;
+	margin-left: 0;
+	margin-right: auto;
+}
+
+.materialai-hero2-content > *{
+	margin-left: 0;
+	margin-right: auto;
+}
+
+/* Badge — 390x70 in the comp: 44px disc, 19px label. */
+.materialai-hero2 .materialai-badge{
+	/* The badge hugs its label rather than filling the column: at desktop the
+	   label is wide enough that this changes nothing, but on a phone a
+	   full-width pill reads as a bar rather than a badge. */
+	width: -moz-fit-content;
+	width: fit-content;
+	max-width: 100%;
+	gap: 12px;
+	padding: 13px 26px 13px 13px;
+	background: color-mix(in srgb, var(--wp--preset--color--secondary) 78%, transparent);
+	backdrop-filter: blur(2px);
+}
+
+.materialai-hero2 .materialai-badge::before{
+	inset: 5px;
+}
+
+.materialai-hero2 .materialai-badge p{
+	margin: 0;
+}
+
+.materialai-hero2 .materialai-badge p:first-child,
+.materialai-hero2 .materialai-badge > .wp-block-icon:first-child{
+	width: 44px;
+	height: 44px;
+	font-size: 18px;
+}
+
+/* Hero typography lives here rather than in the block markup: a fluid
+   clamp() is awkward to keep in sync with a block's style attribute, and
+   editors can still override any of it from the sidebar. */
+.materialai-hero2 .materialai-hero2-eyebrow{
+	font-size: clamp(15px, 1.3vw, 21px);
+	font-weight: 600;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+.materialai-hero2 .materialai-hero2-title{
+	margin-left: 0;
+	margin-right: auto;
+	margin-bottom: 0;
+	font-size: clamp(34px, 3.75vw, 72px);
+	font-weight: 800;
+	line-height: 1.4;
+}
+
+.materialai-hero2-title mark{
+	padding: 4px 14px;
+	border-radius: 6px;
+	white-space: nowrap;
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+
+.materialai-hero2 .materialai-hero2-text{
+	max-width: 620px;
+	margin-left: 0;
+	margin-right: auto;
+	margin-bottom: 0;
+	font-size: clamp(16px, 1.15vw, 19px);
+	line-height: 1.8;
+	opacity: .92;
+}
+
+.materialai-hero2-buttons{
+	gap: 42px;
+}
+
+/* -------------------------------------------- hero 02 — slide entrance */
+
+/* The slide copy comes in with the theme's usual WOW + animate.css pairing:
+   the blocks carry "wow fadeInUp" in their Additional CSS classes, so the
+   animation can be swapped for any other animate.css name from the block
+   sidebar. The stagger lives here rather than in data-wow-delay attributes —
+   an attribute that core does not know about would make the saved block
+   markup invalid in the editor. */
+.materialai-hero2-slide .wow.animated{
+	animation-duration: .9s;
+}
+
+.materialai-hero2-slide .materialai-badge.animated{
+	animation-delay: .1s;
+}
+
+.materialai-hero2-slide .materialai-hero2-title.animated{
+	animation-delay: .25s;
+}
+
+.materialai-hero2-slide .materialai-hero2-text.animated{
+	animation-delay: .4s;
+}
+
+.materialai-hero2-slide .materialai-hero2-buttons.animated{
+	animation-delay: .55s;
+}
+
+@media (prefers-reduced-motion: reduce){
+
+	.materialai-hero2-slide .wow,
+	.materialai-hero2-slide .wow.animated{
+		animation: none !important;
+		visibility: visible !important;
+	}
+}
+
+/* -------------------------------------------------- hero 02 — stats bar */
+
+/* The 8px primary strip runs the full width of the hero; the stats bar sits
+   on top of it, flush with the bottom edge. */
+.materialai-hero2-statsbar{
+	position: relative;
+	z-index: 4;
+	align-self: end;
+	width: 100%;
+	max-width: none;
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	padding: 0 var(--mai-gutter);
+	background: linear-gradient(
+		to top,
+		var(--wp--preset--color--primary) var(--mai-hero-plinth),
+		transparent var(--mai-hero-plinth)
+	);
+}
+
+.materialai-hero2-stats{
+	position: relative;
+	width: min(1230px, 100%);
+	gap: 20px;
+	padding: 20px;
+	border-radius: 12px 12px 0 0;
+}
+
+/* Where the ends of the stats bar meet the plinth the corner is concave, so
+   the bar reads as rising out of it — same inverted-corner trick, filled with
+   the primary colour instead of the page background. */
+.materialai-hero2-stats::before,
+.materialai-hero2-stats::after{
+	content: "";
+	position: absolute;
+	bottom: var(--mai-hero-plinth);
+	width: var(--mai-plinth-fillet);
+	height: var(--mai-plinth-fillet);
+	pointer-events: none;
+}
+
+.materialai-hero2-stats::before{
+	left: calc(-1 * var(--mai-plinth-fillet));
+	background: radial-gradient(
+		circle at 0 0,
+		transparent var(--mai-plinth-fillet),
+		var(--wp--preset--color--primary) calc(var(--mai-plinth-fillet) + 0.5px)
+	);
+}
+
+.materialai-hero2-stats::after{
+	right: calc(-1 * var(--mai-plinth-fillet));
+	background: radial-gradient(
+		circle at 100% 0,
+		transparent var(--mai-plinth-fillet),
+		var(--wp--preset--color--primary) calc(var(--mai-plinth-fillet) + 0.5px)
+	);
+}
+
+.materialai-hero2-stat__content{
+	flex: 1 1 auto;
+}
+
+.materialai-hero2-stat__content > *{
+	margin: 0;
+	text-align: left;
+}
+
+.materialai-hero2 .materialai-hero2-stat__title{
+	font-size: clamp(18px, 1.45vw, 28px);
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+/* ----------------------------------------------------------- responsive */
+
+@media (max-width: 1280px){
+
+	:root{
+		--mai-navbar-pad: 18px;
+	}
+
+	.materialai-navbar-02{
+		gap: 16px;
+	}
+
+	.materialai-navbar-02 .wp-block-navigation{
+		gap: 8px 22px;
+	}
+
+	.materialai-hero2-inner{
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	.materialai-hero2-buttons{
+		gap: 24px;
+	}
+}
+
+@media (max-width: 1024px){
+
+	:root{
+		--mai-gutter: 20px;
+		--mai-navbar-h: 84px;
+		--mai-shoulder: 18px;
+		--mai-hero-plinth: 5px;
+		--mai-plinth-fillet: 12px;
+	}
+
+	.materialai-topbar-02__row{
+		justify-content: center;
+		text-align: center;
+	}
+
+	/* The two halves stack at this width. Each has to claim the whole row for
+	   its own centring to mean anything — left to shrink-wrap they bunch up
+	   against the left edge instead. */
+	.materialai-topbar-02__promo,
+	.materialai-topbar-02__meta{
+		flex: 1 1 100%;
+		justify-content: center;
+	}
+
+	:root{
+		--mai-navbar-pad: 16px;
+	}
+
+	.materialai-navbar-02{
+		border-radius: 0 0 10px 10px;
+		padding-top: 14px;
+		padding-bottom: 14px;
+	}
+
+	.materialai-hero2{
+		border-radius: 24px;
+	}
+
+	/* The copy runs full width here, so the scrim flattens out instead of
+	   fading to the right, and the crop pushes the subjects clear of it. */
+	.materialai-hero2-slide .wp-block-cover__image-background{
+		object-position: 74% center;
+	}
+
+	.materialai-hero2-slide::before{
+		background: linear-gradient(
+			90deg,
+			color-mix(in srgb, var(--wp--preset--color--secondary) 58%, transparent) 0%,
+			color-mix(in srgb, var(--wp--preset--color--secondary) 48%, transparent) 60%,
+			color-mix(in srgb, var(--wp--preset--color--secondary) 40%, transparent) 100%
+		);
+	}
+
+	.materialai-hero2-slide{
+		min-height: 0;
+		padding: calc(var(--mai-navbar-h) + 50px) 0 50px;
+	}
+
+	/* Stacked pills make the bar tall here, so it flows after the slide
+	   instead of sitting over it. */
+	.materialai-hero2{
+		display: block;
+	}
+
+	.materialai-hero2-inner{
+		padding-left: 84px;
+		padding-right: 84px;
+	}
+
+	.materialai-hero2-content,
+	.materialai-hero2 .materialai-hero2-text{
+		max-width: 100%;
+	}
+	
+	
+
+	
+
+	.materialai-hero2 .slider-2 .materialai-hero2-slide{
+		flex: 1 1 auto;
+		height: auto;
+	}
+
+	.materialai-hero2-stats{
+		border-radius: 12px 12px 0 0;
+	}
+
+	
+}
+
+@media (max-width: 767px){
+
+	:root{
+		--mai-gutter: 12px;
+		--mai-navbar-h: 72px;
+		--mai-shoulder: 12px;
+		--mai-hero-plinth: 4px;
+		--mai-plinth-fillet: 9px;
+	}
+
+	/* On a phone the bar carries the promo on its own, as the comp has it —
+	   the phone, chat, account and currency links return from 768px up. */
+	.materialai-topbar-02 .materialai-topbar-02__meta{
+		display: none;
+	}
+
+	
+
+	.materialai-topbar-02__row{
+		justify-content: flex-start;
+		text-align: left;
+	}
+
+	.materialai-topbar-02 .materialai-topbar-02__promo{
+		flex-wrap: nowrap;
+		align-items: flex-start;
+		gap: 10px;
+	}
+
+	.materialai-topbar-02 .materialai-topbar-02__tag{
+		flex: 0 0 auto;
+	}
+
+	/* The copy and its "Learn More" link share one inline flow here, so the
+	   link rides at the end of the sentence instead of dropping to a line of
+	   its own, and the wrapped line stays indented past the badge. */
+	.materialai-topbar-02 .materialai-topbar-02__copy{
+		display: block;
+	}
+
+	.materialai-topbar-02 .materialai-topbar-02__copy > p{
+		display: inline;
+	}
+
+	
+
+	.materialai-navbar-02{
+		padding: 10px 12px;
+		gap: 12px;
+	}
+
+	/* Logo, then the cart and the menu toggle together on the right. Search
+	   and Get Started belong to the menu overlay at this width. The block's
+	   own layout class also sets justify-content, so these reach past it. */
+	.materialai-header-02 .materialai-navbar-02{
+		justify-content: flex-start;
+	}
+
+	.materialai-header-02 .materialai-navbar-02 .materialai-actions-02{
+		order: 2;
+		margin-left: auto;
+		gap: 10px;
+	}
+
+	.materialai-header-02 .materialai-navbar-02 .materialai-nav-02{
+		order: 3;
+		/* Stop the navigation growing into the gap, so the toggle stays beside
+		   the cart rather than being pushed off on its own. */
+		flex: 0 0 auto;
+		margin-left: 0;
+	}
+
+	.materialai-header-02 .materialai-navbar-02 .materialai-branding-02{
+		flex: 0 1 auto;
+		min-width: 0;
+	}
+
+	.materialai-actions-02 .search-btn-02,
+	.materialai-actions-02 .wp-block-buttons{
+		display: none;
+	}
+
+	.materialai-minicart-02 .wc-block-mini-cart__button{
+		width: 46px;
+		height: 46px;
+		min-width: 46px;
+	}
+
+	.materialai-minicart-02 .wc-block-mini-cart__icon{
+		width: 20px;
+		height: 20px;
+	}
+
+	.materialai-btn-arrow .wp-block-button__link{
+		min-height: 48px;
+		padding: 0 42px 0 22px;
+		font-size: 16px;
+	}
+
+	.materialai-btn-disc .wp-block-button__link{
+		padding-right: 60px;
+	}
+
+	.materialai-btn-disc .wp-block-button__link::before{
+		width: 44px;
+		height: 44px;
+	}
+
+	.materialai-btn-disc .wp-block-button__link::after{
+		right: 15px;
+	}
+
+	.materialai-hero2{
+		border-radius: 18px;
+	}
+
+	.materialai-hero2-slide{
+		padding: calc(var(--mai-navbar-h) + 26px) 0 62px;
+	}
+
+	/* Tighter rhythm between the badge, heading, copy and buttons than the
+	   desktop 28px, so the hero does not run away down a phone screen. */
+	.materialai-hero2 .materialai-hero2-content{
+		--wp--style--block-gap: 18px;
+		gap: 18px;
+	}
+
+	.materialai-hero2-inner{
+		padding-left: 22px;
+		padding-right: 22px;
+	}
+
+	.materialai-hero2 .materialai-badge{
+		gap: 10px;
+		padding: 6px 18px 6px 6px;
+	}
+
+	.materialai-hero2 .materialai-badge p:first-child,
+	.materialai-hero2 .materialai-badge > .wp-block-icon:first-child{
+		width: 36px;
+		height: 36px;
+		font-size: 15px;
+	}
+
+	/* Both calls to action stay on one line, as the comp has them, so the
+	   padding and label size come down to make room. */
+	/* Sized to sit side by side as the comp has them; on a narrow phone the
+	   second one drops to its own line rather than being squeezed. */
+	.materialai-hero2 .materialai-hero2-buttons{
+		gap: 10px;
+	}
+
+	.materialai-hero2 .materialai-hero2-buttons .wp-block-button{
+		flex: 0 0 auto;
+	}
+
+	.materialai-hero2-buttons .wp-block-button__link{
+		min-height: 44px;
+		padding: 0 38px 0 14px;
+		font-size: 14px;
+		white-space: nowrap;
+	}
+
+	/* The plain arrow sits closer to the edge here so the label clears it. */
+	.materialai-hero2-buttons .materialai-btn-arrow:not(.materialai-btn-disc) .wp-block-button__link::after{
+		right: 14px;
+		width: 16px;
+		height: 16px;
+	}
+
+	.materialai-hero2-buttons .materialai-btn-disc .wp-block-button__link{
+		padding-right: 48px;
+	}
+
+	.materialai-hero2-buttons .materialai-btn-disc .wp-block-button__link::before{
+		width: 34px;
+		height: 34px;
+	}
+
+	.materialai-hero2-buttons .materialai-btn-disc .wp-block-button__link::after{
+		right: 12px;
+	}
+
+	/* Side tabs would sit on top of the copy at this width, so the arrows
+	   drop to the bottom-right corner of the slide as a pair — anchored to
+	   the slide area, not the hero, so they clear the stats bar. */
+	.materialai-hero2 .slider-2{
+		position: relative;
+	}
+	
+	
+	
+	
+	
+	.materialai-hero2-stats{
+		gap: 12px;
+		padding: 14px;
+		border-radius: 12px 12px 0 0;
+	}
+
+	
+
+	
+
+	
+}
+
+/* ==========================================================================
+   Floating layout (Material AI Pro's "Spa" layer)
+
+   The layout Material Energy is built on, carried over with Pro's class
+   names (.materialai-header-spa / .materialai-hero-spa) so the two themes
+   stay in step. Everything in the Header 02 section above still applies;
+   this section only states what the floating layout changes. Header,
+   hero copy and highlights all sit on the site container (--mai-shell),
+   the same width as the sections below:
+     - the top bar in the primary colour, on the container like the navbar
+     - the navbar as a free-floating rounded pill, not a tab cut into the hero
+     - a light, full-bleed hero that runs up behind the whole header
+     - a strip of four highlights instead of the stats
+   Its pale colours are then repainted by the Energy section below.
+   ========================================================================== */
+
+/* The comp sits closer to the window edge than Header 02 does: 16px at a
+   1200px window, growing to Header 02's 40px on wide screens. Below 768px
+   Header 02's own phone gutter applies. */
+@media (min-width: 768px){
+
+	.materialai-header-spa,
+	.materialai-hero-spa{
+		--mai-gutter: clamp(16px, 1.35vw, 40px);
+	}
+}
+
+/* The comp's glyphs are heavier than Header 02's: a bold, round-capped arrow
+   (every arrow in the Spa header and hero draws from --mai-arrow), a solid
+   cart, a bold magnifier, an outlined chat bubble and a thin chevron. They
+   are masks, so each takes its colour from the palette like the rest. */
+.materialai-header-spa,
+.materialai-hero-spa{
+	--mai-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='4.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 12h14'/%3E%3Cpath d='m12.8 5.6 6.4 6.4-6.4 6.4'/%3E%3C/svg%3E");
+	--mai-spa-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 9 7 7 7-7'/%3E%3C/svg%3E");
+	--mai-spa-chat: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linejoin='round'%3E%3Cpath d='M5 3.5h14a2 2 0 0 1 2 2v9.5a2 2 0 0 1-2 2H10l-4.5 3.8V17H5a2 2 0 0 1-2-2V5.5a2 2 0 0 1 2-2z'/%3E%3C/svg%3E");
+	--mai-spa-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.6' stroke-width='3.2'/%3E%3Cpath d='m15.6 15.6 5 5' stroke-width='3.6'/%3E%3C/svg%3E");
+	--mai-spa-cart: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M1.8 3.4h2.6l2.9 11.2' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M5.6 6h16.2l-2.1 8a1.3 1.3 0 0 1-1.3 1H7.9z'/%3E%3Cpath d='M7.4 17.6h11.4' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round'/%3E%3Ccircle cx='9' cy='20.6' r='1.9'/%3E%3Ccircle cx='17.6' cy='20.6' r='1.9'/%3E%3C/svg%3E");
+}
+
+/* ------------------------------------------------------- spa — top bar */
+
+/* The pink bar is a touch wider than the navbar below it (40px past the
+   container each side, the navbar 15px), 60px tall, with deep rounded bottom
+   corners. Its contents sit on the container itself, so the "NEW" badge
+   lines up with the hero copy. The padding and radius are set inline on the
+   block, hence !important. */
+.materialai-header-spa .materialai-topbar-02__gutter > .wp-block-group{
+	max-width: calc(var(--mai-shell) + 80px);
+	margin-inline: auto;
+	padding-block: 0 !important;
+	border-bottom-left-radius: 45px !important;
+	border-bottom-right-radius: 45px !important;
+}
+
+.materialai-header-spa .materialai-topbar-02 .materialai-topbar-02__row{
+	width: min(var(--mai-shell), 100% - 40px);
+	min-height: 60px;
+	padding-inline: 0;
+}
+
+.materialai-header-spa .materialai-topbar-02__promo{
+	gap: 6px 10px;
+}
+
+.materialai-header-spa .materialai-topbar-02__copy{
+	gap: 6px;
+}
+
+/* The comp's top bar type is larger than Header 02's; the sizes are set
+   inline on each paragraph, hence !important. */
+.materialai-header-spa .materialai-topbar-02 p{
+	font-size: 16px !important;
+	font-weight: 500 !important;
+	line-height: 1.5;
+}
+
+.materialai-header-spa .materialai-topbar-02 .materialai-topbar-02__tag{
+	padding: 0 8px !important;
+	font-size: 16px !important;
+	line-height: 25px;
+	letter-spacing: 0.2px !important;
+}
+
+/* Header 02 paints its strip, badge and icons from the blocks' own colour
+   settings. Spa repaints only those default values, so a colour picked in the
+   editor still wins. Core's preset classes are !important, and the Icon block
+   sets its colour inline on the <svg>, hence these. */
+.materialai-header-spa .materialai-topbar-02__gutter > .has-secondary-background-color{
+	background-color: color-mix(in srgb, var(--wp--preset--color--primary) 82%, var(--white)) !important;
+}
+
+/* Every entry on the right is parted by a hairline, 20px either side. The
+   one after the phone number runs the full height of the bar, as in the
+   comp; the rest are short rules centred on the text. */
+.materialai-header-spa .materialai-topbar-02__meta{
+	gap: 0;
+	align-self: stretch;
+}
+
+.materialai-header-spa .materialai-topbar-02__meta > .materialai-topbar-02__item + .materialai-topbar-02__item{
+	position: relative;
+	margin-left: 20px;
+	padding-left: 20px;
+	border-left: 0;
+}
+
+.materialai-header-spa .materialai-topbar-02__meta > .materialai-topbar-02__item + .materialai-topbar-02__item::before{
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 1px;
+	height: 30px;
+	translate: 0 -50%;
+	background: color-mix(in srgb, var(--wp--preset--color--light-color) 40%, transparent);
+}
+
+.materialai-header-spa .materialai-topbar-02 .wp-block-icon svg.has-primary-color{
+	color: var(--wp--preset--color--light-color) !important;
+}
+
+.materialai-header-spa .materialai-topbar-02__meta .materialai-topbar-02__item{
+	gap: 6px;
+}
+
+.materialai-header-spa .materialai-topbar-02 .materialai-topbar-02__icon--user svg{
+	width: 21px !important;
+}
+
+/* Arrow, chat bubble and currency chevron are drawn from the Spa glyphs. */
+.materialai-header-spa .materialai-topbar-02 .materialai-topbar-02__icon--arrow svg,
+.materialai-header-spa .materialai-topbar-02 .materialai-topbar-02__icon--chat svg,
+.materialai-header-spa .materialai-topbar-02 .materialai-topbar-02__icon--caret svg{
+	display: none;
+}
+
+.materialai-header-spa .materialai-topbar-02 .materialai-topbar-02__icon--arrow::before,
+.materialai-header-spa .materialai-topbar-02 .materialai-topbar-02__icon--chat::before,
+.materialai-header-spa .materialai-topbar-02 .materialai-topbar-02__icon--caret::before{
+	content: "";
+	display: block;
+	width: var(--mai-spa-glyph-w, 16px);
+	height: var(--mai-spa-glyph-w, 16px);
+	background-color: var(--wp--preset--color--light-color);
+	-webkit-mask: var(--mai-spa-glyph) center / contain no-repeat;
+	mask: var(--mai-spa-glyph) center / contain no-repeat;
+	transition: background-color .3s ease;
+}
+
+.materialai-header-spa .materialai-topbar-02__icon--arrow{
+	--mai-spa-glyph: var(--mai-arrow);
+}
+
+.materialai-header-spa .materialai-topbar-02__icon--chat{
+	--mai-spa-glyph: var(--mai-spa-chat);
+	--mai-spa-glyph-w: 19px;
+}
+
+.materialai-header-spa .materialai-topbar-02__icon--caret{
+	--mai-spa-glyph: var(--mai-spa-chevron);
+	--mai-spa-glyph-w: 12px;
+	margin-left: 2px;
+}
+
+.materialai-header-spa .materialai-topbar-02__item:hover a{
+	color: var(--wp--preset--color--secondary);
+}
+
+/* ------------------------------------------------------- spa — navbar */
+
+/* The header group's block gap would add 24px here; the comp wants less.
+   The same space below keeps the pill off the breadcrumb on inner pages. */
+.materialai-header-spa .materialai-nav-wrap-02{
+	margin-block-start: var(--mai-spa-nav-gap, 20px);
+	padding-bottom: var(--mai-spa-nav-gap, 20px);
+}
+
+/* The pill reaches 15px past the container each side: 1200 x 110 on the
+   comp, the logo inset 25px and Get Started 15px from its ends. */
+.materialai-header-spa .materialai-navbar-02{
+	width: min(calc(var(--mai-shell) + 30px), 100%);
+	min-height: 110px;
+	gap: 20px;
+	padding: 12px 15px 12px 25px;
+	border: 1px solid color-mix(in srgb, var(--wp--preset--color--primary) 22%, transparent);
+	border-radius: 999px;
+	box-shadow: 0 20px 44px -24px color-mix(in srgb, var(--wp--preset--color--primary) 55%, transparent);
+}
+
+/* The Spa logo (bundled, or the site's own) is set a little larger. */
+.materialai-header-spa .materialai-branding-02 .wp-block-site-logo img{
+	max-height: 60px;
+}
+
+/* A floating pill has no edge to cut into, so the inverted corners go. */
+.materialai-header-spa .materialai-navbar-02::before,
+.materialai-header-spa .materialai-navbar-02::after{
+	display: none;
+}
+
+/* Menu: one line, set to the right of the free space so it ends 20px
+   short of the search disc, with small, thin chevrons. */
+.materialai-header-spa .materialai-nav-02.wp-block-navigation{
+	justify-content: flex-end;
+}
+
+.materialai-header-spa .materialai-navbar-02 .wp-block-navigation .wp-block-navigation__container{
+	flex-wrap: nowrap;
+	gap: 8px 31px;
+}
+
+.materialai-header-spa .materialai-navbar-02 .wp-block-navigation .wp-block-navigation-item__content{
+	font-family: var(--wp--preset--font-family--poppins);
+	font-size: 18px;
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+.materialai-header-spa .materialai-navbar-02 .wp-block-navigation__submenu-icon{
+	width: 11px;
+	height: 11px;
+	margin-left: 4px;
+}
+
+.materialai-header-spa .materialai-navbar-02 .wp-block-navigation__submenu-icon svg{
+	display: none;
+}
+
+.materialai-header-spa .materialai-navbar-02 .wp-block-navigation__submenu-icon::before{
+	content: "";
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-color: currentColor;
+	-webkit-mask: var(--mai-spa-chevron) center / contain no-repeat;
+	mask: var(--mai-spa-chevron) center / contain no-repeat;
+}
+
+.materialai-header-spa .materialai-actions-02{
+	gap: 10px;
+}
+
+/* Search and cart carry the comp's bold glyphs in place of core's icons. */
+.materialai-header-spa .search-btn-02 .wp-block-search__button svg,
+.materialai-header-spa .materialai-minicart-02 .wc-block-mini-cart__icon{
+	display: none;
+}
+
+.materialai-header-spa .search-btn-02 .wp-block-search__button::before,
+.materialai-header-spa .materialai-minicart-02 .wc-block-mini-cart__button::before{
+	content: "";
+	width: 21px;
+	height: 21px;
+	background-color: var(--wp--preset--color--light-color);
+	-webkit-mask: var(--mai-spa-search) center / contain no-repeat;
+	mask: var(--mai-spa-search) center / contain no-repeat;
+}
+
+.materialai-header-spa .materialai-minicart-02 .wc-block-mini-cart__button::before{
+	width: 23px;
+	height: 23px;
+	-webkit-mask-image: var(--mai-spa-cart);
+	mask-image: var(--mai-spa-cart);
+}
+
+/* WooCommerce anchors the count to the icon's wrapper. With core's icon
+   hidden that wrapper collapses to a point in the middle of the disc, which
+   pushed the count out over Get Started, so the disc itself is made the
+   anchor instead. */
+.materialai-header-spa .materialai-minicart-02 .wc-block-mini-cart__quantity-badge{
+	position: static;
+}
+
+/* The count rides on the cart's top edge: a primary disc, ringed in white,
+   always two digits ("01"; script.js pads it). */
+.materialai-header-spa .materialai-minicart-02 .wc-block-mini-cart__badge{
+	top: -12px;
+	right: 0;
+	/* WooCommerce places the count with left/margin/transform of its own,
+	   which would add to these offsets. */
+	left: auto;
+	margin: 0;
+	transform: none;
+	min-width: 25px;
+	height: 25px;
+	padding: 0 4px;
+	border: 2px solid var(--white);
+	/* WooCommerce writes its own badge colours inline from the block's
+	   settings, so the comp's colours need !important to show. */
+	background-color: var(--wp--preset--color--primary) !important;
+	color: var(--wp--preset--color--light-color) !important;
+	font-size: 11px;
+	letter-spacing: 0.3px;
+}
+
+/* Get Started: 200 x 55, Poppins, a white disc with a dark arrow. */
+.materialai-header-spa .materialai-btn-started-02{
+	--circle-bg: var(--white);
+	--circle-color: var(--wp--preset--color--secondary);
+}
+
+.materialai-header-spa .materialai-btn-started-02 .wp-block-button__link{
+	padding: 0 58px 0 20px;
+	border: 2px solid color-mix(in srgb, var(--wp--preset--color--primary) 88%, var(--wp--preset--color--secondary));
+	font-family: var(--wp--preset--font-family--poppins);
+	font-size: 20px !important;
+	font-weight: 700;
+}
+
+.materialai-header-spa .materialai-btn-started-02 .wp-block-button__link::before{
+	right: 2px;
+	width: 47px;
+	height: 47px;
+}
+
+.materialai-header-spa .materialai-btn-started-02 .wp-block-button__link::after{
+	right: 16px;
+}
+
+/* ---------------------------------------------------------- spa — hero */
+
+/* Full bleed: no page gutter, no rounded frame. */
+.materialai-hero-spa.alignfull{
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.materialai-hero-spa{
+	border-radius: 0;
+}
+
+/* The hero runs up behind the whole header — top bar and navbar — so it is
+   pulled up by the header's real height, which the script measures into
+   --mai-header-h (the fallback covers a desktop header if it never runs).
+   The copy then clears the header by the same amount. */
+body:has(.materialai-header-spa) .materialai-hero-spa{
+	margin-top: calc(-1 * var(--mai-header-h, 175px));
+}
+
+body:has(.materialai-header-spa) .materialai-hero-spa .materialai-hero2-slide{
+	padding-top: calc(var(--mai-header-h, 175px) + var(--mai-spa-hero-gap, 2px));
+}
+
+/* Up to 1280px the strip spans nearly the whole window, as in the comp, and
+   the photograph stops 40px short behind it. Wider, the strip is narrower
+   than the window, so the photograph runs to the bottom. */
+@media (min-width: 1025px) and (max-width: 1280px){
+
+	:root{
+		--mai-spa-photo-trim: 40px;
+	}
+}
+
+/* The copy sits on the site container, like the sections below it. */
+@media (min-width: 1025px){
+
+	/* Rhythm measured from the comp: the copy sits closer under the
+	   headline, and the buttons stand further apart. */
+	.materialai-hero-spa .materialai-hero2-content > .materialai-hero2-text{
+		margin-top: 16px;
+	}
+
+	.materialai-hero-spa .materialai-hero2-buttons{
+		gap: 40px;
+	}
+
+	.materialai-hero-spa .materialai-hero2-content > .materialai-hero2-buttons{
+		margin-top: 38px;
+		/* Layout pins the left margin, so the comp's inset is padding. */
+		padding-left: 16px;
+	}
+
+	.materialai-hero-spa .materialai-hero2-buttons .wp-block-button__link{
+		padding-left: 22px;
+	}
+
+	/* The comp's hero is 950px tall on a 1920px screen, with the highlights
+	   strip starting 95px below the buttons (Slider 02 leaves 170px). */
+	body:has(.materialai-header-spa) .materialai-hero-spa .materialai-hero2-slide{
+		min-height: clamp(640px, 54.7vw, 950px);
+		padding-bottom: 126px;
+	}
+}
+
+/* Crop matched to the comp: the photograph hangs from the top of the hero,
+   57% across, and stops --mai-spa-photo-trim short of the bottom — that strip
+   sits behind the highlights, on a pale fill of the primary colour. */
+.materialai-hero-spa .materialai-hero2-slide{
+	background-color: color-mix(in srgb, var(--wp--preset--color--primary) 8%, var(--white));
+}
+
+.materialai-hero-spa .materialai-hero2-slide .wp-block-cover__image-background{
+	height: calc(100% - var(--mai-spa-photo-trim, 0px));
+	object-position: 57% top;
+}
+
+/* The photograph is already pale on the left, so the wash is only a touch. */
+.materialai-hero-spa .materialai-hero2-slide::before{
+	background: linear-gradient(
+		90deg,
+		color-mix(in srgb, var(--wp--preset--color--light-color) 35%, transparent) 0%,
+		color-mix(in srgb, var(--wp--preset--color--light-color) 15%, transparent) 38%,
+		transparent 55%
+	);
+}
+
+.materialai-hero-spa .materialai-hero2-eyebrow{
+	font-size: clamp(15px, 1.6vw, 22px);
+	letter-spacing: 0;
+}
+
+.materialai-hero-spa .materialai-badge{
+	gap: 12px;
+	padding: 6px 24px 6px 6px;
+	border: 3px solid var(--wp--preset--color--primary);
+	background: var(--wp--preset--color--secondary);
+	backdrop-filter: none;
+	box-shadow: 0 0 0 4px color-mix(in srgb, var(--wp--preset--color--primary) 28%, transparent);
+}
+
+/* A solid rim replaces Slider 02's double hairline. */
+.materialai-hero-spa .materialai-badge::before{
+	display: none;
+}
+
+/* The comp's badge is 400 x 70 around a 52px lotus disc. */
+@media (min-width: 1025px){
+
+	.materialai-hero-spa .materialai-badge > .wp-block-icon:first-child{
+		width: 52px;
+		height: 52px;
+	}
+}
+
+.materialai-hero-spa .materialai-hero2-title{
+	font-size: clamp(38px, 5.4vw, 73px);
+	font-weight: 800;
+	line-height: 1.2;
+	letter-spacing: -0.5px;
+}
+
+/* The highlighted word is coloured, not boxed. */
+.materialai-hero-spa .materialai-hero2-title mark{
+	padding: 0;
+	border-radius: 0;
+	background: none;
+}
+
+.materialai-hero-spa .materialai-hero2-text{
+	max-width: 720px;
+	font-size: clamp(16px, 1.5vw, 20px);
+	line-height: 1.7;
+	opacity: 1;
+}
+
+/* The comp's hero buttons: Poppins, a 3px primary rim and two soft halos
+   of the primary colour fading out around it; 200 x 55 on desktop, where
+   the arrows are also a size up. Smaller screens keep Slider 02's sizes. */
+.materialai-hero-spa .materialai-hero2-buttons .wp-block-button__link{
+	font-family: var(--wp--preset--font-family--poppins);
+	font-weight: 700;
+}
+
+.materialai-hero-spa .materialai-btn-ring-02 .wp-block-button__link{
+	border: 3px solid var(--wp--preset--color--primary);
+	outline: 0;
+	box-shadow:
+		0 0 0 6px color-mix(in srgb, var(--wp--preset--color--primary) 20%, transparent),
+		0 0 0 12px color-mix(in srgb, var(--wp--preset--color--primary) 9%, transparent);
+}
+
+@media (min-width: 1025px){
+
+	.materialai-hero-spa .materialai-hero2-buttons .wp-block-button__link{
+		font-size: 20px;
+	}
+
+	.materialai-hero-spa .materialai-btn-ring-02 .wp-block-button__link{
+		min-height: 55px;
+		padding-right: 50px;
+	}
+
+	.materialai-hero-spa .materialai-btn-ring-02.materialai-btn-disc .wp-block-button__link{
+		padding-right: 58px;
+	}
+
+	.materialai-hero-spa .materialai-btn-ring-02.materialai-btn-disc .wp-block-button__link::before{
+		right: 1px;
+		width: 47px;
+		height: 47px;
+	}
+
+	.materialai-header-spa .materialai-btn-arrow .wp-block-button__link::after,
+	.materialai-hero-spa .materialai-btn-arrow .wp-block-button__link::after{
+		width: 20px;
+		height: 20px;
+	}
+
+	.materialai-header-spa .materialai-btn-started-02 .wp-block-button__link::after,
+	.materialai-hero-spa .materialai-btn-ring-02.materialai-btn-disc .wp-block-button__link::after{
+		right: 14px;
+	}
+
+	.materialai-hero-spa .materialai-btn-ring-02:not(.materialai-btn-disc) .wp-block-button__link::after{
+		right: 20px;
+	}
+}
+
+/* --------------------------------------------------- spa — highlights */
+
+/* Same slot as Slider 02's stats bar, so it overlaps the foot of the slide
+   the same way; only the plinth strip is dropped. */
+.materialai-hero-spa .materialai-hero2-statsbar{
+	background: none;
+}
+
+.materialai-spa-features{
+	display: grid;
+	grid-template-columns: repeat(4, auto);
+	justify-content: space-between;
+	gap: 12px 16px;
+	width: min(calc(var(--mai-shell) + 30px), 100%);
+	padding: 16px;
+	border: 1px solid color-mix(in srgb, var(--wp--preset--color--primary) 35%, transparent);
+	border-bottom: 0;
+	border-radius: 24px 24px 0 0;
+	background: color-mix(in srgb, var(--wp--preset--color--light-color) 88%, transparent);
+	-webkit-backdrop-filter: blur(6px);
+	backdrop-filter: blur(6px);
+}
+
+.materialai-spa-features > *{
+	margin: 0;
+}
+
+.materialai-spa-feature{
+	gap: 11px;
+	min-width: 0;
+}
+
+/* Dashed ring, a white gap, then a filled disc holding the illustration. The
+   gap is the figure's padding; the disc is the image's own background, with
+   the picture inset by the image's padding. The ring is drawn by ::before
+   rather than the figure's own border, so it can turn without the picture
+   turning with it. */
+.materialai-spa-feature .materialai-spa-feature__icon{
+	position: relative;
+	flex: 0 0 auto;
+	box-sizing: border-box;
+	width: var(--mai-spa-icon, 88px);
+	height: var(--mai-spa-icon, 88px);
+	margin: 0;
+	padding: 8px;
+	border-radius: 50%;
+}
+
+.materialai-spa-feature .materialai-spa-feature__icon::before{
+	content: "";
+	position: absolute;
+	inset: 0;
+	border: 2px dashed var(--wp--preset--color--primary);
+	border-radius: 50%;
+	animation: mai-spa-ring 18s linear infinite;
+	pointer-events: none;
+}
+
+.materialai-spa-feature .materialai-spa-feature__icon img{
+	position: relative;
+	box-sizing: border-box;
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 14%;
+	object-fit: contain;
+	border-radius: 50%;
+	background: color-mix(in srgb, var(--wp--preset--color--primary) 20%, var(--white));
+	animation: mai-spa-float 4s ease-in-out infinite;
+	transition: box-shadow .35s ease, transform .35s ease;
+}
+
+/* The four icons float out of step, so the strip breathes rather than bobs. */
+.materialai-spa-feature:nth-child(2) .materialai-spa-feature__icon img{ animation-delay: -1s; }
+.materialai-spa-feature:nth-child(3) .materialai-spa-feature__icon img{ animation-delay: -2s; }
+.materialai-spa-feature:nth-child(4) .materialai-spa-feature__icon img{ animation-delay: -3s; }
+
+/* Entrance: WOW reveals each item in turn, as the hero copy does. */
+.materialai-spa-feature.animated{ animation-duration: .8s; }
+.materialai-spa-feature:nth-child(2).animated{ animation-delay: .12s; }
+.materialai-spa-feature:nth-child(3).animated{ animation-delay: .24s; }
+.materialai-spa-feature:nth-child(4).animated{ animation-delay: .36s; }
+
+/* Hover: the ring tightens to solid, the disc lifts and glows, and the
+   title steps forward. */
+.materialai-spa-feature:hover .materialai-spa-feature__icon::before{
+	border-style: solid;
+	transform: scale(1.06);
+}
+
+.materialai-spa-feature:hover .materialai-spa-feature__icon img{
+	animation-play-state: paused;
+	transform: translateY(-4px) scale(1.06);
+	box-shadow: 0 10px 22px -8px color-mix(in srgb, var(--wp--preset--color--primary) 60%, transparent);
+}
+
+.materialai-spa-feature .materialai-spa-feature__title{
+	transition: transform .35s ease;
+}
+
+.materialai-spa-feature:hover .materialai-spa-feature__title{
+	transform: translateX(4px);
+}
+
+@keyframes mai-spa-ring{
+	to{ rotate: 360deg; }
+}
+
+@keyframes mai-spa-float{
+	0%, 100%{ translate: 0 0; }
+	50%{ translate: 0 -5px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+
+	.materialai-spa-feature .materialai-spa-feature__icon::before,
+	.materialai-spa-feature .materialai-spa-feature__icon img{
+		animation: none;
+	}
+
+	.materialai-spa-feature .materialai-spa-feature__icon img,
+	.materialai-spa-feature .materialai-spa-feature__title{
+		transition: none;
+	}
+
+	.materialai-spa-feature.wow,
+	.materialai-spa-feature.wow.animated{
+		animation: none !important;
+		visibility: visible !important;
+	}
+}
+
+.materialai-spa-feature__content > *{
+	margin: 0;
+}
+
+.materialai-spa-feature .materialai-spa-feature__title{
+	font-size: clamp(17px, 1.6vw, 19px);
+	font-weight: 700;
+	line-height: 1.25;
+}
+
+.materialai-spa-feature .materialai-spa-feature__text{
+	font-size: clamp(15px, 1.33vw, 16px);
+	line-height: 1.5;
+}
+
+/* --------------------------------------------------- spa — responsive */
+
+/* Header 02 stands its call to action down in this band to keep the menu on
+   one line. The Spa comp keeps Get Started here, so it stays and the menu
+   tightens instead. */
+@media (min-width: 1025px) and (max-width: 1279px){
+
+	.materialai-header-spa .materialai-navbar-02 .wp-block-buttons{
+		display: flex;
+	}
+
+	.materialai-header-spa .materialai-navbar-02 .wp-block-navigation{
+		gap: 8px 20px;
+	}
+
+	.materialai-header-spa .materialai-actions-02{
+		gap: 8px;
+	}
+
+	/* Logo, menu and all three actions share one line here, so each gives
+	   a little: the menu's type and spacing, the logo, the discs and the
+	   call to action. */
+	.materialai-header-spa .materialai-navbar-02{
+		gap: 14px;
+		padding-left: 18px;
+		padding-right: 10px;
+	}
+
+	.materialai-header-spa .materialai-branding-02 .wp-block-site-logo img{
+		max-height: 46px;
+	}
+
+	.materialai-header-spa .materialai-navbar-02 .wp-block-navigation .wp-block-navigation__container{
+		gap: 8px 16px;
+	}
+
+	.materialai-header-spa .materialai-navbar-02 .wp-block-navigation .wp-block-navigation-item__content{
+		font-size: 15px;
+	}
+
+	.materialai-header-spa .search-btn-02 .wp-block-search__button,
+	.materialai-header-spa .materialai-minicart-02 .wc-block-mini-cart__button{
+		width: 46px;
+		height: 46px;
+		min-width: 46px;
+	}
+
+	.materialai-header-spa .materialai-btn-started-02 .wp-block-button__link{
+		min-height: 46px;
+		padding: 0 50px 0 16px;
+		font-size: 16px !important;
+	}
+
+	.materialai-header-spa .materialai-btn-started-02 .wp-block-button__link::before{
+		width: 38px;
+		height: 38px;
+	}
+
+	.materialai-header-spa .materialai-btn-started-02 .wp-block-button__link::after{
+		right: 12px;
+		width: 16px;
+		height: 16px;
+	}
+}
+
+/* Each highlight keeps to one line on desktop, as in the comp. */
+@media (min-width: 1025px){
+
+	.materialai-spa-feature__content > *{
+		white-space: nowrap;
+	}
+}
+
+@media (max-width: 1024px){
+
+	:root{
+		--mai-spa-hero-gap: 40px;
+	}
+
+	/* The copy runs full width here, so the wash covers the whole slide. */
+	.materialai-hero-spa .materialai-hero2-slide::before{
+		background: linear-gradient(
+			90deg,
+			color-mix(in srgb, var(--wp--preset--color--light-color) 80%, transparent) 0%,
+			color-mix(in srgb, var(--wp--preset--color--light-color) 62%, transparent) 100%
+		);
+	}
+
+	/* The strip flows below the slide at this width (as Slider 02's does), so
+	   it becomes a free-standing card in two columns. */
+	.materialai-hero-spa .materialai-hero2-statsbar{
+		margin-top: 20px;
+	}
+
+	.materialai-spa-features{
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 18px;
+		border-bottom: 1px solid color-mix(in srgb, var(--wp--preset--color--primary) 35%, transparent);
+		border-radius: 24px;
+	}
+}
+
+@media (max-width: 767px){
+
+	:root{
+		--mai-spa-hero-gap: 26px;
+		--mai-spa-nav-gap: 12px;
+	}
+}
+
+@media (max-width: 600px){
+
+	.materialai-spa-features{
+		grid-template-columns: 1fr;
+		padding: 16px 18px;
+	}
+
+	:root{
+		--mai-spa-icon: 68px;
+	}
+}
+
+/* ------------------------------------------- spa — tablet & phone sizes */
+
+/* Between the overlay menu and desktop the menu toggle sits at the end of
+   the bar, after search, cart and Get Started, as it does on phones. */
+@media (min-width: 768px) and (max-width: 1024px){
+
+	.materialai-header-spa .materialai-nav-02{
+		order: 3;
+		flex: 0 0 auto;
+	}
+
+	.materialai-header-spa .materialai-actions-02{
+		margin-left: auto;
+	}
+
+	
+}
+
+@media (max-width: 767px){
+
+	/* Top bar: smaller type and corners, so the promo fits in two lines. */
+	.materialai-header-spa .materialai-topbar-02__gutter > .wp-block-group{
+		padding-block: 8px !important;
+		border-bottom-left-radius: 24px !important;
+		border-bottom-right-radius: 24px !important;
+	}
+
+	.materialai-header-spa .materialai-topbar-02 .materialai-topbar-02__row{
+		width: calc(100% - 24px);
+		min-height: 0;
+	}
+
+	.materialai-header-spa .materialai-topbar-02 p{
+		font-size: 13px !important;
+		line-height: 1.45;
+	}
+
+	.materialai-header-spa .materialai-topbar-02 .materialai-topbar-02__tag{
+		padding: 0 7px !important;
+		font-size: 11px !important;
+		line-height: 20px;
+	}
+
+	.materialai-header-spa .materialai-topbar-02__promo{
+		flex-wrap: nowrap;
+		align-items: flex-start;
+		gap: 8px;
+	}
+
+	.materialai-header-spa .materialai-topbar-02__copy{
+		flex-wrap: wrap;
+		gap: 0 6px;
+	}
+
+	.materialai-header-spa .materialai-topbar-02__icon--arrow{
+		--mai-spa-glyph-w: 13px;
+	}
+
+	/* Navbar: a slimmer pill whose logo keeps its size. */
+	.materialai-header-spa .materialai-navbar-02{
+		min-height: 72px;
+		gap: 10px;
+		padding: 8px 10px 8px 18px;
+	}
+
+	.materialai-header-spa .materialai-branding-02{
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+
+	.materialai-header-spa .materialai-branding-02 .wp-block-site-logo img{
+		width: auto;
+		max-width: 100%;
+		max-height: 44px;
+	}
+
+	.materialai-header-spa .materialai-actions-02{
+		gap: 8px;
+	}
+
+	.materialai-header-spa .materialai-minicart-02 .wc-block-mini-cart__button{
+		width: 46px;
+		height: 46px;
+		min-width: 46px;
+	}
+
+	.materialai-header-spa .materialai-minicart-02 .wc-block-mini-cart__button::before{
+		width: 20px;
+		height: 20px;
+	}
+
+	.materialai-header-spa .materialai-minicart-02 .wc-block-mini-cart__badge{
+		top: -8px;
+		right: -4px;
+		min-width: 22px;
+		height: 22px;
+		font-size: 10px;
+	}
+
+	.materialai-header-spa .materialai-nav-02 .wp-block-navigation__responsive-container-open{
+		width: 46px;
+		height: 46px;
+		background-size: 22px 2px, 16px 2px, 22px 2px;
+		background-position: 12px 15px, 12px 22px, 12px 29px;
+	}
+
+	/* Hero badge: one line on a phone. */
+	.materialai-hero-spa .materialai-badge{
+		gap: 10px;
+		padding: 5px 16px 5px 5px;
+	}
+
+	.materialai-hero-spa .materialai-badge > .wp-block-icon:first-child{
+		width: 36px;
+		height: 36px;
+	}
+
+	.materialai-hero-spa .materialai-hero2-eyebrow{
+		font-size: clamp(12px, 3.6vw, 15px);
+		white-space: nowrap;
+	}
+}
+
+/* Narrow phones: the headline steps down so "Refresh Your Mind" keeps to
+   one line at 320px. */
+@media (max-width: 480px){
+
+	.materialai-hero-spa .materialai-hero2-title{
+		font-size: clamp(28px, 9vw, 38px);
+	}
+
+	.materialai-hero-spa .materialai-hero2-text{
+		font-size: 15px;
+	}
+}
+
+/* ==========================================================================
+   Material Energy
+
+   The floating layout above, painted for Energy: the header pattern carries
+   .materialai-header-spa and .materialai-header-energy, the main banner
+   .materialai-hero-spa and .materialai-hero-energy. Everything above still
+   applies; this section only states what the Energy comp changes:
+     - a see-through top bar over the photo, parted from the navbar by a rule
+     - a glass navbar ringed in the primary colour, its logo on a dark panel
+       that ends in a lightning bolt
+     - a dark photograph with light copy, and a primary call to action
+     - a glass highlights strip with white discs
+   Colours stay palette-driven; the Energy palette is this theme's theme.json.
+   ========================================================================== */
+
+/* --mai-on-primary is the colour for type and glyphs that sit on the
+   primary colour. functions.php writes it from the palette in use — navy on
+   a light primary such as the lime, white on a dark one such as Royal Blue —
+   so every style variation stays readable. Navy is the fallback. */
+
+.materialai-header-energy,
+.materialai-hero-energy{
+	/* The lightning bolt that ends the logo panel, measured from the comp
+	   (59 x 108 inside a 110px pill). It is a mask, so it takes the primary
+	   colour; the dark panel is clipped to the bolt's left edge. */
+	--mai-energy-bolt: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 59 108' preserveAspectRatio='none'%3E%3Cpath d='M12 0h28l-10 27 29 1-40 80 9-53H0z'/%3E%3C/svg%3E");
+	--mai-energy-nav-h: 110px;
+	--mai-energy-bolt-w: calc((var(--mai-energy-nav-h) - 4px) * 59 / 108);
+	/* See-through surfaces over the photograph. */
+	--mai-energy-glass: color-mix(in srgb, var(--wp--preset--color--light-color) 20%, transparent);
+	--mai-energy-rule: color-mix(in srgb, var(--wp--preset--color--light-color) 22%, transparent);
+	--mai-spa-nav-gap: 30px;
+}
+
+/* On pages without the Energy hero there is no photograph behind the header,
+   so the header brings its own dark ground for its light type. */
+body:not(:has(.materialai-hero-energy)) .materialai-header-energy{
+	background: var(--wp--preset--color--secondary);
+}
+
+/* ---------------------------------------------------- energy — top bar */
+
+/* No coloured strip: the bar is the photograph itself, 70px tall, with a
+   hairline across the whole window underneath it. */
+.materialai-header-energy .materialai-topbar-02{
+	border-bottom: 1px solid var(--mai-energy-rule);
+}
+
+.materialai-header-energy .materialai-topbar-02__gutter > .wp-block-group{
+	max-width: none;
+	border-radius: 0 !important;
+}
+
+.materialai-header-energy .materialai-topbar-02__gutter > .has-secondary-background-color{
+	background-color: transparent !important;
+}
+
+.materialai-header-energy .materialai-topbar-02 .materialai-topbar-02__row{
+	min-height: 70px;
+}
+
+/* "NEW": a primary pill with dark type. Core's preset classes are
+   !important, so the repaint is too; a colour picked in the editor for the
+   paragraph still wins, as it changes the class. */
+.materialai-header-energy .materialai-topbar-02 .materialai-topbar-02__tag.has-light-color-color{
+	color: var(--mai-on-primary, var(--wp--preset--color--secondary)) !important;
+	font-weight: 700;
+}
+
+.materialai-header-energy .materialai-topbar-02__item:hover a{
+	color: var(--wp--preset--color--primary);
+}
+
+/* ----------------------------------------------------- energy — navbar */
+
+/* Glass pill ringed in the primary colour. The logo panel reaches its left
+   end, so the pill keeps its padding on the right only. */
+.materialai-header-energy .materialai-navbar-02{
+	min-height: var(--mai-energy-nav-h);
+	gap: 4px;
+	padding: 0 15px 0 0;
+	border: 1px solid var(--wp--preset--color--primary);
+	background: transparent;
+	box-shadow: 0 20px 44px -26px color-mix(in srgb, var(--wp--preset--color--secondary) 80%, transparent);
+	isolation: isolate;
+}
+
+/* The glass is a layer behind the bar, not the bar itself: a backdrop-filter
+   on the bar would make it the containing block of the phone menu, which is
+   position:fixed inside it, and the menu would open inside the pill. Spa
+   hides this pseudo-element (it carries Header 02's inverted corners), so it
+   is reset in full here. */
+.materialai-header-energy .materialai-navbar-02::before{
+	content: "";
+	display: block;
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	width: auto;
+	height: auto;
+	border-radius: inherit;
+	background: var(--mai-energy-glass);
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+}
+
+/* The logo panel: dark, the pill's full height, ending in the bolt. */
+.materialai-header-energy .materialai-branding-02{
+	position: relative;
+	z-index: 1;
+	align-self: stretch;
+	display: flex;
+	align-items: center;
+	/* The logo keeps 10px clear of the bolt's widest point. */
+	padding: 0 calc(var(--mai-energy-bolt-w) + 10px) 0 15px;
+}
+
+.materialai-header-energy .materialai-branding-02::before,
+.materialai-header-energy .materialai-branding-02::after{
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	z-index: -1;
+	pointer-events: none;
+}
+
+/* The panel is clipped along the bolt's left edge, from its top-left corner
+   down to the notch and on to the tip. */
+.materialai-header-energy .materialai-branding-02::before{
+	left: 0;
+	right: 0;
+	border-radius: 999px 0 0 999px;
+	background: var(--wp--preset--color--secondary);
+	clip-path: polygon(
+		0 0,
+		calc(100% - var(--mai-energy-bolt-w) * 47 / 59) 0,
+		calc(100% - var(--mai-energy-bolt-w)) 50.9%,
+		calc(100% - var(--mai-energy-bolt-w) * 31 / 59) 50.9%,
+		calc(100% - var(--mai-energy-bolt-w) * 40 / 59) 100%,
+		0 100%
+	);
+}
+
+.materialai-header-energy .materialai-branding-02::after{
+	right: 0;
+	width: var(--mai-energy-bolt-w);
+	background: var(--wp--preset--color--primary);
+	-webkit-mask: var(--mai-energy-bolt) center / 100% 100% no-repeat;
+	mask: var(--mai-energy-bolt) center / 100% 100% no-repeat;
+}
+
+/* The bundled logo is shown at its own size (244 x 53 on the comp). */
+.materialai-header-energy .materialai-branding-02 .wp-block-site-logo img{
+	max-height: 53px;
+}
+
+/* A site title standing in for a logo sits on the dark panel. */
+.materialai-header-energy .materialai-branding-02 .site-branding-fallback .wp-block-site-title a{
+	color: var(--wp--preset--color--light-color);
+}
+
+.materialai-header-energy .materialai-branding-02 .site-branding-fallback .wp-block-site-tagline{
+	color: color-mix(in srgb, var(--wp--preset--color--light-color) 75%, transparent);
+}
+
+/* Menu: light type straight after the bolt. Only the top level is
+   repainted; drop-down panels keep Header 02's white card. */
+.materialai-header-energy .materialai-nav-02.wp-block-navigation{
+	justify-content: flex-start;
+}
+
+.materialai-header-energy .materialai-navbar-02 .wp-block-navigation .wp-block-navigation__container{
+	gap: 8px 34px;
+}
+
+/* "Top level" is any item that is not inside a drop-down: a menu built in
+   the editor puts its items straight in the container, but the automatic
+   page list WordPress shows until a menu is made nests them in a list of
+   its own, which a child selector would miss. */
+.materialai-header-energy .materialai-navbar-02 .wp-block-navigation-item__content:not(.wp-block-navigation__submenu-container *),
+.materialai-header-energy .materialai-navbar-02 .wp-block-navigation__submenu-icon:not(.wp-block-navigation__submenu-container *){
+	color: var(--wp--preset--color--light-color);
+}
+
+/* In the phone menu panel the page list's items take the same rows,
+   hairlines and type as a built menu's, whose rules reach only the items
+   placed straight in the container. */
+.materialai-header-02 .materialai-nav-02 .is-menu-open .wp-block-page-list{
+	display: block;
+	align-self: stretch;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.materialai-header-02 .materialai-nav-02 .is-menu-open .wp-block-page-list > .wp-block-navigation-item{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	width: calc(100% - 40px);
+	margin: 0 20px;
+	border-bottom: 1px solid color-mix(in srgb, var(--wp--preset--color--light-color) 16%, transparent);
+}
+
+.materialai-header-02 .materialai-nav-02 .is-menu-open .wp-block-page-list > .wp-block-navigation-item:last-child{
+	border-bottom: 0;
+}
+
+.materialai-header-02 .materialai-nav-02 .is-menu-open .wp-block-page-list .wp-block-pages-list__item__link.wp-block-navigation-item__content{
+	flex: 1 1 auto;
+	justify-content: flex-start;
+	font-size: 16px;
+	text-align: left;
+}
+
+/* Page titles run longer than a built menu's labels, so the page list is
+   set a little smaller and closer. Each title keeps to one line; if a site
+   has more pages than the bar can hold, the list wraps inside the bar
+   rather than pushing the buttons out of it. */
+.materialai-header-energy .materialai-navbar-02 .wp-block-navigation .wp-block-page-list{
+	gap: 0 14px;
+}
+
+.materialai-header-energy .materialai-navbar-02 .wp-block-navigation .wp-block-page-list .wp-block-pages-list__item__link{
+	font-size: 14.5px;
+	white-space: nowrap;
+}
+
+.materialai-header-energy .materialai-nav-02{
+	min-width: 0;
+}
+
+.materialai-header-energy .materialai-navbar-02 .wp-block-navigation .wp-block-navigation-item__content{
+	font-size: 16px;
+}
+
+.materialai-header-energy .materialai-navbar-02 .wp-block-navigation-item__content:not(.wp-block-navigation__submenu-container *):hover,
+.materialai-header-energy .materialai-navbar-02 .current-menu-item > .wp-block-navigation-item__content:not(.wp-block-navigation__submenu-container *),
+.materialai-header-energy .materialai-navbar-02 .current_page_item > .wp-block-navigation-item__content:not(.wp-block-navigation__submenu-container *){
+	color: var(--wp--preset--color--primary);
+}
+
+/* The search and cart glyphs sit dead centre in their discs at the comp's
+   size, whatever else WooCommerce puts inside the cart button. */
+.materialai-header-energy .search-btn-02 .wp-block-search__button,
+.materialai-header-energy .materialai-minicart-02 .wc-block-mini-cart__button{
+	position: relative;
+}
+
+.materialai-header-energy .search-btn-02 .wp-block-search__button::before,
+.materialai-header-energy .materialai-minicart-02 .wc-block-mini-cart__button::before{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 20px;
+	height: 20px;
+	translate: -50% -50%;
+}
+
+/* Search and cart: dark discs with light glyphs that fill with the primary
+   colour, the glyph turning dark, on hover or focus. */
+.materialai-header-energy .search-btn-02 .wp-block-search__button{
+	background: var(--wp--preset--color--secondary);
+}
+
+.materialai-header-energy .search-btn-02 .wp-block-search__button:hover,
+.materialai-header-energy .search-btn-02 .wp-block-search__button:focus{
+	background: var(--wp--preset--color--primary);
+}
+
+.materialai-header-energy .search-btn-02 .wp-block-search__button:hover::before,
+.materialai-header-energy .search-btn-02 .wp-block-search__button:focus::before,
+.materialai-header-energy .materialai-minicart-02 .wc-block-mini-cart__button:hover::before,
+.materialai-header-energy .materialai-minicart-02 .wc-block-mini-cart__button:focus::before{
+	background-color: var(--mai-on-primary, var(--wp--preset--color--secondary));
+}
+
+/* The count: a small plain primary disc with dark type on the cart's
+   top-right edge. */
+.materialai-header-energy .materialai-minicart-02 .wc-block-mini-cart__badge{
+	top: -6px;
+	right: -4px;
+	min-width: 20px;
+	height: 20px;
+	padding: 0 3px;
+	border: 0;
+	box-shadow: none;
+	color: var(--mai-on-primary, var(--wp--preset--color--secondary)) !important;
+	font-size: 10px;
+}
+
+/* Get a Free Quote: a dark pill with a white disc. On hover or focus it
+   fills with the primary colour, the disc melts into it and the type and
+   arrow turn dark — the same response as the hero buttons. */
+.materialai-header-energy .materialai-btn-started-02 .wp-block-button__link.has-primary-background-color{
+	background-color: var(--wp--preset--color--secondary) !important;
+}
+
+.materialai-header-energy .materialai-btn-started-02 .wp-block-button__link{
+	border-color: var(--wp--preset--color--secondary);
+}
+
+.materialai-header-energy .materialai-btn-started-02 .wp-block-button__link:hover,
+.materialai-header-energy .materialai-btn-started-02 .wp-block-button__link:focus-visible{
+	--circle-bg: var(--wp--preset--color--primary);
+	--circle-color: var(--mai-on-primary, var(--wp--preset--color--secondary));
+	/* Core's preset colour classes are !important. */
+	background-color: var(--wp--preset--color--primary) !important;
+	color: var(--mai-on-primary, var(--wp--preset--color--secondary)) !important;
+	border-color: var(--wp--preset--color--secondary);
+}
+
+/* ------------------------------------------------------- energy — hero */
+
+/* The whole photograph, 1100px tall on a 1920px screen; no pale fill. */
+.materialai-hero-energy .materialai-hero2-slide{
+	background-color: var(--wp--preset--color--secondary);
+}
+
+.materialai-hero-energy .materialai-hero2-slide .wp-block-cover__image-background{
+	height: 100%;
+	object-position: center 40%;
+}
+
+/* Screenshot-matched opacity: gentle dark film over the entire image, plus
+   a stronger left-to-right wash behind the headline. The foreground remains
+   fully opaque because the overlay sits below the Cover inner container. */
+/* WordPress Cover block handles overlay strength natively (50%).
+   Disable the old pseudo-element gradient so the image is not darkened twice. */
+.materialai-hero-energy .materialai-hero2-slide::before{
+	display: none;
+}
+
+@media (min-width: 1025px){
+
+	body:has(.materialai-header-spa) .materialai-hero-energy .materialai-hero2-slide{
+		/* Cover adds 24px under its min-height; 1100px in all on the comp. */
+		min-height: clamp(676px, calc(57.3vw - 24px), 1076px);
+		padding-bottom: 220px;
+	}
+}
+
+/* Badge: a dark pill with a primary hairline, the bolt bare beside the
+   label (no disc). */
+.materialai-hero-energy .materialai-badge{
+	gap: 10px;
+	padding: 9px 18px 9px 22px;
+	border: 1px solid #637686;
+	box-shadow: 0 0 0 1px color-mix(in srgb, var(--wp--preset--color--primary) 20%, transparent), 0 10px 24px rgba(3, 10, 24, .16);
+	background: rgba(8, 28, 52, .72);
+	-webkit-backdrop-filter: blur(4px);
+	backdrop-filter: blur(4px);
+}
+
+.materialai-hero-energy .materialai-badge > .wp-block-icon:first-child,
+.materialai-hero-energy .materialai-badge > .wp-block-icon:first-child:first-child{
+	width: 22px;
+	height: 26px;
+	padding: 0;
+	border-radius: 0;
+	background: none;
+}
+
+.materialai-hero-energy .materialai-badge::before{
+	display: none;
+}
+
+.materialai-hero-energy .materialai-hero2-eyebrow{
+	font-size: clamp(14px, 1.05vw, 20px);
+	font-weight: 600;
+}
+
+.materialai-hero-energy .materialai-hero2-title{
+	font-weight: 700;
+	line-height: 1.22;
+}
+
+.materialai-hero-energy .materialai-hero2-text{
+	max-width: 580px;
+	font-size: clamp(16px, 1.15vw, 22px);
+	line-height: 1.55;
+}
+
+/* Buttons: a dark 3px rim and no halo ring. Both rest as a
+   dark pill with a primary disc; on hover or focus the pill fills with the
+   primary colour, the disc melts into it and the arrow stays dark. */
+.materialai-hero-energy .materialai-btn-ring-02 .wp-block-button__link{
+	border: 2px solid var(--wp--preset--color--secondary);
+	box-shadow: 0 0 0 7px color-mix(in srgb, var(--wp--preset--color--light-color) 8%, transparent), 0 0 0 12px color-mix(in srgb, var(--wp--preset--color--light-color) 4%, transparent);
+	outline: 0;
+}
+
+.materialai-hero-energy .materialai-hero2-buttons .wp-block-button__link{
+	--arrow-color: var(--mai-on-primary, var(--wp--preset--color--secondary));
+	--circle-color: var(--mai-on-primary, var(--wp--preset--color--secondary));
+}
+
+.materialai-hero-energy .materialai-hero2-buttons .wp-block-button__link:hover,
+.materialai-hero-energy .materialai-hero2-buttons .wp-block-button__link:focus-visible{
+	/* Core's preset colour classes are !important. */
+	background-color: var(--wp--preset--color--primary) !important;
+	color: var(--mai-on-primary, var(--wp--preset--color--secondary)) !important;
+	border-color: var(--wp--preset--color--secondary);
+}
+
+/* Ripple: two rings keep washing out from the halo, half a beat apart, so
+   the calls to action breathe. They are the button wrapper's own pseudo
+   elements — the link's are the disc and the arrow — drawn as a hairline
+   pill that grows outward by its inset, which keeps the pill's round ends
+   where a scale would squash them. On hover or focus they speed up and take
+   the primary colour. */
+.materialai-hero-energy .materialai-hero2-buttons .wp-block-button{
+	position: relative;
+	--mai-ripple: color-mix(in srgb, var(--wp--preset--color--light-color) 26%, transparent);
+	--mai-ripple-speed: 2.2s;
+}
+
+.materialai-hero-energy .materialai-hero2-buttons .wp-block-button::before,
+.materialai-hero-energy .materialai-hero2-buttons .wp-block-button::after{
+	content: "";
+	position: absolute;
+	inset: -6px;
+	z-index: 0;
+	border: 2px solid var(--mai-ripple);
+	border-radius: 999px;
+	pointer-events: none;
+	opacity: .95;
+	animation: mai-energy-ripple var(--mai-ripple-speed) cubic-bezier(.22, .61, .36, 1) infinite;
+}
+
+.materialai-hero-energy .materialai-hero2-buttons .wp-block-button::after{
+	animation-delay: calc(var(--mai-ripple-speed) / -2);
+}
+
+/* The pill itself stays above its rings. */
+.materialai-hero-energy .materialai-hero2-buttons .wp-block-button__link{
+	position: relative;
+	z-index: 1;
+}
+
+.materialai-hero-energy .materialai-hero2-buttons .wp-block-button:hover,
+.materialai-hero-energy .materialai-hero2-buttons .wp-block-button:focus-within{
+	--mai-ripple: color-mix(in srgb, var(--wp--preset--color--primary) 38%, transparent);
+	--mai-ripple-speed: 1.45s;
+}
+
+@keyframes mai-energy-ripple{
+	0%{
+		inset: -6px;
+		opacity: .9;
+	}
+	70%{
+		opacity: .26;
+	}
+	100%{
+		inset: -20px;
+		opacity: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce){
+
+	.materialai-hero-energy .materialai-hero2-buttons .wp-block-button::before,
+	.materialai-hero-energy .materialai-hero2-buttons .wp-block-button::after{
+		animation: none;
+		display: none;
+	}
+}
+
+/* ------------------------------------------------- energy — highlights */
+
+/* A glass panel 30px above the foot of the hero, rounded all round, with
+   hairlines between the four items. */
+.materialai-hero-energy .materialai-hero2-statsbar{
+	padding-bottom: 30px;
+}
+
+.materialai-hero-energy .materialai-spa-features{
+	column-gap: 60px;
+	padding: 20px 15px;
+	border: 1px solid var(--mai-energy-rule);
+	border-radius: 12px;
+	background: rgba(87, 118, 175, .34);
+	-webkit-backdrop-filter: blur(14px);
+	backdrop-filter: blur(14px);
+}
+
+.materialai-hero-energy .materialai-spa-feature{
+	position: relative;
+	gap: 10px;
+}
+
+.materialai-hero-energy .materialai-spa-feature + .materialai-spa-feature::before{
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: -30px;
+	width: 1px;
+	height: 50px;
+	translate: 0 -50%;
+	background: color-mix(in srgb, var(--wp--preset--color--light-color) 70%, transparent);
+}
+
+/* White discs, no dashed ring. */
+.materialai-hero-energy .materialai-spa-feature .materialai-spa-feature__icon{
+	--mai-spa-icon: 100px;
+	padding: 0;
+}
+
+.materialai-hero-energy .materialai-spa-feature .materialai-spa-feature__icon::before{
+	display: none;
+}
+
+.materialai-hero-energy .materialai-spa-feature .materialai-spa-feature__icon img{
+	padding: 22%;
+	background: var(--white);
+}
+
+.materialai-hero-energy .materialai-spa-feature .materialai-spa-feature__title{
+	font-size: clamp(17px, 1.15vw, 22px);
+	color: var(--wp--preset--color--primary, #ADF025);
+}
+
+.materialai-hero-energy .materialai-spa-feature .materialai-spa-feature__text{
+	font-size: clamp(14px, 0.85vw, 16px);
+}
+
+/* ------------------------------------------------- energy — responsive */
+
+/* Logo, menu, search, cart and the call to action share one line: each
+   gives a little until the overlay menu takes over at 1024px. */
+@media (min-width: 1025px) and (max-width: 1279px){
+
+	.materialai-header-energy,
+	.materialai-hero-energy{
+		--mai-energy-nav-h: 96px;
+	}
+
+	.materialai-header-energy .materialai-navbar-02{
+		padding: 0 10px 0 0;
+	}
+
+	.materialai-header-energy .materialai-branding-02{
+		padding-left: 12px;
+	}
+
+	.materialai-header-energy .materialai-branding-02 .wp-block-site-logo img{
+		max-height: 38px;
+	}
+
+	.materialai-header-energy .materialai-navbar-02 .wp-block-navigation .wp-block-navigation__container{
+		gap: 8px 14px;
+	}
+}
+
+@media (min-width: 1025px) and (max-width: 1440px){
+
+	.materialai-hero-energy .materialai-spa-features{
+		column-gap: 32px;
+	}
+
+	.materialai-hero-energy .materialai-spa-feature + .materialai-spa-feature::before{
+		left: -16px;
+	}
+
+	.materialai-hero-energy .materialai-spa-feature .materialai-spa-feature__icon{
+		--mai-spa-icon: 80px;
+	}
+}
+
+@media (max-width: 1024px){
+
+	/* At tablet/mobile sizes, the copy spans the photo: maintain contrast
+	   across its full width without dimming text or buttons. */
+
+
+	/* The strip leaves the photograph here and stands on the page as a card,
+	   so it takes the dark panel colour instead of glass. */
+	.materialai-hero-energy .materialai-hero2-statsbar{
+		padding-bottom: 0;
+	}
+
+	.materialai-hero-energy .materialai-spa-features{
+		border-color: transparent;
+		background: var(--wp--preset--color--secondary);
+		-webkit-backdrop-filter: none;
+		backdrop-filter: none;
+	}
+
+	.materialai-hero-energy .materialai-spa-feature + .materialai-spa-feature::before{
+		display: none;
+	}
+
+	.materialai-hero-energy .materialai-spa-feature .materialai-spa-feature__icon{
+		--mai-spa-icon: 76px;
+	}
+}
+
+/* The menu toggle is a primary tile, so its rules are drawn dark. */
+.materialai-header-energy .materialai-nav-02 .wp-block-navigation__responsive-container-open{
+	color: var(--mai-on-primary, var(--wp--preset--color--secondary));
+}
+
+.materialai-header-energy .materialai-nav-02 .wp-block-navigation__responsive-container-open:hover{
+	color: var(--wp--preset--color--primary);
+}
+
+/* Tablet: the toggle joins logo, search, cart and the call to action on one
+   line, so the logo steps down; on a narrow tablet the call to action — which
+   the hero repeats — stands down so nothing is pushed out of the pill. */
+@media (max-width: 1024px){
+
+	.materialai-header-energy .materialai-branding-02 .wp-block-site-logo img{
+		max-height: 44px;
+	}
+}
+
+@media (max-width: 860px){
+
+	.materialai-header-energy .materialai-navbar-02 .wp-block-buttons{
+		display: none;
+	}
+}
+
+@media (max-width: 767px){
+
+	.materialai-header-energy,
+	.materialai-hero-energy{
+		--mai-energy-nav-h: 72px;
+		--mai-spa-nav-gap: 14px;
+	}
+
+	.materialai-header-energy .materialai-topbar-02 .materialai-topbar-02__row{
+		min-height: 0;
+	}
+
+	.materialai-header-energy .materialai-navbar-02{
+		gap: 8px;
+		padding: 0 8px 0 0;
+	}
+
+	.materialai-header-energy .materialai-branding-02{
+		padding-left: 12px;
+	}
+
+	.materialai-header-energy .materialai-branding-02 .wp-block-site-logo img{
+		max-height: 34px;
+	}
+
+	.materialai-hero-energy .materialai-badge{
+		padding: 7px 14px 7px 14px;
+	}
+
+	.materialai-hero-energy .materialai-badge > .wp-block-icon:first-child,
+	.materialai-hero-energy .materialai-badge > .wp-block-icon:first-child:first-child{
+		width: 16px;
+		height: 20px;
+	}
+}
+
+@media (max-width: 600px){
+
+	.materialai-hero-energy .materialai-spa-feature .materialai-spa-feature__icon{
+		--mai-spa-icon: 64px;
+	}
+}
+
+/* Narrow phones: the badge's label is long and set in capitals, so it may
+   take two lines rather than run out of the window. */
+@media (max-width: 480px){
+
+	.materialai-hero-energy .materialai-hero2-eyebrow{
+		white-space: normal;
+		line-height: 1.35;
+	}
+
+	.materialai-hero-energy .materialai-badge{
+		border-radius: 24px;
+	}
+}
+
+/* ---------------------------------------------- Material AI's container
+
+   Pro lays Energy out on a 1170px container; Material AI's is 1100px, so
+   the pill and the strip are 70px narrower. On a desktop the menu, the call
+   to action and the highlights tighten just enough to keep every item on
+   its line inside them. */
+@media (min-width: 1025px){
+
+	.materialai-header-energy .materialai-navbar-02 .wp-block-navigation .wp-block-navigation__container{
+		gap: 8px 22px;
+	}
+
+	.materialai-header-energy .materialai-btn-started-02 .wp-block-button__link{
+		padding-left: 18px;
+		font-size: 18px !important;
+	}
+
+	.materialai-hero-energy .materialai-spa-features{
+		column-gap: 40px;
+	}
+
+	.materialai-hero-energy .materialai-spa-feature + .materialai-spa-feature::before{
+		left: -20px;
+	}
+
+	.materialai-hero-energy .materialai-spa-feature .materialai-spa-feature__icon{
+		--mai-spa-icon: 90px;
+	}
+
+	/* Pro's slide carries a 24px quirk of its carousel that is taken off its
+	   height there; this static hero has none, so it is the comp's 1100px
+	   on a 1920px screen as it is. */
+	body:has(.materialai-header-spa) .materialai-hero-energy .materialai-hero2-slide{
+		min-height: clamp(700px, 57.3vw, 1100px);
+	}
+}
+
+/* The highlighted word over the photograph: the primary colour, lifted
+   toward white when the palette's primary is dark (see --mai-primary-ink).
+   Core's colour classes are !important. */
+.materialai-hero-energy .materialai-hero2-title mark.has-primary-color{
+	color: var(--mai-primary-ink, var(--wp--preset--color--primary)) !important;
+}
+
+/* --------------------------------------------------- style variations
+
+   The four highlight icons are pictures drawn in this theme's greens. Under
+   a style variation (or colours picked under Styles) functions.php marks the
+   page .material-energy-repainted and hands each bundled icon to the figure
+   as --mai-icon; the picture is then shown as a mask in --mai-icon-ink, a
+   palette colour, so the strip follows the variation like everything else.
+   The white disc stays the image's own background; the float moves to the
+   figure so the glyph and its disc move together. */
+.material-energy-repainted .materialai-spa-feature .materialai-spa-feature__icon[style*="--mai-icon"]{
+	animation: mai-spa-float 4s ease-in-out infinite;
+}
+
+.material-energy-repainted .materialai-spa-feature:nth-child(2) .materialai-spa-feature__icon[style*="--mai-icon"]{ animation-delay: -1s; }
+.material-energy-repainted .materialai-spa-feature:nth-child(3) .materialai-spa-feature__icon[style*="--mai-icon"]{ animation-delay: -2s; }
+.material-energy-repainted .materialai-spa-feature:nth-child(4) .materialai-spa-feature__icon[style*="--mai-icon"]{ animation-delay: -3s; }
+
+.material-energy-repainted .materialai-spa-feature .materialai-spa-feature__icon[style*="--mai-icon"] img{
+	object-position: -9999px 0;
+	animation: none;
+}
+
+.material-energy-repainted .materialai-spa-feature .materialai-spa-feature__icon[style*="--mai-icon"]::after{
+	content: "";
+	position: absolute;
+	inset: 22%;
+	z-index: 1;
+	background-color: var(--mai-icon-ink, var(--wp--preset--color--primary));
+	-webkit-mask: var(--mai-icon) center / contain no-repeat;
+	mask: var(--mai-icon) center / contain no-repeat;
+	pointer-events: none;
+	transition: transform .35s ease;
+}
+
+.material-energy-repainted .materialai-spa-feature:hover .materialai-spa-feature__icon[style*="--mai-icon"]::after{
+	transform: translateY(-4px) scale(1.06);
+}
+
+@media (prefers-reduced-motion: reduce){
+
+	.material-energy-repainted .materialai-spa-feature .materialai-spa-feature__icon[style*="--mai-icon"]{
+		animation: none;
+	}
+}
+
+/* ------------------------------------------------------------ breadcrumb
+
+   Material AI draws the breadcrumb's home icon as a picture with its purple
+   baked in, so it never follows the palette. The parent cannot be changed,
+   so the icon is redrawn here: the house becomes a mask painted in a palette
+   colour, on the crumb itself (the label clips its overflow). Energy shows
+   it as a dark house on a primary disc, like the header's discs; a crumb
+   filled with the primary colour on hover takes dark type. */
+.mai-breadcrumb{
+	--mai-home-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000'%3E%3Cpath d='M12.72 2.28a1.06 1.06 0 0 0-1.44 0L2.4 10.3a1.05 1.05 0 0 0 .72 1.83h1.2v8.3c0 .87.7 1.57 1.57 1.57h3.4v-5.28c0-.87.7-1.57 1.56-1.57h2.3c.87 0 1.57.7 1.57 1.57V22h3.4c.86 0 1.56-.7 1.56-1.57v-8.3h1.2a1.05 1.05 0 0 0 .72-1.83l-8.88-8.02Z'/%3E%3C/svg%3E");
+}
+
+.mai-breadcrumb__crumb--first .mai-breadcrumb__crumb-body::after{
+	background: var(--wp--preset--color--primary);
+}
+
+.mai-breadcrumb__crumb--first::after{
+	content: "";
+	position: absolute;
+	z-index: 2;
+	top: 50%;
+	left: calc(var(--mai-ring-gap) + var(--mai-track-h) * .057);
+	width: var(--mai-circle);
+	height: var(--mai-circle);
+	background-color: var(--mai-on-primary, var(--wp--preset--color--secondary));
+	-webkit-mask: var(--mai-home-icon) center / var(--mai-icon) var(--mai-icon) no-repeat;
+	mask: var(--mai-home-icon) center / var(--mai-icon) var(--mai-icon) no-repeat;
+	transform: translateY(-50%);
+	transition: transform .4s cubic-bezier(.34, 1.56, .64, 1);
+	pointer-events: none;
+}
+
+.mai-breadcrumb__crumb--first:hover::after,
+.mai-breadcrumb__crumb--first:focus-within::after{
+	transform: translateY(-50%) scale(1.07) rotate(-6deg);
+}
+
+.mai-breadcrumb__crumb:hover .mai-breadcrumb__label,
+.mai-breadcrumb__crumb:focus-within .mai-breadcrumb__label,
+.mai-breadcrumb__crumb:hover .mai-breadcrumb__label a,
+.mai-breadcrumb__crumb:focus-within .mai-breadcrumb__label a{
+	color: var(--mai-on-primary, var(--wp--preset--color--secondary));
+	text-shadow: none;
+}
